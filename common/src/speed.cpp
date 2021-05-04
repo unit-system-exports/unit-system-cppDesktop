@@ -36,3 +36,8 @@ common::speed common::literals::operator "" _kmph(long double len){
 common::speed common::literals::operator "" _mps(long double len){
     return common::speed{len,1};
 }
+
+std::ostream& common::operator<<(std::ostream& os, const common::speed& v){
+    auto v1 = base::unit_cast(v,1,0);
+    return os << v1.value << " meter per second";
+}

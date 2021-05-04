@@ -34,10 +34,12 @@ namespace sakurajin{
             public:
                 const long double multiplier = 1;
                 long double value = 0;
+                const long double offset = 0;
                 long double rel_error = 0.000001;
                 
                 unit_t(long double v);
                 unit_t(long double v, long double mult);
+                unit_t(long double v, long double mult, long double off);
                 
                 unit_t operator*(long double scalar) const;
                 void operator*=(long double scalar);
@@ -69,7 +71,15 @@ namespace sakurajin{
             //the simple unit cast
             template <std::size_t indentifier>
             unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier){
-                unit_t<indentifier> retval{unit.value * (unit.multiplier / new_multiplier), new_multiplier};
+                unit_t<indentifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
+                return retval;
+            }
+            
+            //changes multiplier and offset
+            //This is needed primarily for temperatures
+            template <std::size_t indentifier>
+            unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier, long double new_offset){
+                unit_t<indentifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
                 return retval;
             }
             
@@ -79,6 +89,9 @@ namespace sakurajin{
             
             template <std::size_t indentifier>
             unit_t<indentifier>::unit_t(long double v, long double mult): multiplier{mult}, value{v}{};
+            
+            template <std::size_t indentifier>
+            unit_t<indentifier>::unit_t(long double v, long double mult, long double off): multiplier{mult}, value{v}, offset{off}{};
 
             //const member functions
             template <std::size_t indentifier>

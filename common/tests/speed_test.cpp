@@ -8,6 +8,7 @@
 
 using namespace sakurajin::unit_system::prefix;
 using namespace sakurajin::unit_system::common;
+using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::base::literals;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {

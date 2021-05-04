@@ -3,6 +3,7 @@
 #include "unit_t.hpp"
 #include "length.hpp"
 #include "time.hpp"
+#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -19,6 +20,8 @@ namespace sakurajin{
             base::length operator*(const base::time_si& t, const speed& v);
             
             base::time_si operator/(const base::length& s, const speed& v);
+            
+            std::ostream& operator<<(std::ostream& os, const speed& v);
             
             inline namespace literals{
                 speed operator "" _kmph(long double val);
