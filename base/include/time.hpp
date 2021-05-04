@@ -12,15 +12,17 @@ namespace sakurajin{
                 
             };
             
-            time operator "" _a(long double len);
-            time operator "" _d(long double len);
-            time operator "" _h(long double len);
-            time operator "" _min(long double len);
-            time operator "" _s(long double len);
-            time operator "" _ms(long double len);
-            time operator "" _us(long double len);
-            time operator "" _ns(long double len);
-            time operator "" _fs(long double len);
+            inline namespace literals{
+                time operator "" _a(long double len);
+                time operator "" _d(long double len);
+                time operator "" _h(long double len);
+                time operator "" _min(long double len);
+                time operator "" _s(long double len);
+                time operator "" _ms(long double len);
+                time operator "" _us(long double len);
+                time operator "" _ns(long double len);
+                time operator "" _fs(long double len);
+            }
             
         }
     }

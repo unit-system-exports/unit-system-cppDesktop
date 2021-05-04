@@ -15,6 +15,11 @@ namespace sakurajin{
             
             speed operator/(const base::length& s, const base::time& t);
             
+            inline namespace literals{
+                speed operator "" _kmph(long double val);
+                speed operator "" _mps(long double val);
+            }
+            
         }
     }
 }

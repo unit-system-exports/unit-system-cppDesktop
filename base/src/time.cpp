@@ -7,39 +7,39 @@ using namespace sakurajin::unit_system::prefix;
 time::time(long double val): unit_t<1>(val){}
 time::time(long double val, long double mult): unit_t<1>(val,mult){}
 
-time operator "" _a(long double len){
+time literals::operator "" _a(long double len){
     return time(len,365.25*24.0*60.0*60.0);
 }
 
-time operator "" _d(long double len){
+time literals::operator "" _d(long double len){
     return time(len,24.0*60.0*60.0);
 }
 
-time operator "" _h(long double len){
+time literals::operator "" _h(long double len){
     return time(len,60.0*60.0);
 }
 
-time operator "" _min(long double len){
+time literals::operator "" _min(long double len){
     return time(len,60.0);
 }
 
-time operator "" _s(long double len){
+time literals::operator "" _s(long double len){
     return time(len,1);
 }
 
-time operator "" _ms(long double len){
+time literals::operator "" _ms(long double len){
     return time(len,milli);
 }
 
-time operator "" _us(long double len){
+time literals::operator "" _us(long double len){
     return time(len,micro);
 }
 
-time operator "" _ns(long double len){
+time literals::operator "" _ns(long double len){
     return time(len,nano);
 }
 
-time operator "" _fs(long double len){
+time literals::operator "" _fs(long double len){
     return time(len,femto);
 }
 
