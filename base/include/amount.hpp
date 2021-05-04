@@ -7,6 +7,8 @@ namespace sakurajin{
         namespace base{
             class amount : public unit_t<5>{
             public:
+                amount(double val);
+                amount(double val, double mult);
                 
             };
             

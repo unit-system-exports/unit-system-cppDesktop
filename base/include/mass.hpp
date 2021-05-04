@@ -7,6 +7,8 @@ namespace sakurajin{
         namespace base{
             class mass : public unit_t<3>{
             public:
+                mass(double val);
+                mass(double val, double mult);
                 
             };
             

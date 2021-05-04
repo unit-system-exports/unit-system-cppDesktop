@@ -1,6 +1,13 @@
 cc = meson.get_compiler('cpp')
 
 sources = [
+    'src/time.cpp',
+    'src/length.cpp',
+    'src/mass.cpp',
+    'src/amount.cpp',
+    'src/temperature.cpp',
+    'src/electric_current.cpp',
+    'src/luminous_intensity.cpp',
 ]
 
 incdir = include_directories('include','..')

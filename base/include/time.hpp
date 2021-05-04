@@ -7,6 +7,8 @@ namespace sakurajin{
         namespace base{
             class time : public unit_t<1>{
             public:
+                time(double val);
+                time(double val, double mult);
                 
             };
             

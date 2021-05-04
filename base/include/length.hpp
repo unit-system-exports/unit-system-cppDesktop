@@ -7,6 +7,8 @@ namespace sakurajin{
         namespace base{
             class length : public unit_t<2>{
             public:
+                length(double val);
+                length(double val, double mult);
                 
             };
             
