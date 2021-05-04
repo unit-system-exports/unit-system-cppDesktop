@@ -24,5 +24,8 @@ TEST_CASE( "Checking if casting works", "[vector]" ) {
     const auto v2 = s2/t2;
     REQUIRE(v2 == 25.0_kmph);
     
+    const auto v3 = sakurajin::unit_system::base::unit_cast(3.6_kmph,1);
+    REQUIRE(v3 == 1.0_mps);
+    
 };
 
