@@ -26,7 +26,6 @@ jobs:
   ubunut20:
     name: "ubuntu compile and test"
     runs-on: "ubuntu-20.04"
-    if: "contains(github.event.head_commit.message, '--build-linux')"
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1          
@@ -36,17 +35,7 @@ jobs:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.56.1
-      - name: clearing build directory
-        run: rm -rf build
-          
-      - uses: BSFishy/meson-build@v1.0.2
-        name: build
-        with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.56.1
+          meson-version: 0.57.1
       - name: clearing build directory
         run: rm -rf build
 
@@ -62,24 +51,31 @@ jobs:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.56.1
+          meson-version: 0.57.1
+          setup-options: -Ddefault_library=static -Db_lto=false
       - name: clearing build directory
-        run: rm -rf build
-          
+        run: Remove-Item -recurse -force build
+        
+  macos:
+    name: "mac os compile and test"
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1                
       - uses: BSFishy/meson-build@v1.0.2
-        name: build
+        name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.56.1
+          meson-version: 0.57.1
       - name: clearing build directory
         run: rm -rf build
 
   pre-release:
     name: "Pre Release latest"
     runs-on: "ubuntu-20.04"
-    needs: [windows, ubunut20]
+    needs: [windows, ubunut20, macos]
     steps:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
