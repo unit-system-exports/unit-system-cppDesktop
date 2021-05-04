@@ -12,7 +12,7 @@ using namespace sakurajin::unit_system::base::literals;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {
     
-    const sakurajin::unit_system::base::time t1{1,1};
+    const sakurajin::unit_system::base::time_si t1{1,1};
     const auto t2 = 10.0_h;
 
     const sakurajin::unit_system::base::length s1{10,1};

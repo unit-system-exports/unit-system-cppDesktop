@@ -13,12 +13,12 @@ namespace sakurajin{
                 speed(long double val, long double mult);
             };
             
-            speed operator/(const base::length& s, const base::time& t);
+            speed operator/(const base::length& s, const base::time_si& t);
             
-            base::length operator*(const speed& v, const base::time& t);
-            base::length operator*(const base::time& t, const speed& v);
+            base::length operator*(const speed& v, const base::time_si& t);
+            base::length operator*(const base::time_si& t, const speed& v);
             
-            base::time operator/(const base::length& s, const speed& v);
+            base::time_si operator/(const base::length& s, const speed& v);
             
             inline namespace literals{
                 speed operator "" _kmph(long double val);

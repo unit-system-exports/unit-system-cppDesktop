@@ -1,6 +1,6 @@
 #pragma once
 
-#include <array>
+#include <cstddef>
 #include <cmath>
 #include <algorithm>
 
@@ -12,7 +12,7 @@ namespace sakurajin{
             //It is used so that only values with the same unit can be
             // compared, copied and converted.
             //0 for unit_t 
-            //1 for time
+            //1 for time_si
             //2 for length
             //3 for mass
             //4 for temp
