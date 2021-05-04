@@ -54,7 +54,7 @@ jobs:
     name: "windows compile and test"
     runs-on: "windows-latest"
     steps:
-       - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - uses: actions/setup-python@v1          
       - uses: BSFishy/meson-build@v1.0.2
         name: build full
