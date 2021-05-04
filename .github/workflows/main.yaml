@@ -1,0 +1,98 @@
+name: "main-ci"
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  doxygen:
+    runs-on: ubuntu-20.04
+    if: "contains(github.event.head_commit.message, '--build-docs')"
+    steps:
+    - uses: actions/checkout@v1
+    - name: install dependencies
+      run: sudo apt install doxygen graphviz
+    - name: generate docs
+      run: doxygen
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@master
+      env:
+        REPO: self
+        BRANCH: gh-pages
+        FOLDER: doc/html
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  ubunut20:
+    name: "ubuntu compile and test"
+    runs-on: "ubuntu-20.04"
+    if: "contains(github.event.head_commit.message, '--build-linux')"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.56.1
+      - name: clearing build directory
+        run: rm -rf build
+          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.56.1
+      - name: clearing build directory
+        run: rm -rf build
+
+  windows:
+    name: "windows compile and test"
+    runs-on: "windows-latest"
+    steps:
+       - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.56.1
+      - name: clearing build directory
+        run: rm -rf build
+          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.56.1
+      - name: clearing build directory
+        run: rm -rf build
+
+  pre-release:
+    name: "Pre Release latest"
+    runs-on: "ubuntu-20.04"
+    needs: [windows, ubunut20]
+    steps:
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE
+            
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: build-artifact-${{ matrix.os }}-${{ matrix.compiler }}
+          path: .
+

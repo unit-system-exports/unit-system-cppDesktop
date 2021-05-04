@@ -3,6 +3,8 @@
 namespace sakurajin{
     namespace unit_system{
         namespace prefix{
+            const double yocto = 0.000000000000000001;
+            const double zepto = 0.000000000000000001;
             const double atto  = 0.000000000000000001;
             const double femto = 0.000000000000001;
             const double pico  = 0.000000000001;
@@ -19,6 +21,8 @@ namespace sakurajin{
             const double tera  = 1000000000000;
             const double peta  = 1000000000000000;
             const double exa   = 1000000000000000000;
+            const double zetta = 1000000000000000000000;
+            const double yotta = 1000000000000000000000000;
         }
     }
 }
