@@ -32,18 +32,18 @@ namespace sakurajin{
             template <std::size_t indentifier>
             class unit_t{
             public:
-                const double multiplier = 1;
-                double value = 0;
-                double rel_error = 0.000001;
+                const long double multiplier = 1;
+                long double value = 0;
+                long double rel_error = 0.000001;
                 
-                unit_t(double v);
-                unit_t(double v, double mult);
+                unit_t(long double v);
+                unit_t(long double v, long double mult);
                 
-                unit_t operator*(double scalar) const;
-                void operator*=(double scalar);
+                unit_t operator*(long double scalar) const;
+                void operator*=(long double scalar);
                 
-                unit_t operator/(double scalar) const;
-                void operator/=(double scalar);
+                unit_t operator/(long double scalar) const;
+                void operator/=(long double scalar);
                 
                 unit_t operator+(const unit_t& other) const;
                 void operator+=(const unit_t& other);
@@ -68,27 +68,27 @@ namespace sakurajin{
             
             //the simple unit cast
             template <std::size_t indentifier>
-            unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, double new_multiplier){
+            unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier){
                 unit_t<indentifier> retval{unit.value * (unit.multiplier / new_multiplier), new_multiplier};
                 return retval;
             }
             
             //All of the constructors
             template <std::size_t indentifier>
-            unit_t<indentifier>::unit_t(double v): value{v}{};
+            unit_t<indentifier>::unit_t(long double v): value{v}{};
             
             template <std::size_t indentifier>
-            unit_t<indentifier>::unit_t(double v, double mult): multiplier{mult}, value{v}{};
+            unit_t<indentifier>::unit_t(long double v, long double mult): multiplier{mult}, value{v}{};
 
             //const member functions
             template <std::size_t indentifier>
-            unit_t<indentifier> unit_t<indentifier>::operator*(double scalar) const{
+            unit_t<indentifier> unit_t<indentifier>::operator*(long double scalar) const{
                 unit_t<indentifier> retval{value*scalar, multiplier};
                 return retval;
             }
 
             template <std::size_t indentifier>
-            unit_t<indentifier> unit_t<indentifier>::operator/(double scalar) const{
+            unit_t<indentifier> unit_t<indentifier>::operator/(long double scalar) const{
                 unit_t<indentifier> retval{value/scalar, multiplier};
                 return retval;
             }
@@ -163,12 +163,12 @@ namespace sakurajin{
 
             //non const member functions
             template <std::size_t indentifier>
-            void unit_t<indentifier>::operator*=(double scalar){
+            void unit_t<indentifier>::operator*=(long double scalar){
                 value*=scalar;
             }
 
             template <std::size_t indentifier>
-            void unit_t<indentifier>::operator/=(double scalar){
+            void unit_t<indentifier>::operator/=(long double scalar){
                 value/=scalar;
             }
 

@@ -2,4 +2,4 @@
 
 #include "unit_t.hpp"
 
-bool isDoubleEqual(double v1, double v2);
+bool isDoubleEqual(long double v1, long double v2);

@@ -9,8 +9,8 @@ namespace sakurajin{
         namespace common{
             class speed : public base::unit_t<201>{
             public:
-                speed(double val);
-                speed(double val, double mult);
+                speed(long double val);
+                speed(long double val, long double mult);
             };
             
             speed operator/(const base::length& s, const base::time& t);

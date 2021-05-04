@@ -7,8 +7,8 @@ namespace sakurajin{
         namespace base{
             class electric_current : public unit_t<6>{
             public:
-                electric_current(double val);
-                electric_current(double val, double mult);
+                electric_current(long double val);
+                electric_current(long double val, long double mult);
                 
             };
             

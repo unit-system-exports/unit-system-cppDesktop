@@ -3,8 +3,8 @@
 using namespace sakurajin::unit_system;
 
 
-common::speed::speed ( double val, double mult ) : base::unit_t<201>(val,mult){}
-common::speed::speed(double val): base::unit_t<201>(val){}
+common::speed::speed ( long double val, long double mult ) : base::unit_t<201>(val,mult){}
+common::speed::speed(long double val): base::unit_t<201>(val){}
 
 common::speed common::operator/(const base::length& s, const base::time& t){
     auto s1 = base::unit_cast(s,1);
