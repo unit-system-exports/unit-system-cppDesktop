@@ -1,7 +1,6 @@
 cc = meson.get_compiler('cpp')
 
 sources = [
-   'src/unit_t.cpp',
 ]
 
 incdir = include_directories('include','..')

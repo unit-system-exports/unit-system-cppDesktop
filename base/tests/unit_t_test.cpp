@@ -11,11 +11,11 @@ using namespace sakurajin::unit_system::prefix;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {
     
-    const unit_t v1{1000,1};
-    const unit_t v2{1,1000};
-    const unit_t v3{10,100};
-    const unit_t v4{1,1};
-    const unit_t v5{1,kilo};
+    const unit_t<0> v1{1000,1};
+    const unit_t<0> v2{1,1000};
+    const unit_t<0> v3{10,100};
+    const unit_t<0> v4{1,1};
+    const unit_t<0> v5{1,kilo};
     
     REQUIRE(v1 == v2);
     REQUIRE(v1 == v3);
@@ -28,11 +28,11 @@ TEST_CASE( "Checking if casting works", "[vector]" ) {
 
 TEST_CASE( "Checking if comparison works", "[vector]" ) {
     
-    const unit_t v1{1000,1};
-    const unit_t v2{1,1000};
-    const unit_t v3{10,100};
-    const unit_t v4{1,1};
-    const unit_t v5{1,kilo};
+    const unit_t<0> v1{1000,1};
+    const unit_t<0> v2{1,1000};
+    const unit_t<0> v3{10,100};
+    const unit_t<0> v4{1,1};
+    const unit_t<0> v5{1,kilo};
     
     REQUIRE(v4 < v5);
     REQUIRE(v5 > v4);
@@ -52,11 +52,11 @@ TEST_CASE( "Checking if comparison works", "[vector]" ) {
 
 TEST_CASE( "Checking if operators works", "[vector]" ) {
     
-    const unit_t v1{1000,1};
-    const unit_t v2{1,1000};
-    const unit_t v3{10,100};
-    const unit_t v4{1,1};
-    const unit_t v5{999,1};
+    const unit_t<0> v1{1000,1};
+    const unit_t<0> v2{1,1000};
+    const unit_t<0> v3{10,100};
+    const unit_t<0> v4{1,1};
+    const unit_t<0> v5{999,1};
     
     auto _v4 = v4;
     REQUIRE(v2 != _v4);
