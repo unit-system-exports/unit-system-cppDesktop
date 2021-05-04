@@ -1,5 +1,6 @@
 #include "test_helper.hpp"
 #include <cmath>
+#include <algorithm>
 
 bool isDoubleEqual(double v1, double v2){
     double delta = v1-v2;

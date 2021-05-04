@@ -34,5 +34,8 @@
 #other files
 .kdev4
 unit-system.kdev4
+
+doc
+
 subprojects/*
 !subprojects/*.wrap
