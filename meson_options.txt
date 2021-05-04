@@ -1,3 +1,5 @@
 option('build_tests', type : 'boolean', value : true, description: 'set to false if you do not want to compile the tests.')
-option('force_build_tests', type : 'boolean', value : false, description: 'set to true if you do not want to compile the tests even with libtrainsim as subproject.')
-option('build_full', type : 'boolean', value : false, description: 'set to true if you to build all components and create libtrainsim_full as dependency.')
+option('force_build_tests', type : 'boolean', value : false, description: 'set to true if you do not want to compile the tests even with unit-system as subproject.')
+
+option('build_common', type : 'boolean', value : true, description: 'set to false if you do not want to build/include the common units')
+option('build_full', type : 'boolean', value : false, description: 'set to true if you to build all components and create unit_system_full as dependency.')
