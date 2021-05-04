@@ -3,8 +3,8 @@
 namespace sakurajin{
     namespace unit_system{
         namespace prefix{
-            const double yocto = 0.000000000000000001;
-            const double zepto = 0.000000000000000001;
+            const double yocto = 0.000000000000000000000001;
+            const double zepto = 0.000000000000000000001;
             const double atto  = 0.000000000000000001;
             const double femto = 0.000000000000001;
             const double pico  = 0.000000000001;
