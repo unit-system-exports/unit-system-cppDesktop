@@ -7,6 +7,11 @@ using namespace sakurajin::unit_system::prefix;
 time_si::time_si(long double val): unit_t<1>(val){}
 time_si::time_si(long double val, long double mult): unit_t<1>(val,mult){}
 
+time_si sakurajin::unit_system::base::unit_cast(const time_si& other, long double new_multiplier){
+    auto v1 = unit_cast(static_cast<unit_t<1>>(other), new_multiplier);
+    return time_si{v1.value,v1.multiplier};
+}
+
 std::ostream& operator<<(std::ostream& os, const time_si& t){
     auto t1 = unit_cast(t,1,0);
     return os << t1.value << " seconds";

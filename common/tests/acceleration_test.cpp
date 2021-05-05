@@ -2,7 +2,7 @@
 
 #include "prefix.hpp"
 #include "test_helper.hpp"
-#include "speed.hpp"
+#include "acceleration.hpp"
 
 #include <iostream>
 
@@ -13,22 +13,19 @@ using namespace sakurajin::unit_system::base::literals;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {
     
-    const time_si t1{1,1};
-    const auto t2 = 10.0_h;
-
-    const length s1{10,1};
-    const auto s2 = 250.0_km;
+    const auto t1 = 10.0_s;
+    const auto s1 = 250.0_m;
     
     const speed v1 = s1/t1;
-    REQUIRE(v1 == 10.0_mps);
+    REQUIRE(v1 == 25.0_mps);
     
-    const auto v2 = s2/t2;
-    REQUIRE(v2 == 25.0_kmph);
+    const auto a1 = v1/t1;
+    REQUIRE(a1 == 2.5_mps2);
     
-    const auto v3 = unit_cast(3.6_kmph,1);
-    REQUIRE(v3 == 1.0_mps);
+    const auto a2 = unit_cast(9.81_mps/1.0_s,1);
+    REQUIRE(a2 == 1.0_g);
     
-    REQUIRE( v3*t1 == t1*v3 );
+    REQUIRE(a2 * t1 == t1 * a2);
     
 };
 

@@ -13,6 +13,8 @@ namespace sakurajin{
                 
             };
             
+            time_si unit_cast(const time_si& other, long double new_multiplier);
+            
             std::ostream& operator<<(std::ostream& os, const time_si& t);
             
             inline namespace literals{

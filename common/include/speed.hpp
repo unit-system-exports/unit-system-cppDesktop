@@ -13,6 +13,8 @@ namespace sakurajin{
                 speed(long double val, long double mult);
             };
             
+            speed unit_cast(const speed& other, long double new_multiplier);
+            
             speed operator/(const base::length& s, const base::time_si& t);
             
             base::length operator*(const speed& v, const base::time_si& t);
