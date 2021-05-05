@@ -9,6 +9,20 @@ using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 using namespace sakurajin::unit_system::base::literals;
 
+TEST_CASE( "Checking if time works", "[vector]" ) {
+    
+    const auto t1 = 1_ms;
+    REQUIRE( t1*1000 == 1.0_s);
+    
+};
+
+TEST_CASE( "Checking if length works", "[vector]" ) {
+    
+    const auto s1 = 1_mm;
+    REQUIRE( s1*1000 == 1.0_m);
+    
+};
+
 TEST_CASE( "Checking if amount works", "[vector]" ) {
     
     const auto five = 5.0_things;

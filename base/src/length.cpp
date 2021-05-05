@@ -45,3 +45,32 @@ length literals::operator "" _nm(long double len){
     return length{len,nano};
 }
 
+
+
+length literals::operator "" _km(unsigned long long int len){
+    return length{static_cast<long double>(len), kilo};
+}
+
+length literals::operator "" _m(unsigned long long int len){
+    return length{static_cast<long double>(len), 1};
+}
+
+length literals::operator "" _dm(unsigned long long int len){
+    return length{static_cast<long double>(len),deci};
+}
+
+length literals::operator "" _cm(unsigned long long int len){
+    return length{static_cast<long double>(len),centi};
+}
+
+length literals::operator "" _mm(unsigned long long int len){
+    return length{static_cast<long double>(len),milli};
+}
+
+length literals::operator "" _um(unsigned long long int len){
+    return length{static_cast<long double>(len),micro};
+}
+
+length literals::operator "" _nm(unsigned long long int len){
+    return length{static_cast<long double>(len),nano};
+}

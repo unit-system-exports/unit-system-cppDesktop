@@ -12,7 +12,7 @@ time_si sakurajin::unit_system::base::unit_cast(const time_si& other, long doubl
     return time_si{v1.value,v1.multiplier};
 }
 
-std::ostream& operator<<(std::ostream& os, const time_si& t){
+std::ostream& sakurajin::unit_system::base::operator<<(std::ostream& os, const time_si& t){
     auto t1 = unit_cast(t,1,0);
     return os << t1.value << " seconds";
 }
@@ -53,3 +53,40 @@ time_si literals::operator "" _fs(long double len){
     return time_si(len,femto);
 }
 
+
+
+time_si literals::operator "" _a(unsigned long long int len){
+    return time_si(len,365.25*24.0*60.0*60.0);
+}
+
+time_si literals::operator "" _d(unsigned long long int len){
+    return time_si(len,24.0*60.0*60.0);
+}
+
+time_si literals::operator "" _h(unsigned long long int len){
+    return time_si(len,60.0*60.0);
+}
+
+time_si literals::operator "" _min(unsigned long long int len){
+    return time_si(len,60.0);
+}
+
+time_si literals::operator "" _s(unsigned long long int len){
+    return time_si(len,1);
+}
+
+time_si literals::operator "" _ms(unsigned long long int len){
+    return time_si(len,milli);
+}
+
+time_si literals::operator "" _us(unsigned long long int len){
+    return time_si(len,micro);
+}
+
+time_si literals::operator "" _ns(unsigned long long int len){
+    return time_si(len,nano);
+}
+
+time_si literals::operator "" _fs(unsigned long long int len){
+    return time_si(len,femto);
+}

@@ -27,6 +27,17 @@ namespace sakurajin{
                 time_si operator "" _us(long double len);
                 time_si operator "" _ns(long double len);
                 time_si operator "" _fs(long double len);
+                
+                
+                time_si operator "" _a(unsigned long long int len);
+                time_si operator "" _d(unsigned long long int len);
+                time_si operator "" _h(unsigned long long int len);
+                time_si operator "" _min(unsigned long long int len);
+                time_si operator "" _s(unsigned long long int len);
+                time_si operator "" _ms(unsigned long long int len);
+                time_si operator "" _us(unsigned long long int len);
+                time_si operator "" _ns(unsigned long long int len);
+                time_si operator "" _fs(unsigned long long int len);
             }
             
         }

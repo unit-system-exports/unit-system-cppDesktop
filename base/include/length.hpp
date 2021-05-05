@@ -25,6 +25,14 @@ namespace sakurajin{
                 length operator "" _mm(long double len);
                 length operator "" _um(long double len);
                 length operator "" _nm(long double len);
+                
+                length operator "" _km(unsigned long long int len);
+                length operator "" _m(unsigned long long int len);
+                length operator "" _dm(unsigned long long int len);
+                length operator "" _cm(unsigned long long int len);
+                length operator "" _mm(unsigned long long int len);
+                length operator "" _um(unsigned long long int len);
+                length operator "" _nm(unsigned long long int len);
             }
             
         }
