@@ -35,7 +35,7 @@ int main(){
 
 ```
 
-## Unsing the unit-system library
+## Including the unit-system library
 
 Depending on your build system you might have to figure out how to include and link this library by yourself.
 

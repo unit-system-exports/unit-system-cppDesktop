@@ -1,6 +1,7 @@
 #pragma once
 
 #include "unit_t.hpp"
+#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -11,6 +12,8 @@ namespace sakurajin{
                 time_si(long double val, long double mult);
                 
             };
+            
+            std::ostream& operator<<(std::ostream& os, const time_si& t);
             
             inline namespace literals{
                 time_si operator "" _a(long double len);

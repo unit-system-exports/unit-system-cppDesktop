@@ -7,6 +7,11 @@ using namespace sakurajin::unit_system::prefix;
 time_si::time_si(long double val): unit_t<1>(val){}
 time_si::time_si(long double val, long double mult): unit_t<1>(val,mult){}
 
+std::ostream& operator<<(std::ostream& os, const time_si& t){
+    auto t1 = unit_cast(t,1,0);
+    return os << t1.value << " seconds";
+}
+
 time_si literals::operator "" _a(long double len){
     return time_si(len,365.25*24.0*60.0*60.0);
 }
