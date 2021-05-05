@@ -38,6 +38,7 @@ deps += test_helper_dep
 
 tests = [
     'unit_t_test',
+    'base_units_test',
 ]
 
 #create all the tests
