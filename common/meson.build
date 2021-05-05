@@ -2,6 +2,7 @@ cc = meson.get_compiler('cpp')
 
 sources = [
     'src/speed.cpp',
+    'src/acceleration.cpp',
 ]
 
 incdir = include_directories('include','..')
