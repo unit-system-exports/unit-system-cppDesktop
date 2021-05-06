@@ -6,7 +6,7 @@ amount::amount(long double val): unit_t<5>(val){}
 amount::amount(long double val, long double mult): unit_t<5>(val,mult){}
 
 amount sakurajin::unit_system::base::unit_cast(const amount& other, long double new_multiplier){
-    auto v1 = unit_cast(static_cast<unit_t<5>>(other), new_multiplier);
+    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<5>>(other), new_multiplier);
     return amount{v1.value,v1.multiplier};
 }
 
@@ -15,7 +15,7 @@ amount::operator long double() const{
 }
 
 std::ostream& operator<<(std::ostream& os, const amount& t){
-    auto t1 = unit_cast(t,1,0);
+    auto t1 = sakurajin::unit_system::base::unit_cast(t,1);
     return os << t1.value << " seconds";
 }
 

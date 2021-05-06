@@ -2,6 +2,7 @@
 
 #include "unit_t.hpp"
 #include <iostream>
+#include <chrono>
 
 namespace sakurajin{
     namespace unit_system{
@@ -16,6 +17,12 @@ namespace sakurajin{
             time_si unit_cast(const time_si& other, long double new_multiplier);
             
             std::ostream& operator<<(std::ostream& os, const time_si& t);
+            
+            template<class Rep, class Period = std::ratio<1> >
+            time_si unit_system(const std::chrono::duration<Rep, Period>& other){
+                auto t = std::chrono::duration_cast<long double, std::ratio<1, 1>>(other);
+                return time_si{t.count(), 1};
+            };
             
             inline namespace literals{
                 time_si operator "" _a(long double len);

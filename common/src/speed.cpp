@@ -8,7 +8,7 @@ common::speed::speed ( long double val, long double mult ) : base::unit_t<201>(v
 common::speed::speed(long double val): base::unit_t<201>(val){};
 
 common::speed sakurajin::unit_system::common::unit_cast(const common::speed& other, long double new_multiplier){
-    auto v1 = base::unit_cast(static_cast<base::unit_t<201>>(other), new_multiplier);
+    auto v1 = sakurajin::unit_system::unit_cast(static_cast<base::unit_t<201>>(other), new_multiplier);
     return common::speed{v1.value,v1.multiplier};
 }
 
@@ -19,7 +19,7 @@ common::speed common::operator/(const base::length& s, const base::time_si& t){
 }
 
 base::length common::operator*(const common::speed& v, const base::time_si& t){
-    auto v1 = base::unit_cast(v,1);
+    auto v1 = common::unit_cast(v,1);
     auto t1 = base::unit_cast(t,1);
     return base::length{v1.value*t1.value,1};
 }
@@ -29,7 +29,7 @@ base::length common::operator*(const base::time_si& t, const common::speed& v){
 }
 
 base::time_si operator/(const base::length& s, const common::speed& v){
-    auto v1 = base::unit_cast(v,1);
+    auto v1 = common::unit_cast(v,1);
     auto s1 = base::unit_cast(s,1);
     return base::time_si{s1.value/v1.value,1};
 }
@@ -43,6 +43,6 @@ common::speed common::literals::operator "" _mps(long double len){
 }
 
 std::ostream& common::operator<<(std::ostream& os, const common::speed& v){
-    auto v1 = base::unit_cast(v,1,0);
+    auto v1 = common::unit_cast(v,1);
     return os << v1.value << " meter per second";
 }

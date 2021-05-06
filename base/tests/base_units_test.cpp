@@ -20,7 +20,7 @@ TEST_CASE( "Checking if length works", "[vector]" ) {
     
     const auto s1 = 1_mm;
     REQUIRE( s1*1000 == 1.0_m);
-    
+
 };
 
 TEST_CASE( "Checking if amount works", "[vector]" ) {

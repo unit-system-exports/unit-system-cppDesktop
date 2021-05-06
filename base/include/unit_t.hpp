@@ -68,20 +68,24 @@ namespace sakurajin{
                 
             };
             
-            //the simple unit cast
-            template <std::size_t indentifier>
-            unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier){
-                unit_t<indentifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
-                return retval;
-            }
+        }
             
-            //changes multiplier and offset
-            //This is needed primarily for temperatures
-            template <std::size_t indentifier>
-            unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier, long double new_offset){
-                unit_t<indentifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
-                return retval;
-            }
+        //the simple unit cast
+        template <std::size_t indentifier>
+        base::unit_t<indentifier> unit_cast(const base::unit_t<indentifier>& unit, long double new_multiplier){
+            base::unit_t<indentifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
+            return retval;
+        }
+        
+        //changes multiplier and offset
+        //This is needed primarily for temperatures
+        template <std::size_t indentifier>
+        base::unit_t<indentifier> unit_cast(const base::unit_t<indentifier>& unit, long double new_multiplier, long double new_offset){
+            base::unit_t<indentifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
+            return retval;
+        }
+        
+        namespace base{
             
             //All of the constructors
             template <std::size_t indentifier>
@@ -108,14 +112,14 @@ namespace sakurajin{
 
             template <std::size_t indentifier>
             unit_t<indentifier> unit_t<indentifier>::operator+(const unit_t<indentifier>& other) const{
-                auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 retval.value += value;
                 return retval;
             }
 
             template <std::size_t indentifier>
             unit_t<indentifier> unit_t<indentifier>::operator-(const unit_t<indentifier>& other) const{
-                auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 retval.value = value - retval.value;
                 return retval;
             }
@@ -123,31 +127,31 @@ namespace sakurajin{
             //comparison operators
             template <std::size_t indentifier>
             bool unit_t<indentifier>::operator<(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 return value < retval.value;
             }
 
             template <std::size_t indentifier>
             bool unit_t<indentifier>::operator>(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 return value > retval.value;
             }
 
             template <std::size_t indentifier>
             bool unit_t<indentifier>::operator<=(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 return value <= retval.value;
             }
 
             template <std::size_t indentifier>
             bool unit_t<indentifier>::operator>=(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 return value >= retval.value;
             }
 
             template <std::size_t indentifier>
             bool unit_t<indentifier>::operator==(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 auto delta = value-retval.value;
                 auto epsilon = 0.000001 * std::max(std::abs(value), std::abs(retval.value));
                 return std::abs(delta) < epsilon;
@@ -161,7 +165,7 @@ namespace sakurajin{
             #if __cplusplus >= 202002L
             template <std::size_t indentifier>
             int unit_t<indentifier>::operator<=>(const unit_t<indentifier>& other) const{
-                const auto retval = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 if(*this < retval){
                     return -1;
                 }
@@ -187,19 +191,19 @@ namespace sakurajin{
 
             template <std::size_t indentifier>
             void unit_t<indentifier>::operator+=(const unit_t<indentifier>& other){
-                const auto otherVal = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 value += otherVal.value;
             }
 
             template <std::size_t indentifier>
             void unit_t<indentifier>::operator-=(const unit_t<indentifier>& other){
-                const auto otherVal = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 value -= otherVal.value;
             }
 
             template <std::size_t indentifier>
             void unit_t<indentifier>::operator=(const unit_t<indentifier>& other){
-                const auto otherVal = other.multiplier == multiplier ? other : unit_cast(other,multiplier);
+                const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
                 value = otherVal.value;
             }
             
