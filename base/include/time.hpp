@@ -14,8 +14,6 @@ namespace sakurajin{
                 
             };
             
-            time_si unit_cast(const time_si& other, long double new_multiplier);
-            
             std::ostream& operator<<(std::ostream& os, const time_si& t);
             
             template<class Rep, class Period = std::ratio<1> >
@@ -47,6 +45,8 @@ namespace sakurajin{
                 time_si operator "" _fs(unsigned long long int len);
             }
             
-        }
+        }    
+        
+        base::time_si unit_cast(const base::time_si& other, long double new_multiplier);
     }
 }

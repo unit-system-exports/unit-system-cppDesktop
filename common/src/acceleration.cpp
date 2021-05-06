@@ -14,13 +14,13 @@ common::acceleration sakurajin::unit_system::common::unit_cast(const common::acc
 
 common::acceleration common::operator/(const common::speed& v, const base::time_si& t){
     auto v1 = common::unit_cast(v,1);
-    auto t1 = base::unit_cast(t,1);
+    auto t1 = sakurajin::unit_system::unit_cast(t,1);
     return common::acceleration{v1.value/t1.value,1};
 }
 
 common::speed common::operator*(const common::acceleration& a, const base::time_si& t){
     auto a1 = common::unit_cast(a,1);
-    auto t1 = base::unit_cast(t,1);
+    auto t1 = sakurajin::unit_system::unit_cast(t,1);
     return common::speed{a1.value*t1.value,1};
 }
 
