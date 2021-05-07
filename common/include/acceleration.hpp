@@ -8,7 +8,7 @@
 namespace sakurajin{
     namespace unit_system{
         namespace common{
-            class acceleration : public base::unit_t<2011>{
+            class acceleration : public unit_t<2011>{
             public:
                 acceleration(long double val);
                 acceleration(long double val, long double mult);

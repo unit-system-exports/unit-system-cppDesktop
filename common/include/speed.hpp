@@ -7,7 +7,7 @@
 namespace sakurajin{
     namespace unit_system{
         namespace common{
-            class speed : public base::unit_t<201>{
+            class speed : public unit_t<201>{
             public:
                 speed(long double val);
                 speed(long double val, long double mult);

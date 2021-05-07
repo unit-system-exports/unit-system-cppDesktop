@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-using namespace sakurajin::unit_system::base;
+using namespace sakurajin::unit_system;
 using namespace sakurajin::unit_system::prefix;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {

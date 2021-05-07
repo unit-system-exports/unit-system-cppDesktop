@@ -4,11 +4,11 @@
 using namespace sakurajin::unit_system;
 using namespace prefix;
 
-common::speed::speed ( long double val, long double mult ) : base::unit_t<201>(val,mult){};
-common::speed::speed(long double val): base::unit_t<201>(val){};
+common::speed::speed ( long double val, long double mult ) : unit_t<201>(val,mult){};
+common::speed::speed(long double val): unit_t<201>(val){};
 
 common::speed sakurajin::unit_system::unit_cast(const common::speed& other, long double new_multiplier){
-    auto v1 = sakurajin::unit_system::unit_cast(static_cast<base::unit_t<201>>(other), new_multiplier);
+    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<201>>(other), new_multiplier);
     return common::speed{v1.value,v1.multiplier};
 }
 
