@@ -2,16 +2,16 @@ project(
     'unit-system',
     'cpp',
     default_options : ['cpp_std=c++17'],
-    version : '0.1.0'
+    version : '0.2.0'
 )
 
 #set the configuration
 conf_data = configuration_data()
 conf_data.set('HAS_BASE_SUPPORT', true)
 
-#if get_option('build_video') or get_option('build_full')
-#    conf_data.set('HAS_VIDEO_SUPPORT', true)
-#endif
+if get_option('build_common') or get_option('build_full')
+    conf_data.set('HAS_COMMON_SUPPORT', true)
+endif
 
 configure_file(output : 'unit_system_config.hpp', configuration : conf_data, install: true, install_dir: 'include/unit-system')
 

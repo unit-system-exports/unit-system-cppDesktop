@@ -45,4 +45,27 @@ unit-system is written in C++ with the meson build system.
 Integrating this library is very easy.
 Just use the wrapdb to download the version you need, and then you can add the library as a dependency object.
 
+## Units that are currently supported
 
+unit_t -> an unit template that is the basis of all of the units
+
+### Base
+
+* time_si -> time with seconds as base unit
+* length -> length with meter as base unit
+* mass -> mass with kg as base unit
+* temperature (partial) -> temperatur with K as base unit
+* amount -> amount of substance with mole as base unit
+* electric_current (partial) -> electric current with Ampere as base unit
+* luminous_intensity (partial) -> luminous intensity with candela as base unit
+
+### Common
+
+* speed -> speed with `m / s` as base unit
+* acceleration -> acceleration with `m / s^2` as base unit
+* momentum -> momentum with `kg * m / s` as base unit
+* force -> force with `kg * m / s^2` (Newton) as base unit
+
+### Extra
+
+For now this is not needed
