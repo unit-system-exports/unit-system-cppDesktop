@@ -26,6 +26,9 @@ namespace sakurajin{
             inline namespace literals{
                 acceleration operator "" _mps2(long double val);
                 acceleration operator "" _g(long double val);
+                
+                acceleration operator "" _mps2(unsigned long long int val);
+                acceleration operator "" _g(unsigned long long int val);
             }
             
         }

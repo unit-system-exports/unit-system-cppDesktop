@@ -25,6 +25,9 @@ namespace sakurajin{
             inline namespace literals{
                 speed operator "" _kmph(long double val);
                 speed operator "" _mps(long double val);
+                
+                speed operator "" _kmph(unsigned long long int val);
+                speed operator "" _mps(unsigned long long int val);
             }
             
         }

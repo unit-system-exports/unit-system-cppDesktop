@@ -42,6 +42,14 @@ common::speed common::literals::operator "" _mps(long double len){
     return common::speed{len,1};
 }
 
+common::speed common::literals::operator "" _kmph(unsigned long long int len){
+    return common::speed{static_cast<long double>(len),kilo/(60.0*60.0)};
+}
+
+common::speed common::literals::operator "" _mps(unsigned long long int len){
+    return common::speed{static_cast<long double>(len),1};
+}
+
 std::ostream& common::operator<<(std::ostream& os, const common::speed& v){
     auto v1 = sakurajin::unit_system::unit_cast(v,1);
     return os << v1.value << " meter per second";
