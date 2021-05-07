@@ -14,8 +14,6 @@ namespace sakurajin{
                 acceleration(long double val, long double mult);
             };
             
-            acceleration unit_cast(const acceleration& other, long double new_multiplier);
-            
             acceleration operator/(const speed& v, const base::time_si& t);
             
             speed operator*(const acceleration& a, const base::time_si& t);
@@ -31,5 +29,8 @@ namespace sakurajin{
             }
             
         }
+        
+        common::acceleration unit_cast(const common::acceleration& other, long double new_multiplier);
+        
     }
 }

@@ -10,6 +10,7 @@ using namespace sakurajin::unit_system::prefix;
 using namespace sakurajin::unit_system::common;
 using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::base::literals;
+using namespace sakurajin::unit_system;
 
 TEST_CASE( "Checking if casting works", "[vector]" ) {
     
