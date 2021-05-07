@@ -1,5 +1,15 @@
 var searchData=
 [
-  ['yocto_38',['yocto',['../namespacesakurajin_1_1unit__system_1_1prefix.html#ab0f37bc2f08cd760bad1b952228e0e9d',1,'sakurajin::unit_system::prefix']]],
-  ['yotta_39',['yotta',['../namespacesakurajin_1_1unit__system_1_1prefix.html#a88f9f313db08ac6850b31a76ecfb769a',1,'sakurajin::unit_system::prefix']]]
+  ['unit_2dsystem_90',['unit-system',['../index.html',1,'']]],
+  ['unit_5fcast_91',['unit_cast',['../namespacesakurajin_1_1unit__system.html#a752cc3c20b38ca0c3273c5262a052940',1,'sakurajin::unit_system::unit_cast(const base::amount &amp;other, long double new_multiplier)'],['../namespacesakurajin_1_1unit__system.html#aceb6aedcb719fdad933ecd4ec765411e',1,'sakurajin::unit_system::unit_cast(const base::length &amp;other, long double new_multiplier)'],['../namespacesakurajin_1_1unit__system.html#a028c43d65f770e6cb67477265cd7a22d',1,'sakurajin::unit_system::unit_cast(const base::mass &amp;other, long double new_multiplier)'],['../namespacesakurajin_1_1unit__system.html#a7432eb25443852cb2c2f45f3bfb6de00',1,'sakurajin::unit_system::unit_cast(const base::time_si &amp;other, long double new_multiplier)'],['../namespacesakurajin_1_1unit__system.html#a6db9a214e8954a346435657e304755fe',1,'sakurajin::unit_system::unit_cast(const unit_t&lt; indentifier &gt; &amp;unit, long double new_multiplier)'],['../namespacesakurajin_1_1unit__system.html#acf4399867130f9658e8100d4b6d4cf1d',1,'sakurajin::unit_system::unit_cast(const unit_t&lt; indentifier &gt; &amp;unit, long double new_multiplier, long double new_offset)']]],
+  ['unit_5fsystem_92',['unit_system',['../namespacesakurajin_1_1unit__system_1_1base.html#a5931049161c1d4936116853222e4cbef',1,'sakurajin::unit_system::base']]],
+  ['unit_5ft_93',['unit_t',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system::unit_t&lt; indentifier &gt;'],['../classsakurajin_1_1unit__system_1_1unit__t.html#a0b0c06ac9ad8e7e81b1e6a455afcc1ae',1,'sakurajin::unit_system::unit_t::unit_t(long double v)'],['../classsakurajin_1_1unit__system_1_1unit__t.html#a45b9f2106fa5d3b1f9a6ebb830885c70',1,'sakurajin::unit_system::unit_t::unit_t(long double v, long double mult)'],['../classsakurajin_1_1unit__system_1_1unit__t.html#ac366d22ad2ee4586479723331aafda0f',1,'sakurajin::unit_system::unit_t::unit_t(long double v, long double mult, long double off)']]],
+  ['unit_5ft_2ehpp_94',['unit_t.hpp',['../unit__t_8hpp.html',1,'']]],
+  ['unit_5ft_3c_201_20_3e_95',['unit_t&lt; 1 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_202_20_3e_96',['unit_t&lt; 2 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_203_20_3e_97',['unit_t&lt; 3 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_204_20_3e_98',['unit_t&lt; 4 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_205_20_3e_99',['unit_t&lt; 5 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_206_20_3e_100',['unit_t&lt; 6 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]],
+  ['unit_5ft_3c_207_20_3e_101',['unit_t&lt; 7 &gt;',['../classsakurajin_1_1unit__system_1_1unit__t.html',1,'sakurajin::unit_system']]]
 ];

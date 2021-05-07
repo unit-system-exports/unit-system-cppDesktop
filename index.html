@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">unit-system
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
   </td>
  </tr>
@@ -66,7 +66,62 @@ $(function() {
 <div class="title">unit-system </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>A unit system for C++ development </p>
+<div class="textblock"><p>This is an implementation of the SI unit system for C++ development. The library is split into three parts:</p>
+<ul>
+<li>base -&gt; This contains all the base units</li>
+<li>common -&gt; This contains commonly used units</li>
+<li>extra -&gt; This contains addional units that are not needed by most people</li>
+</ul>
+<p>If you feel like any unit is missing feel free to implement it and open a pull request. You can create a new unit by letting it inherit from unit_t. Since unit_t is a template make sure to assign a unique ID. Below is a detailed description on how to create your own units.</p>
+<p>Although this library is focued on SI units it can be used to work with imperial units, but there will NEVER be upstream support for it. If you want to use imperial units you can figure out how to convert and add literals by yourself.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Usage examples</h1>
+<div class="fragment"><div class="line"> {c++}</div>
+<div class="line">#include &quot;common.hpp&quot;</div>
+<div class="line">#include &lt;iostream&gt;</div>
+<div class="line"> </div>
+<div class="line">using namespace sakurajin::unit_system::prefix;</div>
+<div class="line">using namespace sakurajin::unit_system::common;</div>
+<div class="line">using namespace sakurajin::unit_system::base;</div>
+<div class="line">using namespace sakurajin::unit_system::base::literals;</div>
+<div class="line"> </div>
+<div class="line">int main(){</div>
+<div class="line">    const auto t2 = 10.0_h;</div>
+<div class="line">    const auto s2 = 250.0_km;</div>
+<div class="line">    </div>
+<div class="line">    std::cout &lt;&lt; s2 &lt;&lt; &quot; driven in &quot; &lt;&lt; t2 &lt;&lt; &quot; is an average speed of:&quot; &lt;&lt; s2/t2 &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Including the unit-system library</h1>
+<p>Depending on your build system you might have to figure out how to include and link this library by yourself.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+meson</h2>
+<p>unit-system is written in C++ with the meson build system. Integrating this library is very easy. Just use the wrapdb to download the version you need, and then you can add the library as a dependency object.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Units that are currently supported</h1>
+<p>unit_t -&gt; an unit template that is the basis of all of the units</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Base</h2>
+<ul>
+<li>time_si -&gt; time with seconds as base unit</li>
+<li>length -&gt; length with meter as base unit</li>
+<li>mass -&gt; mass with kg as base unit</li>
+<li>temperature (partial) -&gt; temperatur with K as base unit</li>
+<li>amount -&gt; amount of substance with mole as base unit</li>
+<li>electric_current (partial) -&gt; electric current with Ampere as base unit</li>
+<li>luminous_intensity (partial) -&gt; luminous intensity with candela as base unit</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Common</h2>
+<ul>
+<li>speed -&gt; speed with <code>m / s</code> as base unit</li>
+<li>acceleration -&gt; acceleration with <code>m / s^2</code> as base unit</li>
+<li>momentum -&gt; momentum with <code>kg * m / s</code> as base unit</li>
+<li>force -&gt; force with <code>kg * m / s^2</code> (Newton) as base unit</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Extra</h2>
+<p>For now this is not needed </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

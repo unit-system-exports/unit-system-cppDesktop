@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['operator_2a_14',['operator*',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a8bf4984d0c8d15d38376afd7e3d777c6',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2a_3d_15',['operator*=',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#abcdf149f376ca117f3b48c5c094ab955',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2b_16',['operator+',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#ab67878c8109f64437b2bb6c64ba5fab3',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2b_3d_17',['operator+=',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a96b0cbbb36e41aeae44f8c68ea153b4d',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2d_18',['operator-',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a8929e45244dc831585c795b419a8922e',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2d_3d_19',['operator-=',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a199225c029d6485c162146bd6b11ed71',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2f_20',['operator/',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a3faf1c9800c9186b51f3f21f6eca8db8',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_2f_3d_21',['operator/=',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#a924c9ed0a775890895ed30b3a3b6eaad',1,'sakurajin::unit_system::base::unit_t']]],
-  ['operator_3d_22',['operator=',['../classsakurajin_1_1unit__system_1_1base_1_1unit__t.html#afbc68c705eef30a53a1fa07e3a0049a3',1,'sakurajin::unit_system::base::unit_t']]]
+  ['mass_23',['mass',['../classsakurajin_1_1unit__system_1_1base_1_1mass.html',1,'sakurajin::unit_system::base::mass'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#a3ab51e9201c07facce0c930da9621200',1,'sakurajin::unit_system::base::mass::mass(long double val)'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#aa36355500e74cf00b910843eb75093da',1,'sakurajin::unit_system::base::mass::mass(long double val, long double mult)']]],
+  ['mass_2ecpp_24',['mass.cpp',['../mass_8cpp.html',1,'']]],
+  ['mass_2ehpp_25',['mass.hpp',['../mass_8hpp.html',1,'']]],
+  ['mega_26',['mega',['../namespacesakurajin_1_1unit__system_1_1prefix.html#abaa882930c85ccdca249e43c160960f7',1,'sakurajin::unit_system::prefix']]],
+  ['micro_27',['micro',['../namespacesakurajin_1_1unit__system_1_1prefix.html#ae7bb845581198f2e8e0f5823490f0911',1,'sakurajin::unit_system::prefix']]],
+  ['milli_28',['milli',['../namespacesakurajin_1_1unit__system_1_1prefix.html#adce8a5aec2763bd4fb24f392c920ee78',1,'sakurajin::unit_system::prefix']]],
+  ['multiplier_29',['multiplier',['../classsakurajin_1_1unit__system_1_1unit__t.html#a4af79f522c44b887221b96f1a532089f',1,'sakurajin::unit_system::unit_t']]]
 ];
