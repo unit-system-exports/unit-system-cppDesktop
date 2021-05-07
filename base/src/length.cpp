@@ -7,13 +7,13 @@ using namespace sakurajin::unit_system::prefix;
 length::length(long double val): unit_t<2>(val){}
 length::length(long double val, long double mult): unit_t<2>(val,mult){}
 
-length sakurajin::unit_system::base::unit_cast(const length& other, long double new_multiplier){
+length sakurajin::unit_system::unit_cast(const length& other, long double new_multiplier){
     auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<2>>(other), new_multiplier);
     return length{v1.value,v1.multiplier};
 }
 
 std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const length& s){
-    auto s1 = sakurajin::unit_system::base::unit_cast(s,1);
+    auto s1 = sakurajin::unit_system::unit_cast(s,1);
     return os << s1.value << " meter";
 }
 

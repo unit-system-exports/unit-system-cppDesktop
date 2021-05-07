@@ -13,8 +13,6 @@ namespace sakurajin{
                 
             };
             
-            length unit_cast(const length& other, long double new_multiplier);
-            
             std::ostream& operator<<(std::ostream& os, const length& s);
 
             inline namespace literals{
@@ -36,6 +34,8 @@ namespace sakurajin{
             }
             
         }
+        
+        base::length unit_cast(const base::length& other, long double new_multiplier);
     }
 }
  

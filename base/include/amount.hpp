@@ -16,8 +16,6 @@ namespace sakurajin{
                 operator long double() const;
             };
             
-            amount unit_cast(const amount& other, long double new_multiplier);
-            
             std::ostream& operator<<(std::ostream& os, const amount& t);
             
             const long double avogadro_constant = 6.02214076e23;
@@ -33,6 +31,8 @@ namespace sakurajin{
             }
             
         }
+        
+        base::amount unit_cast(const base::amount& other, long double new_multiplier);
     }
 }
  
