@@ -23,6 +23,13 @@ TEST_CASE( "Checking if length works", "[vector]" ) {
 
 };
 
+TEST_CASE( "Checking if mass works", "[vector]" ) {
+    
+    const auto m1 = 1_g;
+    REQUIRE( m1*1000 == 1.0_kg);
+
+};
+
 TEST_CASE( "Checking if amount works", "[vector]" ) {
     
     const auto five = 5.0_things;
