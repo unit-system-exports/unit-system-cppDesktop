@@ -1,0 +1,59 @@
+name: "CI"
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+      - 'restyled/*'
+
+jobs:
+
+  ubunut20:
+    name: "ubuntu compile and test"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+      - name: clearing build directory
+        run: rm -rf build
+
+  windows:
+    name: "windows compile and test"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+          setup-options: -Ddefault_library=static -Db_lto=false
+      - name: clearing build directory
+        run: Remove-Item -recurse -force build
+        
+  macos:
+    name: "mac os compile and test"
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1                
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+      - name: clearing build directory
+        run: rm -rf build
+        

@@ -1,0 +1,86 @@
+name: "release-candidate"
+
+on:
+  push:
+    tags:
+      - 'v*-rc*'
+
+jobs:
+  ubunut20:
+    name: "ubuntu compile and test"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+      - name: clearing build directory
+        run: rm -rf build
+
+  windows:
+    name: "windows compile and test"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1          
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+          setup-options: -Ddefault_library=static -Db_lto=false
+      - name: clearing build directory
+        run: Remove-Item -recurse -force build
+        
+  macos:
+    name: "mac os compile and test"
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1                
+      - uses: BSFishy/meson-build@v1.0.2
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.57.1
+      - name: clearing build directory
+        run: rm -rf build
+
+  tagged-rc-release:
+    name: "Release candidate"
+    runs-on: "ubuntu-20.04"
+    needs: [windows, ubunut20, macos]
+    steps:
+      - uses: actions/checkout@v1
+      - name: install dependencies
+        run: sudo apt install doxygen graphviz
+      - name: generate docs
+        run: doxygen
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: doc/html
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+            
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: build-artifact-${{ matrix.os }}-${{ matrix.compiler }}
+          path: .
+
