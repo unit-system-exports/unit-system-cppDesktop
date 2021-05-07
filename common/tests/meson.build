@@ -6,6 +6,7 @@ deps += test_helper_dep
 tests = [
     'speed_test',
     'acceleration_test',
+    'momentum_test',
 ]
 
 #create all the tests
