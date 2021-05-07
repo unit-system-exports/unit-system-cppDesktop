@@ -1,0 +1,42 @@
+#pragma once
+
+#include "unit_t.hpp"
+#include "speed.hpp"
+#include "momentum.hpp"
+#include "acceleration.hpp"
+
+namespace sakurajin{
+    namespace unit_system{
+        namespace common{
+            class force : public unit_t<32011>{
+            public:
+                force(long double val);
+                force(long double val, long double mult);
+            };
+            
+            force operator/(const momentum& p, const base::time_si& t);
+            
+            momentum operator*(const force& F, const base::time_si& t);
+            momentum operator*(const base::time_si& t, const force& F);
+            
+            base::time_si operator/(const momentum& p, const force& F);
+            
+            force operator*(const base::mass& m, const acceleration& a);
+            force operator*(const acceleration& a, const base::mass& m);
+            
+            base::mass operator/(const force& p, const acceleration& a);
+            acceleration operator/(const force& p, const base::mass& m);
+            
+            std::ostream& operator<<(std::ostream& os, const force& v);
+            
+            inline namespace literals{
+                force operator "" _N(long double val);
+                force operator "" _N(unsigned long long int val);
+            }
+            
+        }
+        
+        common::force unit_cast(const common::force& other, long double new_multiplier);
+        
+    }
+}

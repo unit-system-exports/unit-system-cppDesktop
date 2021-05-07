@@ -2,12 +2,13 @@
 
 #include "prefix.hpp"
 #include "test_helper.hpp"
-#include "momentum.hpp"
+#include "force.hpp"
 
 #include <iostream>
 
 using namespace sakurajin::unit_system::prefix;
 using namespace sakurajin::unit_system::common;
+using namespace sakurajin::unit_system::common::literals;
 using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::base::literals;
 using namespace sakurajin::unit_system;
@@ -24,5 +25,10 @@ TEST_CASE( "Checking if casting works", "[vector]" ) {
     const auto p1 = v1*m1;
     REQUIRE(p1 == m1*v1);
     REQUIRE(p1 == 25_kgmps);
+    
+    const auto F1 = 10_kg * 1_G;
+    REQUIRE(F1 == 98.1_N);
+    
+    REQUIRE(p1/10_s == 2.5_N);
     
 };

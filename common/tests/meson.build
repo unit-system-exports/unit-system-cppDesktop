@@ -7,6 +7,7 @@ tests = [
     'speed_test',
     'acceleration_test',
     'momentum_test',
+    'force_test',
 ]
 
 #create all the tests

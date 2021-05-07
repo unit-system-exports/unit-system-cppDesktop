@@ -67,8 +67,6 @@ namespace sakurajin{
             
         };
             
-        
-            
         //the simple unit cast
         template <std::size_t indentifier>
         unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier){

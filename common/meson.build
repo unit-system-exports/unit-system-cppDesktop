@@ -4,6 +4,7 @@ sources = [
     'src/speed.cpp',
     'src/acceleration.cpp',
     'src/momentum.cpp',
+    'src/force.cpp',
 ]
 
 incdir = include_directories('include','..')

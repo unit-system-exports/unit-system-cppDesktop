@@ -38,7 +38,7 @@ common::acceleration common::literals::operator "" _mps2(long double len){
     return common::acceleration{len,1};
 }
 
-common::acceleration common::literals::operator "" _g(long double len){
+common::acceleration common::literals::operator "" _G(long double len){
     return common::acceleration{len,9.81};
 }
 
@@ -46,7 +46,7 @@ common::acceleration common::literals::operator "" _mps2(unsigned long long int 
     return common::acceleration{static_cast<long double>(len),1};
 }
 
-common::acceleration common::literals::operator "" _g(unsigned long long int len){
+common::acceleration common::literals::operator "" _G(unsigned long long int len){
     return common::acceleration{static_cast<long double>(len),9.81};
 }
 
