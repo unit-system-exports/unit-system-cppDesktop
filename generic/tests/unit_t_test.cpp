@@ -16,6 +16,8 @@ TEST_CASE( "Checking if casting works", "[vector]" ) {
     const unit_t<0> v3{10,100};
     const unit_t<0> v4{1,1};
     const unit_t<0> v5{1,kilo};
+    const unit_t<0> v6{-1,kilo};
+    
     
     REQUIRE(v1 == v2);
     REQUIRE(v1 == v3);
@@ -23,6 +25,8 @@ TEST_CASE( "Checking if casting works", "[vector]" ) {
     REQUIRE(v2 == v5);
     
     REQUIRE(v1 != v4);
+    
+    REQUIRE(abs(v5) == abs(v6));
     
 };
 

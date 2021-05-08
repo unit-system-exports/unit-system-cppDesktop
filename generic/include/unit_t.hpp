@@ -95,7 +95,12 @@ namespace sakurajin{
             
             return unit_t<indentifier>{val, unit.multiplier, unit.offset};
         }
-            
+        
+        template <std::size_t indentifier>
+        unit_t<indentifier> abs(const unit_t<indentifier>& unit){
+            return unit.value < 0 ? -unit : unit;
+        }
+        
         //All of the constructors
         template <std::size_t indentifier>
         unit_t<indentifier>::unit_t(): unit_t{0.0}{};
