@@ -5,6 +5,7 @@ using namespace sakurajin::unit_system;
 using namespace prefix;
 
 common::force::force(): force(0){};
+common::force::force(unit_t<32011> val): force(val.value,val.multiplier){}
 common::force::force(long double val): force(val,1){};
 common::force::force(long double val, long double mult): unit_t<32011>(val,mult){};
 

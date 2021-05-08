@@ -11,6 +11,7 @@ namespace sakurajin{
             class force : public unit_t<32011>{
             public:
                 force();
+                force(unit_t<32011> val);
                 explicit force(long double val);
                 force(long double val, long double mult);
             };
