@@ -44,9 +44,9 @@ namespace sakurajin{
         }   
         
         template<class Rep, class Period = std::ratio<1> >
-        base::time_si unit_cast(const std::chrono::duration<Rep, Period>& other){
-            auto t = std::chrono::duration_cast<long double, std::ratio<1, 1>>(other);
-            return base::time_si{t.count(), 1};
+        base::time_si unit_cast(const std::chrono::duration<Rep, Period>& other, long double new_multiplier = 1.0){
+            auto t = std::chrono::duration_cast<std::chrono::nanoseconds>(other);
+            return base::time_si{t.count() / 1000000000.0, new_multiplier};
         };
         
         base::time_si unit_cast(const base::time_si& other, long double new_multiplier);
