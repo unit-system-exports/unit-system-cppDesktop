@@ -18,12 +18,6 @@ namespace sakurajin{
             
             std::ostream& operator<<(std::ostream& os, const time_si& t);
             
-            template<class Rep, class Period = std::ratio<1> >
-            time_si unit_system(const std::chrono::duration<Rep, Period>& other){
-                auto t = std::chrono::duration_cast<long double, std::ratio<1, 1>>(other);
-                return time_si{t.count(), 1};
-            };
-            
             inline namespace literals{
                 time_si operator "" _a(long double len);
                 time_si operator "" _d(long double len);
@@ -47,7 +41,13 @@ namespace sakurajin{
                 time_si operator "" _fs(unsigned long long int len);
             }
             
-        }    
+        }   
+        
+        template<class Rep, class Period = std::ratio<1> >
+        base::time_si unit_cast(const std::chrono::duration<Rep, Period>& other){
+            auto t = std::chrono::duration_cast<long double, std::ratio<1, 1>>(other);
+            return base::time_si{t.count(), 1};
+        };
         
         base::time_si unit_cast(const base::time_si& other, long double new_multiplier);
     }
