@@ -36,6 +36,7 @@ namespace sakurajin{
             const long double offset = 0;
             long double rel_error = 0.000001;
             
+            unit_t();
             unit_t(long double v);
             unit_t(long double v, long double mult);
             unit_t(long double v, long double mult, long double off);
@@ -85,6 +86,9 @@ namespace sakurajin{
         }
             
         //All of the constructors
+        template <std::size_t indentifier>
+        unit_t<indentifier>::unit_t(): unit_t{0.0}{};
+        
         template <std::size_t indentifier>
         unit_t<indentifier>::unit_t(long double v): value{v}{};
         
