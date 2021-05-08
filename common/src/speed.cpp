@@ -5,6 +5,7 @@ using namespace sakurajin::unit_system;
 using namespace prefix;
 
 common::speed::speed(): speed(0){};
+common::speed::speed(unit_t<201> val): speed(val.value,val.multiplier){};
 common::speed::speed(long double val): speed(val,1){};
 common::speed::speed(long double val, long double mult ): unit_t<201>(val,mult){};
 

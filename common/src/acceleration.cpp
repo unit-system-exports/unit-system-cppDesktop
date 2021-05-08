@@ -4,8 +4,9 @@
 using namespace sakurajin::unit_system;
 using namespace prefix;
 
-common::acceleration::acceleration(): common::acceleration(0){};
-common::acceleration::acceleration(long double val): common::acceleration(val,1){};
+common::acceleration::acceleration(): acceleration(0){};
+common::acceleration::acceleration(unit_t<2011> val): acceleration(val.value,val.multiplier){};
+common::acceleration::acceleration(long double val): acceleration(val,1){};
 common::acceleration::acceleration(long double val, long double mult): unit_t<2011>(val,mult){};
 
 common::acceleration sakurajin::unit_system::unit_cast(const common::acceleration& other, long double new_multiplier){

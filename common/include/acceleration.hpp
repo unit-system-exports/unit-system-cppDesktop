@@ -11,6 +11,7 @@ namespace sakurajin{
             class acceleration : public unit_t<2011>{
             public:
                 acceleration();
+                acceleration(unit_t<2011> val);
                 explicit acceleration(long double val);
                 acceleration(long double val, long double mult);
             };

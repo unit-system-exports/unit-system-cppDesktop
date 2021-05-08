@@ -10,6 +10,7 @@ namespace sakurajin{
             class speed : public unit_t<201>{
             public:
                 speed();
+                speed(unit_t<201> val);
                 explicit speed(long double val);
                 speed(long double val, long double mult);
             };

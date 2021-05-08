@@ -5,6 +5,7 @@ using namespace sakurajin::unit_system;
 using namespace prefix;
 
 common::momentum::momentum(): momentum(0){};
+common::momentum::momentum(unit_t<3201> val): momentum(val.value,val.multiplier){};
 common::momentum::momentum(long double val): momentum(val,1){};
 common::momentum::momentum(long double val, long double mult): unit_t<3201>(val,mult){};
 
