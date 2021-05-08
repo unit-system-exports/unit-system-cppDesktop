@@ -5,6 +5,7 @@ using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 
 time_si::time_si(): time_si(0){}
+time_si::time_si(unit_t<1> val): time_si(val.value, val.multiplier){}
 time_si::time_si(long double val): time_si(val,1){}
 time_si::time_si(long double val, long double mult): unit_t<1>(val,mult){}
 

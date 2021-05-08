@@ -3,6 +3,7 @@
 using namespace sakurajin::unit_system::base;
 
 amount::amount(): amount(0){};
+amount::amount(unit_t<5> val): amount(val.value,val.multiplier){}
 amount::amount(long double val): amount(val,1){}
 amount::amount(long double val, long double mult): unit_t<5>(val,mult){}
 

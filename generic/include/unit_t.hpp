@@ -84,6 +84,17 @@ namespace sakurajin{
             unit_t<indentifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
             return retval;
         }
+        
+        template <std::size_t indentifier>
+        unit_t<indentifier> clamp(const unit_t<indentifier>& unit, const unit_t<indentifier>& lower, const unit_t<indentifier>& upper){
+            
+            auto _lower = unit_cast(lower, unit.multiplier, unit.offset);
+            auto _upper = unit_cast(upper, unit.multiplier, unit.offset);
+            
+            auto val = std::clamp(unit.value, _lower.value, _upper.value);
+            
+            return unit_t<indentifier>{val, unit.multiplier, unit.offset};
+        }
             
         //All of the constructors
         template <std::size_t indentifier>

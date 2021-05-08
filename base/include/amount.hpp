@@ -11,6 +11,7 @@ namespace sakurajin{
             class amount : public unit_t<5>{
             public:
                 amount();
+                amount(unit_t<5> val);
                 explicit amount(long double val);
                 amount(long double val, long double mult);
                 

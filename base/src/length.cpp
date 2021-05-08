@@ -5,6 +5,7 @@ using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 
 length::length():length(0){}
+length::length(unit_t<2> val): length(val.value,val.multiplier){}
 length::length(long double val): length(val,1){}
 length::length(long double val, long double mult): unit_t<2>(val,mult){}
 

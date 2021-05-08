@@ -10,6 +10,7 @@ namespace sakurajin{
             class time_si : public unit_t<1>{
             public:
                 time_si();
+                time_si(unit_t<1> val);
                 explicit time_si(long double val);
                 time_si(long double val, long double mult);
                 

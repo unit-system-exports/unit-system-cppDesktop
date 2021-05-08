@@ -9,6 +9,7 @@ namespace sakurajin{
             class length : public unit_t<2>{
             public:
                 length();
+                length(unit_t<2> val);
                 explicit length(long double val);
                 length(long double val, long double mult);
                 
