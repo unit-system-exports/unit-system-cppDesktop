@@ -38,7 +38,5 @@ namespace sakurajin{
             
         }
         
-        common::force unit_cast(const common::force& other, long double new_multiplier);
-        
     }
 }

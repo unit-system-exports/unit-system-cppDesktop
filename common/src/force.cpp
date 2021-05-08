@@ -9,11 +9,6 @@ common::force::force(unit_t<32011> val): force(val.value,val.multiplier){}
 common::force::force(long double val): force(val,1){};
 common::force::force(long double val, long double mult): unit_t<32011>(val,mult){};
 
-common::force sakurajin::unit_system::unit_cast(const common::force& other, long double new_multiplier){
-    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<32011>>(other), new_multiplier);
-    return common::force{v1.value,v1.multiplier};
-}
-
 common::force common::operator/(const common::momentum& p, const base::time_si& t){
     auto p1 = sakurajin::unit_system::unit_cast(p,1);
     auto t1 = sakurajin::unit_system::unit_cast(t,1);

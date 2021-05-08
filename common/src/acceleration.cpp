@@ -9,11 +9,6 @@ common::acceleration::acceleration(unit_t<2011> val): acceleration(val.value,val
 common::acceleration::acceleration(long double val): acceleration(val,1){};
 common::acceleration::acceleration(long double val, long double mult): unit_t<2011>(val,mult){};
 
-common::acceleration sakurajin::unit_system::unit_cast(const common::acceleration& other, long double new_multiplier){
-    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<2011>>(other), new_multiplier);
-    return common::acceleration{v1.value,v1.multiplier};
-}
-
 common::acceleration common::operator/(const common::speed& v, const base::time_si& t){
     auto v1 = sakurajin::unit_system::unit_cast(v,1);
     auto t1 = sakurajin::unit_system::unit_cast(t,1);

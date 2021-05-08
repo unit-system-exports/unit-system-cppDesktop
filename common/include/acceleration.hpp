@@ -35,7 +35,5 @@ namespace sakurajin{
             
         }
         
-        common::acceleration unit_cast(const common::acceleration& other, long double new_multiplier);
-        
     }
 }

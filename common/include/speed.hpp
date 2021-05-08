@@ -33,9 +33,7 @@ namespace sakurajin{
             }
             
         }
-        
-        common::speed unit_cast(const common::speed& other, long double new_multiplier);
             
     }
 }
- 
+

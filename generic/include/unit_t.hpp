@@ -10,25 +10,30 @@ namespace sakurajin{
         //The identifier should be unique for each child class
         //It is used so that only values with the same unit can be
         // compared, copied and converted.
-        //0 for unit_t 
-        //1 for time_si
-        //2 for length
-        //3 for mass
-        //4 for temp
-        //5 for amount
-        //6 for el current
-        //7 for lum. intensity
-        //8 & 9 are reserved
+        //  0 for unit_t 
+        //  1 for time_si
+        //  2 for length
+        //  3 for mass
+        //  4 for temp
+        //  5 for amount
+        //  6 for el current
+        //  7 for lum. intensity
+        //
+        //  8 for energy (not part of base but part of common)
+        //
+        //  9 is reserved
+        //
         //combined units can just combine these numbers with the 0 as divide symbol
         // examples: 
         //   16 for charge (A s)
         //   201 for speed (m / s)
         //   2011 for acceleration (m / (s * s) )
-        //combinations of many types might use the unused digits (8 & 9) to shorten
+        //combinations of many types might use the reserved digit (9) to shorten
+        //if common is not used, you may also use the digit 8 to shorten the identifier
         // examples:
         //   8 for energy (J) instead of 322011
         //   801 for Power (W) instead of 3220111
-        template <std::size_t indentifier>
+        template <std::size_t identifier>
         class unit_t{
         public:
             const long double multiplier = 1;
@@ -69,125 +74,129 @@ namespace sakurajin{
 #endif
             
         };
-            
-        //the simple unit cast
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier){
-            unit_t<indentifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
-            return retval;
-        }
-        
+  
         //changes multiplier and offset
         //This is needed primarily for temperatures
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_cast(const unit_t<indentifier>& unit, long double new_multiplier, long double new_offset){
-            unit_t<indentifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
+        template <std::size_t identifier>
+        unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier, long double new_offset){
+            unit_t<identifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
             return retval;
         }
         
-        template <std::size_t indentifier>
-        unit_t<indentifier> clamp(const unit_t<indentifier>& unit, const unit_t<indentifier>& lower, const unit_t<indentifier>& upper){
+        template <std::size_t identifier>
+        unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier = 1){
+            unit_t<identifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
+            return retval;
+        }
+        
+        template <std::size_t identifier>
+        unit_t<identifier> clamp(const unit_t<identifier>& unit, const unit_t<identifier>& lower, const unit_t<identifier>& upper){
             
             auto _lower = unit_cast(lower, unit.multiplier, unit.offset);
             auto _upper = unit_cast(upper, unit.multiplier, unit.offset);
             
             auto val = std::clamp(unit.value, _lower.value, _upper.value);
             
-            return unit_t<indentifier>{val, unit.multiplier, unit.offset};
+            return unit_t<identifier>{val, unit.multiplier, unit.offset};
         }
         
-        template <std::size_t indentifier>
-        unit_t<indentifier> abs(const unit_t<indentifier>& unit){
+        template <std::size_t identifier>
+        unit_t<identifier> abs(const unit_t<identifier>& unit){
             return unit.value < 0 ? -unit : unit;
         }
         
         //All of the constructors
-        template <std::size_t indentifier>
-        unit_t<indentifier>::unit_t(): unit_t{0.0}{};
+        template <std::size_t identifier>
+        unit_t<identifier>::unit_t(): unit_t{0.0}{};
         
-        template <std::size_t indentifier>
-        unit_t<indentifier>::unit_t(long double v): value{v}{};
+        template <std::size_t identifier>
+        unit_t<identifier>::unit_t(long double v): value{v}{};
         
-        template <std::size_t indentifier>
-        unit_t<indentifier>::unit_t(long double v, long double mult): multiplier{mult}, value{v}{};
+        template <std::size_t identifier>
+        unit_t<identifier>::unit_t(long double v, long double mult): multiplier{mult}, value{v}{};
         
-        template <std::size_t indentifier>
-        unit_t<indentifier>::unit_t(long double v, long double mult, long double off): multiplier{mult}, value{v}, offset{off}{};
+        template <std::size_t identifier>
+        unit_t<identifier>::unit_t(long double v, long double mult, long double off): multiplier{mult}, value{v}, offset{off}{};
 
         //const member functions
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_t<indentifier>::operator*(long double scalar) const{
-            unit_t<indentifier> retval{value*scalar, multiplier};
+        template <std::size_t identifier>
+        unit_t<identifier> unit_t<identifier>::operator*(long double scalar) const{
+            unit_t<identifier> retval{value*scalar, multiplier, offset};
+            return retval;
+        }
+        
+        template <std::size_t identifier>
+        unit_t<identifier> operator*(long double scalar, const unit_t<identifier>& val){
+            return {val.value*scalar, val.multiplier, val.offset};
+        }
+
+        template <std::size_t identifier>
+        unit_t<identifier> unit_t<identifier>::operator/(long double scalar) const{
+            unit_t<identifier> retval{value/scalar, multiplier, offset};
             return retval;
         }
 
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_t<indentifier>::operator/(long double scalar) const{
-            unit_t<indentifier> retval{value/scalar, multiplier};
-            return retval;
-        }
-
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_t<indentifier>::operator+(const unit_t<indentifier>& other) const{
-            auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        unit_t<identifier> unit_t<identifier>::operator+(const unit_t<identifier>& other) const{
+            auto retval = sakurajin::unit_system::unit_cast(other, multiplier,offset);
             retval.value += value;
             return retval;
         }
 
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_t<indentifier>::operator-(const unit_t<indentifier>& other) const{
-            auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        unit_t<identifier> unit_t<identifier>::operator-(const unit_t<identifier>& other) const{
+            auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
             retval.value = value - retval.value;
             return retval;
         }
         
-        template <std::size_t indentifier>
-        unit_t<indentifier> unit_t<indentifier>::operator-() const{
-            return unit_t<indentifier>{-value,multiplier,offset};
+        template <std::size_t identifier>
+        unit_t<identifier> unit_t<identifier>::operator-() const{
+            return unit_t<identifier>{-value,multiplier,offset};
         }
 
         //comparison operators
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator<(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator<(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             return value < retval.value;
         }
 
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator>(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator>(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             return value > retval.value;
         }
 
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator<=(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator<=(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             return value <= retval.value;
         }
 
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator>=(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator>=(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             return value >= retval.value;
         }
 
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator==(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator==(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             auto delta = value-retval.value;
             auto epsilon = 0.000001 * std::max(std::abs(value), std::abs(retval.value));
             return std::abs(delta) < epsilon;
         }
 
-        template <std::size_t indentifier>
-        bool unit_t<indentifier>::operator!=(const unit_t<indentifier>& other) const{
+        template <std::size_t identifier>
+        bool unit_t<identifier>::operator!=(const unit_t<identifier>& other) const{
             return ! (*this == other);
         }
 
         #if __cplusplus >= 202002L
-        template <std::size_t indentifier>
-        int unit_t<indentifier>::operator<=>(const unit_t<indentifier>& other) const{
-            const auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        int unit_t<identifier>::operator<=>(const unit_t<identifier>& other) const{
+            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             if(*this < retval){
                 return -1;
             }
@@ -201,31 +210,31 @@ namespace sakurajin{
         #endif
 
         //non const member functions
-        template <std::size_t indentifier>
-        void unit_t<indentifier>::operator*=(long double scalar){
+        template <std::size_t identifier>
+        void unit_t<identifier>::operator*=(long double scalar){
             value*=scalar;
         }
 
-        template <std::size_t indentifier>
-        void unit_t<indentifier>::operator/=(long double scalar){
+        template <std::size_t identifier>
+        void unit_t<identifier>::operator/=(long double scalar){
             value/=scalar;
         }
 
-        template <std::size_t indentifier>
-        void unit_t<indentifier>::operator+=(const unit_t<indentifier>& other){
-            const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        void unit_t<identifier>::operator+=(const unit_t<identifier>& other){
+            const auto otherVal = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             value += otherVal.value;
         }
 
-        template <std::size_t indentifier>
-        void unit_t<indentifier>::operator-=(const unit_t<indentifier>& other){
-            const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        void unit_t<identifier>::operator-=(const unit_t<identifier>& other){
+            const auto otherVal = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             value -= otherVal.value;
         }
 
-        template <std::size_t indentifier>
-        void unit_t<indentifier>::operator=(const unit_t<indentifier>& other){
-            const auto otherVal = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
+        template <std::size_t identifier>
+        void unit_t<identifier>::operator=(const unit_t<identifier>& other){
+            const auto otherVal = sakurajin::unit_system::unit_cast(other,multiplier,offset);
             value = otherVal.value;
         }
         

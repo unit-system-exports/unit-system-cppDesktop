@@ -7,11 +7,6 @@ amount::amount(unit_t<5> val): amount(val.value,val.multiplier){}
 amount::amount(long double val): amount(val,1){}
 amount::amount(long double val, long double mult): unit_t<5>(val,mult){}
 
-amount sakurajin::unit_system::unit_cast(const amount& other, long double new_multiplier){
-    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<5>>(other), new_multiplier);
-    return amount{v1.value,v1.multiplier};
-}
-
 amount::operator long double() const{
     return value * (multiplier*avogadro_constant);
 }

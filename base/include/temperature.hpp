@@ -11,6 +11,7 @@ namespace sakurajin{
                 temperature(unit_t<4> val);
                 explicit temperature(long double val);
                 temperature(long double val, long double mult);
+                temperature(long double val, long double mult, long double offset);
                 
             };
             

@@ -9,12 +9,6 @@ common::momentum::momentum(unit_t<3201> val): momentum(val.value,val.multiplier)
 common::momentum::momentum(long double val): momentum(val,1){};
 common::momentum::momentum(long double val, long double mult): unit_t<3201>(val,mult){};
 
-common::momentum sakurajin::unit_system::unit_cast(const common::momentum& other, long double new_multiplier){
-    auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<3201>>(other), new_multiplier);
-    return common::momentum{v1.value,v1.multiplier};
-}
-
-
 common::momentum common::operator*(const base::mass& m, const common::speed& v){
     auto m1 = sakurajin::unit_system::unit_cast(m,1);
     auto v1 = sakurajin::unit_system::unit_cast(v,1);

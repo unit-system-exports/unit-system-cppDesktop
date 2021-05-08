@@ -49,7 +49,5 @@ namespace sakurajin{
             auto retval = base::time_si{t.count() / 1000000000.0, 1};
             return unit_cast(retval, new_multiplier);
         };
-        
-        base::time_si unit_cast(const base::time_si& other, long double new_multiplier);
     }
 }

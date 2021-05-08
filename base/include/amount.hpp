@@ -33,8 +33,6 @@ namespace sakurajin{
             }
             
         }
-        
-        base::amount unit_cast(const base::amount& other, long double new_multiplier);
     }
 }
  

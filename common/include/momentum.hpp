@@ -30,7 +30,5 @@ namespace sakurajin{
             
         }
         
-        common::momentum unit_cast(const common::momentum& other, long double new_multiplier);
-        
     }
 }

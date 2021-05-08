@@ -32,8 +32,6 @@ namespace sakurajin{
             }
             
         }
-        
-        base::mass unit_cast(const base::mass& other, long double new_multiplier);
     }
 }
  
