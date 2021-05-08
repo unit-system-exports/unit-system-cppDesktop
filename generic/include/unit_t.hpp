@@ -52,6 +52,8 @@ namespace sakurajin{
             unit_t operator-(const unit_t& other) const;
             void operator-=(const unit_t& other);
             
+            unit_t operator-() const;
+            
             void operator=(const unit_t& other);
             
             bool operator<(const unit_t& other) const;
@@ -117,6 +119,11 @@ namespace sakurajin{
             auto retval = other.multiplier == multiplier ? other : sakurajin::unit_system::unit_cast(other,multiplier);
             retval.value = value - retval.value;
             return retval;
+        }
+        
+        template <std::size_t indentifier>
+        unit_t<indentifier> unit_t<indentifier>::operator-() const{
+            return unit_t<indentifier>{-value,multiplier,offset};
         }
 
         //comparison operators

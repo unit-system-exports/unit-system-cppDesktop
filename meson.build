@@ -2,7 +2,7 @@ project(
     'unit-system',
     'cpp',
     default_options : ['cpp_std=c++17'],
-    version : '0.2.0'
+    version : '0.2.0',
 )
 
 #set the configuration
