@@ -4,10 +4,7 @@ deps += main_test_dep
 deps += test_helper_dep
 
 tests = [
-    'speed_test',
-    'acceleration_test',
-    'momentum_test',
-    'force_test',
+    'common_test',
 ]
 
 #create all the tests
