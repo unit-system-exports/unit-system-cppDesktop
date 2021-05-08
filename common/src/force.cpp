@@ -4,8 +4,9 @@
 using namespace sakurajin::unit_system;
 using namespace prefix;
 
-common::force::force ( long double val, long double mult ) : unit_t<32011>(val,mult){};
-common::force::force(long double val): unit_t<32011>(val){};
+common::force::force(): force(0){};
+common::force::force(long double val): force(val,1){};
+common::force::force(long double val, long double mult): unit_t<32011>(val,mult){};
 
 common::force sakurajin::unit_system::unit_cast(const common::force& other, long double new_multiplier){
     auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<32011>>(other), new_multiplier);

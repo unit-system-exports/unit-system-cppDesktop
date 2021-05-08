@@ -10,7 +10,8 @@ namespace sakurajin{
             //The default unit is mole
             class amount : public unit_t<5>{
             public:
-                amount(long double val);
+                amount();
+                explicit amount(long double val);
                 amount(long double val, long double mult);
                 
                 operator long double() const;

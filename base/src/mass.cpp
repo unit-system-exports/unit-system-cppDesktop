@@ -4,7 +4,8 @@
 using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 
-mass::mass(long double val): unit_t<3>(val){}
+mass::mass(): mass(0){}
+mass::mass(long double val): mass(val,1){}
 mass::mass(long double val, long double mult): unit_t<3>(val,mult){}
 
 mass sakurajin::unit_system::unit_cast(const mass& other, long double new_multiplier){

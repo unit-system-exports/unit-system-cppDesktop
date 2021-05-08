@@ -2,7 +2,8 @@
 
 using namespace sakurajin::unit_system::base;
 
-amount::amount(long double val): unit_t<5>(val){}
+amount::amount(): amount(0){};
+amount::amount(long double val): amount(val,1){}
 amount::amount(long double val, long double mult): unit_t<5>(val,mult){}
 
 amount sakurajin::unit_system::unit_cast(const amount& other, long double new_multiplier){

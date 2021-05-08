@@ -7,7 +7,8 @@ namespace sakurajin{
         namespace base{
             class temperature : public unit_t<4>{
             public:
-                temperature(long double val);
+                temperature();
+                explicit temperature(long double val);
                 temperature(long double val, long double mult);
                 
             };

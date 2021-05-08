@@ -4,8 +4,9 @@
 using namespace sakurajin::unit_system;
 using namespace prefix;
 
-common::momentum::momentum ( long double val, long double mult ) : unit_t<3201>(val,mult){};
-common::momentum::momentum(long double val): unit_t<3201>(val){};
+common::momentum::momentum(): momentum(0){};
+common::momentum::momentum(long double val): momentum(val,1){};
+common::momentum::momentum(long double val, long double mult): unit_t<3201>(val,mult){};
 
 common::momentum sakurajin::unit_system::unit_cast(const common::momentum& other, long double new_multiplier){
     auto v1 = sakurajin::unit_system::unit_cast(static_cast<unit_t<3201>>(other), new_multiplier);

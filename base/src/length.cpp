@@ -4,7 +4,8 @@
 using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 
-length::length(long double val): unit_t<2>(val){}
+length::length():length(0){}
+length::length(long double val): length(val,1){}
 length::length(long double val, long double mult): unit_t<2>(val,mult){}
 
 length sakurajin::unit_system::unit_cast(const length& other, long double new_multiplier){

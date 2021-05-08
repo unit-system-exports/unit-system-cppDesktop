@@ -9,7 +9,8 @@ namespace sakurajin{
         namespace common{
             class momentum : public unit_t<3201>{
             public:
-                momentum(long double val);
+                momentum();
+                explicit momentum(long double val);
                 momentum(long double val, long double mult);
             };
             
