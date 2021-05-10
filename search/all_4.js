@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['electric_5fcurrent_9',['electric_current',['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html',1,'sakurajin::unit_system::base::electric_current'],['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#a2b172fbf6c3587880728883b91b6de68',1,'sakurajin::unit_system::base::electric_current::electric_current(long double val)'],['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#ad8f6f4b815e2ebdee70b8cc220c194ee',1,'sakurajin::unit_system::base::electric_current::electric_current(long double val, long double mult)']]],
-  ['electric_5fcurrent_2ecpp_10',['electric_current.cpp',['../electric__current_8cpp.html',1,'']]],
-  ['electric_5fcurrent_2ehpp_11',['electric_current.hpp',['../electric__current_8hpp.html',1,'']]],
-  ['exa_12',['exa',['../namespacesakurajin_1_1unit__system_1_1prefix.html#a65337d05ae9cca0b5b9502a9679b98cf',1,'sakurajin::unit_system::prefix']]]
+  ['mass_14',['mass',['../classsakurajin_1_1unit__system_1_1base_1_1mass.html',1,'sakurajin::unit_system::base::mass'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#a739494e1dc30ddd0a21fc1ab7357f9fc',1,'sakurajin::unit_system::base::mass::mass()'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#ad5fa7a23233284b8eb4d4d559a8fd2fa',1,'sakurajin::unit_system::base::mass::mass(unit_t&lt; 3 &gt; val)'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#a3ab51e9201c07facce0c930da9621200',1,'sakurajin::unit_system::base::mass::mass(long double val)'],['../classsakurajin_1_1unit__system_1_1base_1_1mass.html#aa36355500e74cf00b910843eb75093da',1,'sakurajin::unit_system::base::mass::mass(long double val, long double mult)']]],
+  ['mass_2ecpp_15',['mass.cpp',['../mass_8cpp.html',1,'']]],
+  ['mass_2ehpp_16',['mass.hpp',['../mass_8hpp.html',1,'']]]
 ];
