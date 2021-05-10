@@ -1,5 +1,7 @@
 # unit-system
 
+**Please note that the project is still in the early development state and some things might not work as expected!**
+
 This is an implementation of the SI unit system for C++ development.
 The library is split into three parts:
 
@@ -65,6 +67,7 @@ unit_t -> an unit template that is the basis of all of the units
 * acceleration -> acceleration with `m / s^2` as base unit
 * momentum -> momentum with `kg * m / s` as base unit
 * force -> force with `kg * m / s^2` (Newton) as base unit
+* energy -> energy with `kg * m^2 / s^2` (Joules) as base unit
 
 ### Extra
 
