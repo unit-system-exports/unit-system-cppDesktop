@@ -10,15 +10,15 @@ common::speed::speed(long double val): speed(val,1){};
 common::speed::speed(long double val, long double mult ): unit_t<201>(val,mult){};
 
 common::speed common::operator/(const base::length& s, const base::time_si& t){
-    auto s1 = sakurajin::unit_system::unit_cast(s,1);
-    auto t1 = sakurajin::unit_system::unit_cast(t,1);
-    return common::speed{s1.value/t1.value,1};
+    auto s1 = sakurajin::unit_system::unit_cast(s,s.multiplier,0);
+    auto t1 = sakurajin::unit_system::unit_cast(t,t.multiplier,0);
+    return common::speed{s1.value/t1.value,s1.multiplier/t1.multiplier};
 }
 
 base::length common::operator*(const common::speed& v, const base::time_si& t){
-    auto v1 = sakurajin::unit_system::unit_cast(v,1);
-    auto t1 = sakurajin::unit_system::unit_cast(t,1);
-    return base::length{v1.value*t1.value,1};
+    auto v1 = sakurajin::unit_system::unit_cast(v,v.multiplier,0);
+    auto t1 = sakurajin::unit_system::unit_cast(t,t.multiplier,0);
+    return base::length{v1.value*t1.value,v1.multiplier*t1.multiplier};
 }
 
 base::length common::operator*(const base::time_si& t, const common::speed& v){
@@ -26,9 +26,9 @@ base::length common::operator*(const base::time_si& t, const common::speed& v){
 }
 
 base::time_si operator/(const base::length& s, const common::speed& v){
-    auto v1 = sakurajin::unit_system::unit_cast(v,1);
-    auto s1 = sakurajin::unit_system::unit_cast(s,1);
-    return base::time_si{s1.value/v1.value,1};
+    auto v1 = sakurajin::unit_system::unit_cast(v,v.multiplier,0);
+    auto s1 = sakurajin::unit_system::unit_cast(s,s.multiplier,0);
+    return base::time_si{s1.value/v1.value,s1.multiplier/v1.multiplier};
 }
 
 common::speed common::literals::operator "" _kmph(long double len){

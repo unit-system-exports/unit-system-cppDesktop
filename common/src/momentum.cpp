@@ -10,9 +10,9 @@ common::momentum::momentum(long double val): momentum(val,1){};
 common::momentum::momentum(long double val, long double mult): unit_t<3201>(val,mult){};
 
 common::momentum common::operator*(const base::mass& m, const common::speed& v){
-    auto m1 = sakurajin::unit_system::unit_cast(m,1);
-    auto v1 = sakurajin::unit_system::unit_cast(v,1);
-    return common::momentum{v1.value*m1.value,1};
+    auto m1 = sakurajin::unit_system::unit_cast(m,m.multiplier,0);
+    auto v1 = sakurajin::unit_system::unit_cast(v,v.multiplier,0);
+    return common::momentum{v1.value*m1.value,v1.multiplier*m1.multiplier};
 }
 
 common::momentum common::operator*(const common::speed& v, const base::mass& m){
@@ -20,15 +20,15 @@ common::momentum common::operator*(const common::speed& v, const base::mass& m){
 }
 
 base::mass common::operator/(const common::momentum& p, const common::speed& v){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    auto v1 = sakurajin::unit_system::unit_cast(v,1);
-    return base::mass{p1.value/v1.value,1};
+    auto p1 = sakurajin::unit_system::unit_cast(p,p.multiplier,0);
+    auto v1 = sakurajin::unit_system::unit_cast(v,v.multiplier,0);
+    return base::mass{p1.value/v1.value,p1.multiplier/v1.multiplier};
 }
 
 common::speed common::operator/(const common::momentum& p, const base::mass& m){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    auto m1 = sakurajin::unit_system::unit_cast(m,1);
-    return common::speed{p1.value/m1.value,1};
+    auto p1 = sakurajin::unit_system::unit_cast(p,p.multiplier,0);
+    auto m1 = sakurajin::unit_system::unit_cast(m,m.multiplier,0);
+    return common::speed{p1.value/m1.value,p1.multiplier/m1.multiplier};
 }
 
 common::momentum common::literals::operator "" _kgmps(long double len){
