@@ -95,7 +95,7 @@ namespace sakurajin{
             auto _lower = unit_cast(lower, unit.multiplier, unit.offset);
             auto _upper = unit_cast(upper, unit.multiplier, unit.offset);
             
-            auto val = std::clamp(unit.value, _lower.value, _upper.value);
+            auto val = unit.value > _lower.value ? ( unit.value < _upper.value ? unit.value : _upper.value ) : _lower.value;
             
             return unit_t<identifier>{val, unit.multiplier, unit.offset};
         }
