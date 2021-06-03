@@ -58,7 +58,7 @@ unit_t -> an unit template that is the basis of all of the units
 * mass -> mass with kg as base unit
 * temperature (partial) -> temperatur with K as base unit
 * amount -> amount of substance with mole as base unit
-* electric_current (partial) -> electric current with Ampere as base unit
+* electric_current -> electric current with Ampere as base unit
 * luminous_intensity (partial) -> luminous intensity with candela as base unit
 
 ### Common

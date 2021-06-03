@@ -30,6 +30,13 @@ TEST_CASE( "Checking if mass works", "[vector]" ) {
 
 };
 
+TEST_CASE( "Checking if electric current works", "[vector]" ) {
+    
+    const auto I1 = 1_A;
+    REQUIRE( I1*1000 == 1.0_kA);
+
+};
+
 TEST_CASE( "Checking if amount works", "[vector]" ) {
     
     const auto five = 5.0_things;
