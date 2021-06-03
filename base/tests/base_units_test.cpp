@@ -2,6 +2,7 @@
 
 #include "test_helper.hpp"
 #include "base.hpp"
+#include "prefix.hpp"
 
 #include <iostream>
 
@@ -34,6 +35,13 @@ TEST_CASE( "Checking if electric current works", "[vector]" ) {
     
     const auto I1 = 1_A;
     REQUIRE( I1*1000 == 1.0_kA);
+
+};
+
+TEST_CASE( "Checking if luminous intensity works", "[vector]" ) {
+    
+    const auto J1 = 1_cd;
+    REQUIRE( J1*1000 == 1000.0_cd);
 
 };
 
