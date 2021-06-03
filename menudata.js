@@ -28,7 +28,8 @@ var menudata={children:[
 {text:"All",url:"namespacemembers.html",children:[
 {text:"a",url:"namespacemembers.html#index_a"},
 {text:"o",url:"namespacemembers.html#index_o"},
-{text:"u",url:"namespacemembers.html#index_u"}]},
+{text:"u",url:"namespacemembers.html#index_u"},
+{text:"w",url:"namespacemembers.html#index_w"}]},
 {text:"Functions",url:"namespacemembers_func.html",children:[
 {text:"o",url:"namespacemembers_func.html#index_o"},
 {text:"u",url:"namespacemembers_func.html#index_u"}]},
