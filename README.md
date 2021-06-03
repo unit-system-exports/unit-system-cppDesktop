@@ -56,7 +56,7 @@ unit_t -> an unit template that is the basis of all of the units
 * time_si -> time with seconds as base unit
 * length -> length with meter as base unit
 * mass -> mass with kg as base unit
-* temperature (partial) -> temperatur with K as base unit
+* temperature -> temperatur with K as base unit
 * amount -> amount of substance with mole as base unit
 * electric_current -> electric current with Ampere as base unit
 * luminous_intensity -> luminous intensity with candela as base unit

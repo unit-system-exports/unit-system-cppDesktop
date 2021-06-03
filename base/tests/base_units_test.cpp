@@ -45,6 +45,13 @@ TEST_CASE( "Checking if luminous intensity works", "[vector]" ) {
 
 };
 
+TEST_CASE( "Checking if temperature works", "[vector]" ) {
+    
+    const auto T1 = 20_C;
+    REQUIRE( T1 == 293.15_K);
+
+};
+
 TEST_CASE( "Checking if amount works", "[vector]" ) {
     
     const auto five = 5.0_things;
