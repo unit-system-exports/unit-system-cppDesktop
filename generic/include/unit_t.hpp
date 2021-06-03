@@ -78,14 +78,8 @@ namespace sakurajin{
         //changes multiplier and offset
         //This is needed primarily for temperatures
         template <std::size_t identifier>
-        unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier, long double new_offset){
+        unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier = 1, long double new_offset = 0){
             unit_t<identifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
-            return retval;
-        }
-        
-        template <std::size_t identifier>
-        unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier = 1){
-            unit_t<identifier> retval{ unit.value * (unit.multiplier / new_multiplier), new_multiplier, unit.offset};
             return retval;
         }
         
