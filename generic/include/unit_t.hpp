@@ -36,9 +36,9 @@ namespace sakurajin{
         template <std::size_t identifier>
         class unit_t{
         public:
-            const long double multiplier = 1;
+            const long double multiplier;
             long double value = 0;
-            const long double offset = 0;
+            const long double offset;
             long double rel_error = 0.000001;
             
             unit_t();
@@ -79,7 +79,8 @@ namespace sakurajin{
         //This is needed primarily for temperatures
         template <std::size_t identifier>
         unit_t<identifier> unit_cast(const unit_t<identifier>& unit, long double new_multiplier = 1, long double new_offset = 0){
-            unit_t<identifier> retval{ (unit.value + unit.offset) * (unit.multiplier / new_multiplier) - new_offset, new_multiplier, new_offset};
+            auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
+            unit_t<identifier> retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
             return retval;
         }
         
@@ -104,10 +105,10 @@ namespace sakurajin{
         unit_t<identifier>::unit_t(): unit_t{0.0}{};
         
         template <std::size_t identifier>
-        unit_t<identifier>::unit_t(long double v): value{v}{};
+        unit_t<identifier>::unit_t(long double v): unit_t{v,1,0}{};
         
         template <std::size_t identifier>
-        unit_t<identifier>::unit_t(long double v, long double mult): multiplier{mult}, value{v}{};
+        unit_t<identifier>::unit_t(long double v, long double mult): unit_t{v,mult,0}{};
         
         template <std::size_t identifier>
         unit_t<identifier>::unit_t(long double v, long double mult, long double off): multiplier{mult}, value{v}, offset{off}{};
