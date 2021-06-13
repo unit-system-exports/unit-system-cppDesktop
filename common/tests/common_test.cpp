@@ -25,6 +25,7 @@ const auto a1 = 2.5_mps2;
 const auto p1 = 25_kgmps;
 const auto F1 = 2.5_N;
 const auto E1 = 25_J;
+const auto P1 = 2.5_W;
 
 TEST_CASE( "Checking if speed works", "[vector]" ) {
     
@@ -84,5 +85,16 @@ TEST_CASE( "Checking if energy works", "[vector]" ) {
     
     REQUIRE(F1*s2 == E1);
     REQUIRE(p1*v2 == E1);
+    
+};
+
+
+TEST_CASE( "Checking if power works", "[vector]" ) {
+    
+    const auto _P2 = 10_kg * 1_G * 1_mps;
+    REQUIRE(_P2 == 98.1_W);
+    
+    REQUIRE(F1*v2 == P1);
+    REQUIRE(E1/t1 == P1);
     
 };

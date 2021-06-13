@@ -68,6 +68,7 @@ unit_t -> an unit template that is the basis of all of the units
 * momentum -> momentum with `kg * m / s` as base unit
 * force -> force with `kg * m / s^2` (Newton) as base unit
 * energy -> energy with `kg * m^2 / s^2` (Joules) as base unit
+* power -> power with `kg * m^2 / s^3` (Watts) as base unit
 
 ### Extra
 
