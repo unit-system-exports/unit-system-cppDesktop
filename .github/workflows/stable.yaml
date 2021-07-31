@@ -76,13 +76,12 @@ jobs:
           cp    common/include/*    unit-system-adruino/src/
           cp    common/src/*        unit-system-adruino/src/sources/
       - name: commit and push changes to arduino port
-        run: |
-          cd unit-system-adruino
-          git config --global user.email "noasakurajin@web.de"
-          git config --global user.name "Github CI"
-          git add .
-          git commit -m 'automatically updating arudino port'
-          git push
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: git@github.com:noah1510/unit-system-adruino.git
+          BRANCH: main
+          FOLDER: unit-system-adruino
+          GITHUB_TOKEN: ${{ secrets.ARDUINO_DEPLOY_KEY }}
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
