@@ -1,4 +1,4 @@
-name: "tagged-release"
+name: "stable-release"
 
 on:
   push:
@@ -68,6 +68,7 @@ jobs:
         run: |
           cp library.properties unit-system-adruino/
           cp LICENSE            unit-system-adruino/
+          cp README.md          unit-system-adruino/
           cp generic/include/*  unit-system-adruino/src/
           cp base/include/*     unit-system-adruino/src/
           cp base/src/*         unit-system-adruino/src/sources/
@@ -75,7 +76,7 @@ jobs:
           cp common/src/*       unit-system-adruino/src/sources/
       - name: commit and push changes to arduino port
         run: |
-          cd unit-system-arduino
+          cd unit-system-adruino
           git add .
           git commit -m 'automatically updating arudino port'
           git push
