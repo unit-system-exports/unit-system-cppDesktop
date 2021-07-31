@@ -2,9 +2,8 @@ name: "tagged-release"
 
 on:
   push:
-    tags:
-      - 'v*'
-      - '!*-rc*'
+    branches:
+      - 'stable'
 
 jobs:
   ubunut20:
@@ -56,28 +55,39 @@ jobs:
       - name: clearing build directory
         run: rm -rf build
 
-  tagged-rc-release:
+  stable-release:
     name: "Release candidate"
     runs-on: "ubuntu-20.04"
     needs: [windows, ubunut20, macos]
     steps:
       - uses: actions/checkout@v1
-      - name: install dependencies
-        run: sudo apt install doxygen graphviz
-      - name: generate docs
-        run: doxygen
-      - name: Deploy
-        uses: s0/git-publish-subdir-action@master
-        env:
-          REPO: self
-          BRANCH: gh-pages
-          FOLDER: doc/html
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+      
+      - name: cloning arduino port
+        run: git clone https://github.com/noah1510/unit-system-adruino.git
+      - name: copy files into arduino ports
+        run: |
+          cp library.properties unit-system-adruino/
+          cp LICENSE            unit-system-adruino/
+          cp generic/include/*  unit-system-adruino/src/
+          cp base/include/*     unit-system-adruino/src/
+          cp base/src/*         unit-system-adruino/src/sources/
+          cp common/include/*   unit-system-adruino/src/
+          cp common/src/*       unit-system-adruino/src/sources/
+      - name: commit and push changes to arduino port
+        run: |
+          cd unit-system-arduino
+          git add .
+          git commit -m 'automatically updating arudino port'
+          git push
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "stable"
           prerelease: false
+          title: "stable Build"
+          files: |
+            LICENSE
             
       - uses: actions/upload-artifact@v1
         if: failure()

@@ -1,1 +1,0 @@
-../../base/src/luminous_intensity.cpp

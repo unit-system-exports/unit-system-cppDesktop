@@ -41,3 +41,5 @@ doc
 
 subprojects/*
 !subprojects/*.wrap
+
+unit-system-arduino/
