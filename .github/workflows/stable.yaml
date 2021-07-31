@@ -81,7 +81,7 @@ jobs:
           REPO: git@github.com:noah1510/unit-system-adruino.git
           BRANCH: main
           FOLDER: unit-system-adruino
-          GITHUB_TOKEN: ${{ secrets.ARDUINO_DEPLOY_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ARDUINO_DEPLOY_KEY }}
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
