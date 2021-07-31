@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">unit-system
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
   </td>
  </tr>
@@ -73,47 +73,45 @@ $(function() {
 <a href="amount_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;unit_t.hpp&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="namespacesakurajin.html">    6</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacesakurajin.html">sakurajin</a>{</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system.html">    7</a></span>&#160;    <span class="keyword">namespace </span>unit_system{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base.html">    8</a></span>&#160;        <span class="keyword">namespace </span>base{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            <span class="comment">//Amount of substance</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="comment">//The default unit is mole</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">   11</a></span>&#160;            <span class="keyword">class </span><a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> : <span class="keyword">public</span> unit_t&lt;5&gt;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(unit_t&lt;5&gt; val);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keyword">explicit</span> <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(<span class="keywordtype">long</span> <span class="keywordtype">double</span> val);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(<span class="keywordtype">long</span> <span class="keywordtype">double</span> val, <span class="keywordtype">long</span> <span class="keywordtype">double</span> mult);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <span class="keyword">operator</span> <span class="keywordtype">long</span> double() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            };</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            std::ostream&amp; <a class="code" href="namespacesakurajin_1_1unit__system_1_1base.html#a654346ecf8e2d89b62a920559c0ad864">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a>&amp; t);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base.html#ac7ba72652a9ff1caf042f732f0b16436">   23</a></span>&#160;            <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">double</span> <a class="code" href="namespacesakurajin_1_1unit__system_1_1base.html#ac7ba72652a9ff1caf042f732f0b16436">avogadro_constant</a> = 6.02214076e23;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base_1_1literals.html">   25</a></span>&#160;            <span class="keyword">inline</span> <span class="keyword">namespace </span>literals{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _mol(<span class="keywordtype">long</span> <span class="keywordtype">double</span> len);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="comment">//specify how many things are there (eg. number of atoms)</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _things(<span class="keywordtype">long</span> <span class="keywordtype">double</span> len);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _mol(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> len);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="comment">//specify how many things are there (eg. number of atoms)</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _things(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> len);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespacesakurajin.html">    5</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacesakurajin.html">sakurajin</a>{</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system.html">    6</a></span>&#160;    <span class="keyword">namespace </span>unit_system{</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base.html">    7</a></span>&#160;        <span class="keyword">namespace </span>base{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;            <span class="comment">//Amount of substance</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            <span class="comment">//The default unit is mole</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">   10</a></span>&#160;            <span class="keyword">class </span><a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> : <span class="keyword">public</span> unit_t&lt;5&gt;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(unit_t&lt;5&gt; val);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <span class="keyword">explicit</span> <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(<span class="keywordtype">long</span> <span class="keywordtype">double</span> val);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">amount</a>(<span class="keywordtype">long</span> <span class="keywordtype">double</span> val, <span class="keywordtype">long</span> <span class="keywordtype">double</span> mult);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <span class="keyword">operator</span> <span class="keywordtype">long</span> double() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            };</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base_1_1literals.html">   20</a></span>&#160;            <span class="keyword">inline</span> <span class="keyword">namespace </span>literals{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _mol(<span class="keywordtype">long</span> <span class="keywordtype">double</span> len);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <span class="comment">//specify how many things are there (eg. number of atoms)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _things(<span class="keywordtype">long</span> <span class="keywordtype">double</span> len);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _mol(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> len);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="comment">//specify how many things are there (eg. number of atoms)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">amount</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _things(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> len);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base_1_1constants.html">   30</a></span>&#160;            <span class="keyword">namespace </span>constants{</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespacesakurajin_1_1unit__system_1_1base_1_1constants.html#a48ece16027ee286fe02ffc63d853f371">   31</a></span>&#160;                <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">double</span> <a class="code" href="namespacesakurajin_1_1unit__system_1_1base_1_1constants.html#a48ece16027ee286fe02ffc63d853f371">avogadro_constant</a> = 6.02214076e23;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespacesakurajin_1_1unit__system_1_1base_html_ac7ba72652a9ff1caf042f732f0b16436"><div class="ttname"><a href="namespacesakurajin_1_1unit__system_1_1base.html#ac7ba72652a9ff1caf042f732f0b16436">sakurajin::unit_system::base::avogadro_constant</a></div><div class="ttdeci">const long double avogadro_constant</div><div class="ttdef"><b>Definition:</b> amount.hpp:23</div></div>
-<div class="ttc" id="aclasssakurajin_1_1unit__system_1_1base_1_1amount_html_a1d821b50f08bdc1f4677ff259a6fe5ff"><div class="ttname"><a href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">sakurajin::unit_system::base::amount::amount</a></div><div class="ttdeci">amount()</div><div class="ttdef"><b>Definition:</b> amount.cpp:5</div></div>
-<div class="ttc" id="aclasssakurajin_1_1unit__system_1_1base_1_1amount_html"><div class="ttname"><a href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">sakurajin::unit_system::base::amount</a></div><div class="ttdef"><b>Definition:</b> amount.hpp:11</div></div>
-<div class="ttc" id="anamespacesakurajin_html"><div class="ttname"><a href="namespacesakurajin.html">sakurajin</a></div><div class="ttdef"><b>Definition:</b> amount.hpp:6</div></div>
-<div class="ttc" id="anamespacesakurajin_1_1unit__system_1_1base_html_a654346ecf8e2d89b62a920559c0ad864"><div class="ttname"><a href="namespacesakurajin_1_1unit__system_1_1base.html#a654346ecf8e2d89b62a920559c0ad864">sakurajin::unit_system::base::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const amount &amp;t)</div><div class="ttdef"><b>Definition:</b> amount.cpp:14</div></div>
+<div class="ttc" id="aclasssakurajin_1_1unit__system_1_1base_1_1amount_html_a1d821b50f08bdc1f4677ff259a6fe5ff"><div class="ttname"><a href="classsakurajin_1_1unit__system_1_1base_1_1amount.html#a1d821b50f08bdc1f4677ff259a6fe5ff">sakurajin::unit_system::base::amount::amount</a></div><div class="ttdeci">amount()</div><div class="ttdef"><b>Definition:</b> amount.cpp:6</div></div>
+<div class="ttc" id="aclasssakurajin_1_1unit__system_1_1base_1_1amount_html"><div class="ttname"><a href="classsakurajin_1_1unit__system_1_1base_1_1amount.html">sakurajin::unit_system::base::amount</a></div><div class="ttdef"><b>Definition:</b> amount.hpp:10</div></div>
+<div class="ttc" id="anamespacesakurajin_1_1unit__system_1_1base_1_1constants_html_a48ece16027ee286fe02ffc63d853f371"><div class="ttname"><a href="namespacesakurajin_1_1unit__system_1_1base_1_1constants.html#a48ece16027ee286fe02ffc63d853f371">sakurajin::unit_system::base::constants::avogadro_constant</a></div><div class="ttdeci">const long double avogadro_constant</div><div class="ttdef"><b>Definition:</b> amount.hpp:31</div></div>
+<div class="ttc" id="anamespacesakurajin_html"><div class="ttname"><a href="namespacesakurajin.html">sakurajin</a></div><div class="ttdef"><b>Definition:</b> amount.hpp:5</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
