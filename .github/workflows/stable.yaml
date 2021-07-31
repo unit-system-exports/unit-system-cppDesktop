@@ -70,7 +70,7 @@ jobs:
           cp    library.properties  unit-system-adruino/
           cp    LICENSE             unit-system-adruino/
           cp    README.md           unit-system-adruino/
-          cp -r Arduino-extras/*    unit-system-adruino/
+          cp -r Arduino-extras/.    unit-system-adruino/
           cp    generic/include/*   unit-system-adruino/src/
           cp    base/include/*      unit-system-adruino/src/
           cp    base/src/*          unit-system-adruino/src/sources/
