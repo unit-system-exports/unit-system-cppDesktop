@@ -12,11 +12,6 @@ amount::operator long double() const{
     return value * (multiplier*avogadro_constant);
 }
 
-std::ostream& operator<<(std::ostream& os, const amount& t){
-    auto t1 = sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " seconds";
-}
-
 amount literals::operator "" _mol(long double len){
     return amount(len);
 }

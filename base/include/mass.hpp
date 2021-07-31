@@ -1,7 +1,6 @@
 #pragma once
 
 #include "unit_t.hpp"
-#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -14,8 +13,6 @@ namespace sakurajin{
                 mass(long double val, long double mult);
                 
             };
-            
-            std::ostream& operator<<(std::ostream& os, const mass& s);
             
             inline namespace literals{
                 mass operator "" _kg(long double len);

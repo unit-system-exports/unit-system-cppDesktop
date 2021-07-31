@@ -9,11 +9,6 @@ time_si::time_si(unit_t<1> val): time_si(val.value, val.multiplier){}
 time_si::time_si(long double val): time_si(val,1){}
 time_si::time_si(long double val, long double mult): unit_t<1>(val,mult){}
 
-std::ostream& sakurajin::unit_system::base::operator<<(std::ostream& os, const time_si& t){
-    auto t1 = sakurajin::unit_system::unit_cast(t,1,0);
-    return os << t1.value << " seconds";
-}
-
 time_si literals::operator "" _a(long double len){
     return time_si(len,365.25*24.0*60.0*60.0);
 }

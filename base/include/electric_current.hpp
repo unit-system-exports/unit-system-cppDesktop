@@ -1,7 +1,6 @@
 #pragma once
 
 #include "unit_t.hpp"
-#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -14,8 +13,6 @@ namespace sakurajin{
                 electric_current(long double val, long double mult);
                 
             };
-            
-            std::ostream& operator<<(std::ostream& os, const electric_current& I);
 
             inline namespace literals{
                 electric_current operator "" _MA(long double len);

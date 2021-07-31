@@ -9,11 +9,6 @@ length::length(unit_t<2> val): length(val.value,val.multiplier){}
 length::length(long double val): length(val,1){}
 length::length(long double val, long double mult): unit_t<2>(val,mult){}
 
-std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const length& s){
-    auto s1 = sakurajin::unit_system::unit_cast(s,1);
-    return os << s1.value << " meter";
-}
-
 length literals::operator "" _km(long double len){
     return length{len, kilo};
 }

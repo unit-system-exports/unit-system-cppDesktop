@@ -1,7 +1,6 @@
 #pragma once
 
 #include "unit_t.hpp"
-#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -17,8 +16,6 @@ namespace sakurajin{
                 
                 operator long double() const;
             };
-            
-            std::ostream& operator<<(std::ostream& os, const amount& t);
             
             inline namespace literals{
                 amount operator "" _mol(long double len);

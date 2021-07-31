@@ -9,11 +9,6 @@ electric_current::electric_current(unit_t<6> val): electric_current(val.value,va
 electric_current::electric_current(long double val): electric_current(val,1){}
 electric_current::electric_current(long double val, long double mult): unit_t<6>(val,mult){}
 
-std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const electric_current& I){
-    auto I1 = ::sakurajin::unit_system::unit_cast(I,1);
-    return os << I1.value << " Ampere";
-}
-
 electric_current literals::operator "" _MA(long double len){
     return electric_current{len, mega};
 }

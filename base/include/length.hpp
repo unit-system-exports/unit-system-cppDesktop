@@ -1,7 +1,6 @@
 #pragma once
 
 #include "unit_t.hpp"
-#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -14,8 +13,6 @@ namespace sakurajin{
                 length(long double val, long double mult);
                 
             };
-            
-            std::ostream& operator<<(std::ostream& os, const length& s);
 
             inline namespace literals{
                 length operator "" _km(long double len);

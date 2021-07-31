@@ -8,6 +8,7 @@ sources = [
     'src/temperature.cpp',
     'src/electric_current.cpp',
     'src/luminous_intensity.cpp',
+    'src/base.cpp',
 ]
 
 incdir = include_directories('include','..')

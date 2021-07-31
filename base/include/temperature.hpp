@@ -1,7 +1,6 @@
 #pragma once
 
 #include "unit_t.hpp"
-#include <iostream>
 
 namespace sakurajin{
     namespace unit_system{
@@ -15,8 +14,6 @@ namespace sakurajin{
                 temperature(long double val, long double mult, long double offset);
                 
             };
-            
-            std::ostream& operator<<(std::ostream& os, const temperature& J);
             
             inline namespace literals{
                 temperature operator "" _K(long double len);

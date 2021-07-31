@@ -9,11 +9,6 @@ mass::mass(unit_t<3> val): mass(val.value, val.multiplier){}
 mass::mass(long double val): mass(val,1){}
 mass::mass(long double val, long double mult): unit_t<3>(val,mult){}
 
-std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const mass& s){
-    auto s1 = sakurajin::unit_system::unit_cast(s,1);
-    return os << s1.value << " meter";
-}
-
 mass literals::operator "" _kg(long double len){
     return mass{len, 1};
 }
