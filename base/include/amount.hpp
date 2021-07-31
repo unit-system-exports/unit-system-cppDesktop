@@ -20,8 +20,6 @@ namespace sakurajin{
             
             std::ostream& operator<<(std::ostream& os, const amount& t);
             
-            const long double avogadro_constant = 6.02214076e23;
-            
             inline namespace literals{
                 amount operator "" _mol(long double len);
                 //specify how many things are there (eg. number of atoms)
@@ -30,6 +28,10 @@ namespace sakurajin{
                 amount operator "" _mol(unsigned long long int len);
                 //specify how many things are there (eg. number of atoms)
                 amount operator "" _things(unsigned long long int len);
+            }
+            
+            namespace constants{
+                const long double avogadro_constant = 6.02214076e23;
             }
             
         }

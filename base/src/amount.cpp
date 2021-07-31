@@ -1,6 +1,7 @@
 #include "amount.hpp"
 
 using namespace sakurajin::unit_system::base;
+using namespace sakurajin::unit_system::base::constants;
 
 amount::amount(): amount(0){};
 amount::amount(unit_t<5> val): amount(val.value,val.multiplier){}

@@ -9,6 +9,7 @@
 using namespace sakurajin::unit_system::base;
 using namespace sakurajin::unit_system::prefix;
 using namespace sakurajin::unit_system::base::literals;
+using namespace sakurajin::unit_system::base::constants;
 
 TEST_CASE( "Checking if time works", "[vector]" ) {
     
