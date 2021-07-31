@@ -15,15 +15,25 @@ temperature literals::operator "" _K(long double len){
     return temperature{len, 1,0};
 }
 
-temperature literals::operator "" _C(long double len){
-    return temperature{len, 1, waterFreezinPoint};
-}
-
-
 temperature literals::operator "" _K(unsigned long long int len){
     return temperature{static_cast<long double>(len), 1, 0};
 }
 
-temperature literals::operator "" _C(unsigned long long int len){
-    return temperature{static_cast<long double>(len), 1, waterFreezinPoint};
-}
+
+#ifndef ARDUINO
+    temperature literals::operator "" _C(long double len){
+        return temperature{len, 1, waterFreezinPoint};
+    }
+    
+    temperature literals::operator "" _C(unsigned long long int len){
+        return temperature{static_cast<long double>(len), 1, waterFreezinPoint};
+    }
+#else
+    temperature literals::operator "" _Celsius(long double len){
+        return temperature{len, 1, waterFreezinPoint};
+    }
+    
+    temperature literals::operator "" _Celsius(unsigned long long int len){
+        return temperature{static_cast<long double>(len), 1, waterFreezinPoint};
+    }
+#endif

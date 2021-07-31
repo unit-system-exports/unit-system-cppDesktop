@@ -30,8 +30,13 @@ namespace sakurajin{
             acceleration operator/(const force& p, const base::mass& m);
             
             inline namespace literals{
-                force operator "" _N(long double val);
-                force operator "" _N(unsigned long long int val);
+                #ifndef ARDUINO
+                    force operator "" _N(long double val);
+                    force operator "" _N(unsigned long long int val);
+                #else                    
+                    force operator "" _Newton(long double val);
+                    force operator "" _Newton(unsigned long long int val);
+                #endif
             }
             
         }

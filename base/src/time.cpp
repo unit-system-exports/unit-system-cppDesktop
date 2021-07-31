@@ -21,10 +21,6 @@ time_si literals::operator "" _h(long double len){
     return time_si(len,60.0*60.0);
 }
 
-time_si literals::operator "" _min(long double len){
-    return time_si(len,60.0);
-}
-
 time_si literals::operator "" _s(long double len){
     return time_si(len,1);
 }
@@ -59,10 +55,6 @@ time_si literals::operator "" _h(unsigned long long int len){
     return time_si(len,60.0*60.0);
 }
 
-time_si literals::operator "" _min(unsigned long long int len){
-    return time_si(len,60.0);
-}
-
 time_si literals::operator "" _s(unsigned long long int len){
     return time_si(len,1);
 }
@@ -82,3 +74,24 @@ time_si literals::operator "" _ns(unsigned long long int len){
 time_si literals::operator "" _fs(unsigned long long int len){
     return time_si(len,femto);
 }
+
+
+#ifndef ARDUINO
+    time_si literals::operator "" _min(long double len){
+        return time_si(len,60.0);
+    }
+
+    time_si literals::operator "" _min(unsigned long long int len){
+        return time_si(len,60.0);
+    }
+#else
+    time_si literals::operator "" _minute(long double len){
+        return time_si(len,60.0);
+    }
+
+    time_si literals::operator "" _minute(unsigned long long int len){
+        return time_si(len,60.0);
+    }
+#endif
+
+

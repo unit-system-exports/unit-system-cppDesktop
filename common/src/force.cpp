@@ -53,10 +53,22 @@ common::acceleration common::operator/(const common::force& p, const base::mass&
     return common::acceleration{p1.value/m1.value,p1.multiplier/m1.multiplier};
 }
 
-common::force common::literals::operator "" _N(long double len){
-    return common::force{len,1};
-}
 
-common::force common::literals::operator "" _N(unsigned long long int len){
-    return common::force{static_cast<long double>(len), 1};
-}
+
+#ifndef ARDUINO
+    common::force common::literals::operator "" _N(long double len){
+        return common::force{len,1};
+    }
+
+    common::force common::literals::operator "" _N(unsigned long long int len){
+        return common::force{static_cast<long double>(len), 1};
+    }
+#else                    
+    common::force common::literals::operator "" _Newton(long double len){
+        return common::force{len,1};
+    }
+
+    common::force common::literals::operator "" _Newton(unsigned long long int len){
+        return common::force{static_cast<long double>(len), 1};
+    }
+#endif

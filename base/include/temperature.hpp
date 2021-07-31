@@ -17,10 +17,15 @@ namespace sakurajin{
             
             inline namespace literals{
                 temperature operator "" _K(long double len);
-                temperature operator "" _C(long double len);
-                
                 temperature operator "" _K(unsigned long long int len);
-                temperature operator "" _C(unsigned long long int len);
+                
+                #ifndef ARDUINO
+                    temperature operator "" _C(long double len);
+                    temperature operator "" _C(unsigned long long int len);
+                #else
+                    temperature operator "" _Celsius(long double len);
+                    temperature operator "" _Celsius(unsigned long long int len);
+                #endif
             }
             
             namespace constants{
