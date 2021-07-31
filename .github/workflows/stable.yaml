@@ -62,10 +62,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       
-      - name: cloning arduino port
-        run: git clone https://github.com/noah1510/unit-system-adruino.git
       - name: copy files into arduino ports
         run: |
+          mkdir unit-system-adruino
+          mkdir unit-system-adruino/src
+          mkdir unit-system-adruino/src/sources
           cp    library.properties  unit-system-adruino/
           cp    LICENSE             unit-system-adruino/
           cp    README.md           unit-system-adruino/
