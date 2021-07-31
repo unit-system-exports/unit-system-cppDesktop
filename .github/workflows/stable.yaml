@@ -69,6 +69,7 @@ jobs:
           cp library.properties unit-system-adruino/
           cp LICENSE            unit-system-adruino/
           cp README.md          unit-system-adruino/
+          cp Arduino-extras/*   unit-system-adruino/
           cp generic/include/*  unit-system-adruino/src/
           cp base/include/*     unit-system-adruino/src/
           cp base/src/*         unit-system-adruino/src/sources/
@@ -77,6 +78,8 @@ jobs:
       - name: commit and push changes to arduino port
         run: |
           cd unit-system-adruino
+          git config --global user.email "noasakurajin@web.de"
+          git config --global user.name "Github CI"
           git add .
           git commit -m 'automatically updating arudino port'
           git push
