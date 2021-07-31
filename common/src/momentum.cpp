@@ -38,8 +38,3 @@ common::momentum common::literals::operator "" _kgmps(long double len){
 common::momentum common::literals::operator "" _kgmps(unsigned long long int len){
     return common::momentum{static_cast<long double>(len), 1};
 }
-
-std::ostream& common::operator<<(std::ostream& os, const common::momentum& p){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    return os << p1.value << " kilogram * meter per second";
-}

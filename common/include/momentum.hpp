@@ -4,8 +4,6 @@
 #include "speed.hpp"
 #include "mass.hpp"
 
-#include <iostream>
-
 namespace sakurajin{
     namespace unit_system{
         namespace common{
@@ -22,8 +20,6 @@ namespace sakurajin{
             
             base::mass operator/(const momentum& p, const speed& v);
             speed operator/(const momentum& p, const base::mass& m);
-            
-            std::ostream& operator<<(std::ostream& os, const momentum& v);
             
             inline namespace literals{
                 momentum operator "" _kgmps(long double val);

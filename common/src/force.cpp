@@ -60,8 +60,3 @@ common::force common::literals::operator "" _N(long double len){
 common::force common::literals::operator "" _N(unsigned long long int len){
     return common::force{static_cast<long double>(len), 1};
 }
-
-std::ostream& common::operator<<(std::ostream& os, const common::force& p){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    return os << p1.value << " Newton";
-}

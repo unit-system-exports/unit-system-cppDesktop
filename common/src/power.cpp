@@ -66,9 +66,3 @@ common::power common::literals::operator "" _W(long double len){
 common::power common::literals::operator "" _W(unsigned long long int len){
     return common::power{static_cast<long double>(len), 1};
 }
-
-//output
-std::ostream& common::operator<<(std::ostream& os, const common::power& p){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    return os << p1.value << " Watts";
-}

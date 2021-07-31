@@ -7,8 +7,6 @@
 #include "energy.hpp"
 #include "time.hpp"
 
-#include <iostream>
-
 namespace sakurajin {
     namespace unit_system {
         namespace common {
@@ -35,8 +33,6 @@ namespace sakurajin {
             force operator/(const power& P, const speed& v);
 
             speed operator/(const power& P, const force& F);
-            
-            std::ostream& operator<<(std::ostream& os, const power& p);
 
             inline namespace literals {
                 power operator "" _W(long double val);

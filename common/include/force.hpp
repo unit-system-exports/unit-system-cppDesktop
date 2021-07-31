@@ -5,8 +5,6 @@
 #include "momentum.hpp"
 #include "acceleration.hpp"
 
-#include <iostream>
-
 namespace sakurajin{
     namespace unit_system{
         namespace common{
@@ -30,8 +28,6 @@ namespace sakurajin{
             
             base::mass operator/(const force& p, const acceleration& a);
             acceleration operator/(const force& p, const base::mass& m);
-            
-            std::ostream& operator<<(std::ostream& os, const force& v);
             
             inline namespace literals{
                 force operator "" _N(long double val);

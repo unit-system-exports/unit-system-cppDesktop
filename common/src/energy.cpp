@@ -64,9 +64,3 @@ common::energy common::literals::operator "" _J(long double len){
 common::energy common::literals::operator "" _J(unsigned long long int len){
     return common::energy{static_cast<long double>(len), 1};
 }
-
-//output
-std::ostream& common::operator<<(std::ostream& os, const common::energy& p){
-    auto p1 = sakurajin::unit_system::unit_cast(p,1);
-    return os << p1.value << " Joules";
-}

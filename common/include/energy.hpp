@@ -6,8 +6,6 @@
 #include "acceleration.hpp"
 #include "force.hpp"
 
-#include <iostream>
-
 namespace sakurajin{
     namespace unit_system{
         namespace common{
@@ -32,8 +30,6 @@ namespace sakurajin{
             
             momentum operator/(const energy& E, const speed& s);
             speed operator/(const energy& E, const momentum& s);
-            
-            std::ostream& operator<<(std::ostream& os, const energy& v);
             
             inline namespace literals{
                 energy operator "" _J(long double val);

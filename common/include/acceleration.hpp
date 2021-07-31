@@ -5,8 +5,6 @@
 #include "time.hpp"
 #include "speed.hpp"
 
-#include <iostream>
-
 namespace sakurajin{
     namespace unit_system{
         namespace common{
@@ -24,8 +22,6 @@ namespace sakurajin{
             speed operator*(const base::time_si& t, const acceleration& a);
             
             base::time_si operator/(const speed& v, const acceleration& a);
-            
-            std::ostream& operator<<(std::ostream& os, const acceleration& v);
             
             inline namespace literals{
                 acceleration operator "" _mps2(long double val);

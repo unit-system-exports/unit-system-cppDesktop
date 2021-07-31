@@ -7,6 +7,7 @@ sources = [
     'src/force.cpp',
     'src/energy.cpp',
     'src/power.cpp',
+    'src/common.cpp',
 ]
 
 incdir = include_directories('include','..')
