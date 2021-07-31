@@ -5,6 +5,8 @@
 #include "momentum.hpp"
 #include "acceleration.hpp"
 
+#include <iostream>
+
 namespace sakurajin{
     namespace unit_system{
         namespace common{

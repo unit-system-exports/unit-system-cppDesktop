@@ -6,6 +6,8 @@
 #include "acceleration.hpp"
 #include "force.hpp"
 
+#include <iostream>
+
 namespace sakurajin{
     namespace unit_system{
         namespace common{

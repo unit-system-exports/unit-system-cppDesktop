@@ -4,6 +4,8 @@
 #include "speed.hpp"
 #include "mass.hpp"
 
+#include <iostream>
+
 namespace sakurajin{
     namespace unit_system{
         namespace common{

@@ -7,6 +7,8 @@
 #include "energy.hpp"
 #include "time.hpp"
 
+#include <iostream>
+
 namespace sakurajin {
     namespace unit_system {
         namespace common {
