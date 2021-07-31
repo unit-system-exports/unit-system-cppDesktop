@@ -66,15 +66,15 @@ jobs:
         run: git clone https://github.com/noah1510/unit-system-adruino.git
       - name: copy files into arduino ports
         run: |
-          cp library.properties unit-system-adruino/
-          cp LICENSE            unit-system-adruino/
-          cp README.md          unit-system-adruino/
-          cp Arduino-extras/*   unit-system-adruino/
-          cp generic/include/*  unit-system-adruino/src/
-          cp base/include/*     unit-system-adruino/src/
-          cp base/src/*         unit-system-adruino/src/sources/
-          cp common/include/*   unit-system-adruino/src/
-          cp common/src/*       unit-system-adruino/src/sources/
+          cp    library.properties  unit-system-adruino/
+          cp    LICENSE             unit-system-adruino/
+          cp    README.md           unit-system-adruino/
+          cp -r Arduino-extras/*    unit-system-adruino/
+          cp    generic/include/*   unit-system-adruino/src/
+          cp    base/include/*      unit-system-adruino/src/
+          cp    base/src/*          unit-system-adruino/src/sources/
+          cp    common/include/*    unit-system-adruino/src/
+          cp    common/src/*        unit-system-adruino/src/sources/
       - name: commit and push changes to arduino port
         run: |
           cd unit-system-adruino
