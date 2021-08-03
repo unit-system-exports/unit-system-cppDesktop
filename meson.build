@@ -2,14 +2,14 @@ project(
     'unit-system',
     'cpp',
     default_options : ['cpp_std=c++17'],
-    version : '0.5.0',
+    version : '0.5.1',
 )
 
 #set the configuration
 conf_data = configuration_data()
 conf_data.set('HAS_GENERIC_SUPPORT', true)
 
-if get_option('build_common') or get_option('build_full')
+if get_option('build_base') or get_option('build_full')
     conf_data.set('HAS_BASE_SUPPORT', true)
 endif
 
@@ -24,8 +24,7 @@ configure_file(output : 'unit_system_config.hpp', configuration : conf_data, ins
 subdir('generic')
 meson.override_dependency('unit-system-generic', unit_system_generic_dep)
 
-
-if get_option('build_common') or get_option('build_full')
+if get_option('build_base') or get_option('build_full')
     subdir('base')
     meson.override_dependency('unit-system-base', unit_system_base_dep)
 endif
@@ -36,7 +35,7 @@ if get_option('build_common') or get_option('build_full')
 endif
 
 #declare the dependency libtrainsim_full
-if get_option('build_full')
+if get_option('build_full') or ( get_option('build_base') and get_option('build_common') )
     unit_system_full_dep = declare_dependency(
         dependencies : [
             dependency('unit-system-generic', required: true, version : '=' + meson.project_version()),
