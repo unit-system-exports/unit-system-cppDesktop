@@ -7,10 +7,6 @@
         #undef abs
     #endif
     
-    #ifdef max
-        #undef max
-    #endif
-    
     namespace std{
         using size_t = unsigned int;
         
@@ -18,6 +14,17 @@
         T abs(T var){
             return var > 0 ? var : -var;
         }
+    }
+#endif
+
+#if __has_include(<algorithm>)
+    #include <algorithm>
+#else
+    #ifdef max
+        #undef max
+    #endif
+    
+    namespace std{
         
         template <typename T>
         T max(T v1, T v2){
