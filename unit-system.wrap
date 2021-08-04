@@ -1,7 +1,0 @@
-[wrap-git]
-url = https://git.thm.de/nkrs14/libtrainsim.git
-revision = main
-
-[provides]
-dependency_names = ['libtrainsim-full','libtrainsim-core','libtrainsim-control','libtrainsim-video','libtrainsim-physics']
-

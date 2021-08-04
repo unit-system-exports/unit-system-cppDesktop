@@ -1,5 +1,9 @@
 # unit-system
 
+[![GitHub license](https://img.shields.io/github/license/noah1510/unit-system.svg)](https://github.com/noah1510/unit-system/blob/master/License)
+[![stable release](https://img.shields.io/github/v/release/noah1510/unit-system.svg)](https://GitHub.com/noah1510/unit-system/releases/)
+[![arduino-library-badge](https://www.ardu-badge.com/badge/unit-system.svg?)](https://www.ardu-badge.com/unit-system)
+
 **Please note that the project is still in the early development state and some things might not work as expected!**
 
 This is an implementation of the SI unit system for C++ development.
