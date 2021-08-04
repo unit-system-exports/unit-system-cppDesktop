@@ -3,13 +3,19 @@
 #if __has_include(<cstddef>)
     #include <cstddef>
 #else
+    namespace std{
+        using size_t = unsigned int;
+    }
+#endif
+
+#if __has_include(<cmath>)
+    #include <cmath>
+#else
     #ifdef abs
         #undef abs
     #endif
     
     namespace std{
-        using size_t = unsigned int;
-        
         template <typename T>
         T abs(T var){
             return var > 0 ? var : -var;
