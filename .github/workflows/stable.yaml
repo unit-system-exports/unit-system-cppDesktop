@@ -10,15 +10,15 @@ jobs:
     name: "ubuntu compile and test"
     runs-on: "ubuntu-20.04"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-python@v1          
-      - uses: BSFishy/meson-build@v1.0.2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2                
+      - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.57.1
+          meson-version: 0.61.3
       - name: clearing build directory
         run: rm -rf build
 
@@ -26,15 +26,15 @@ jobs:
     name: "windows compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-python@v1          
-      - uses: BSFishy/meson-build@v1.0.2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2                
+      - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.57.1
+          meson-version: 0.61.3
           setup-options: -Ddefault_library=static -Db_lto=false
       - name: clearing build directory
         run: Remove-Item -recurse -force build
@@ -43,15 +43,15 @@ jobs:
     name: "mac os compile and test"
     runs-on: "macos-latest"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-python@v1                
-      - uses: BSFishy/meson-build@v1.0.2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2                
+      - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.57.1
+          meson-version: 0.61.3
       - name: clearing build directory
         run: rm -rf build
 
@@ -60,7 +60,7 @@ jobs:
     runs-on: "ubuntu-20.04"
     needs: [windows, ubunut20, macos]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       
       - name: copy files into arduino ports
         run: |
@@ -93,7 +93,7 @@ jobs:
           files: |
             LICENSE
             
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: build-artifact-${{ matrix.os }}-${{ matrix.compiler }}
