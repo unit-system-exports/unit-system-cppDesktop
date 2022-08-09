@@ -79,6 +79,8 @@ namespace sakurajin{
             long double rel_error = 0.000001;
             
             unit_t();
+            unit_t(const unit_t<identifier>& other) = default;
+
             explicit unit_t(long double v);
             unit_t(long double v, long double mult);
             unit_t(long double v, long double mult, long double off);
