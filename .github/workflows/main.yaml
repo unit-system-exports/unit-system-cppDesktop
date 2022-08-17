@@ -92,7 +92,7 @@ jobs:
   pre-release:
     name: "Pre Release latest"
     runs-on: "ubuntu-20.04"
-    needs: [windows, ubunut20, macos]
+    needs: [windows-shared-msvc, windows-static-msvc, ubunut20, macos]
     steps:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
