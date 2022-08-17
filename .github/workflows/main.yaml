@@ -28,7 +28,9 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4          
+      - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10'         
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
@@ -44,7 +46,10 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
+      - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10' 
       - name: install meson
         run: pip install meson
       - name: meson setup
@@ -61,7 +66,10 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
+      - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10' 
       - name: install meson
         run: pip install meson
       - name: meson setup
@@ -78,7 +86,9 @@ jobs:
     runs-on: "macos-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4                
+      - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10' 
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
