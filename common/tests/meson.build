@@ -1,7 +1,9 @@
+#get gtest
+gtest = dependency('gtest', required: true, fallback:['gtest','gtest_dep'])
+
 #make both dependencies into one array
 deps = [unit_system_common_dep]
-deps += main_test_dep
-deps += test_helper_dep
+deps += gtest
 
 tests = [
     'common_test',
