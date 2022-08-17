@@ -32,5 +32,5 @@ pkg = import('pkgconfig')
 pkg.generate(unit_system_generic)
 
 if get_option('force_build_tests') or (get_option('build_tests') and not meson.is_subproject())
-    #subdir('tests')
+    subdir('tests')
 endif
