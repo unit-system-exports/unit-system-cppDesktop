@@ -1,7 +1,6 @@
-#include <catch2/catch.hpp>
+#include <gtest/gtest.h>
 
 #include "prefix.hpp"
-#include "test_helper.hpp"
 #include "common.hpp"
 
 #include <iostream>
@@ -27,7 +26,7 @@ const auto F1 = 2.5_N;
 const auto E1 = 25_J;
 const auto P1 = 2.5_W;
 
-TEST_CASE( "Checking if speed works", "[vector]" ) {
+TEST( common_tests, speed_test) {
     
     const time_si _t1{1,1};
     const auto _t2 = 10.0_h;
@@ -36,65 +35,70 @@ TEST_CASE( "Checking if speed works", "[vector]" ) {
     const auto _s2 = 250.0_km;
     
     const speed _v1 = _s1/_t1;
-    REQUIRE(_v1 == 10.0_mps);
+    EXPECT_TRUE(_v1 == 10.0_mps);
     
     const auto _v2 = _s2/_t2;
-    REQUIRE(_v2 == 25.0_kmph);
+    EXPECT_TRUE(_v2 == 25.0_kmph);
     
     const auto _v3 = unit_cast(3.6_kmph,1);
-    REQUIRE(_v3 == 1.0_mps);
+    EXPECT_TRUE(_v3 == 1.0_mps);
     
-    REQUIRE( _v3*_t1 == _t1*_v3 );
+    EXPECT_TRUE( _v3*_t1 == _t1*_v3 );
     
 };
 
-TEST_CASE( "Checking if acceleration works", "[vector]" ) {
+TEST( common_tests, acceleration_test ) {
     
     const auto _a1 = v1/t1;
-    REQUIRE(_a1 == a1);
+    EXPECT_TRUE(_a1 == a1);
     
     const auto _a2 = unit_cast(9.81_mps/1.0_s,1);
-    REQUIRE(_a2 == 1.0_G);
+    EXPECT_TRUE(_a2 == 1.0_G);
     
-    REQUIRE(_a2 * t1 == t1 * _a2);
+    EXPECT_TRUE(_a2 * t1 == t1 * _a2);
     
 };
 
-TEST_CASE( "Checking if momentum works", "[vector]" ) {
+TEST( common_tests, momentum_test ) {
 
     const auto _p1 = v1*m1;
-    REQUIRE(_p1 == m1*v1);
-    REQUIRE(_p1 == p1);
+    EXPECT_TRUE(_p1 == m1*v1);
+    EXPECT_TRUE(_p1 == p1);
     
 };
 
-TEST_CASE( "Checking if force works", "[vector]" ) {
+TEST( common_tests, force_test ) {
     
     const auto _F2 = 10_kg * 1_G;
-    REQUIRE(_F2 == 98.1_N);
+    EXPECT_TRUE(_F2 == 98.1_N);
     
-    REQUIRE(p1/10_s == F1);
-    REQUIRE(m1*a1 == F1);
+    EXPECT_TRUE(p1/10_s == F1);
+    EXPECT_TRUE(m1*a1 == F1);
     
 };
 
-TEST_CASE( "Checking if energy works", "[vector]" ) {
+TEST( common_tests, energy_test ) {
     
     const auto _E2 = 10_kg * 1_G * 1_m;
-    REQUIRE(_E2 == 98.1_J);
+    EXPECT_TRUE(_E2 == 98.1_J);
     
-    REQUIRE(F1*s2 == E1);
-    REQUIRE(p1*v2 == E1);
+    EXPECT_TRUE(F1*s2 == E1);
+    EXPECT_TRUE(p1*v2 == E1);
     
 };
 
 
-TEST_CASE( "Checking if power works", "[vector]" ) {
+TEST( common_tests, power_test ) {
     
     const auto _P2 = 10_kg * 1_G * 1_mps;
-    REQUIRE(_P2 == 98.1_W);
+    EXPECT_TRUE(_P2 == 98.1_W);
     
-    REQUIRE(F1*v2 == P1);
-    REQUIRE(E1/t1 == P1);
+    EXPECT_TRUE(F1*v2 == P1);
+    EXPECT_TRUE(E1/t1 == P1);
     
 };
+
+int main(int argc, char **argv){
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
