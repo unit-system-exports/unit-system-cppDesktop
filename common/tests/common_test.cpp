@@ -12,19 +12,19 @@ using namespace sakurajin::unit_system::base::literals;
 using namespace sakurajin::unit_system;
 
 //base units
-const auto t1 = 10.0_s;
-const auto s1 = 250.0_m;
-const auto s2 = 10.0_m;
-const auto m1 = 1_kg;
+static const auto t1 = 10.0_s;
+static const auto s1 = 250.0_m;
+static const auto s2 = 10.0_m;
+static const auto m1 = 1_kg;
 
 //common units
-const auto v1 = 25_mps;
-const auto v2 = 1_mps;
-const auto a1 = 2.5_mps2;
-const auto p1 = 25_kgmps;
-const auto F1 = 2.5_N;
-const auto E1 = 25_J;
-const auto P1 = 2.5_W;
+static const auto v1 = 25_mps;
+static const auto v2 = 1_mps;
+static const auto a1 = 2.5_mps2;
+static const auto p1 = 25_kgmps;
+static const auto F1 = 2.5_N;
+static const auto E1 = 25_J;
+static const auto P1 = 2.5_W;
 
 TEST( common_tests, speed_test) {
     
