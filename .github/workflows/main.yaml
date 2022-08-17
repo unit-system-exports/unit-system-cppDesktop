@@ -40,7 +40,7 @@ jobs:
         run: rm -rf build
 
   windows-static-msvc:
-    name: "windows compile and test"
+    name: "windows static msvc compile and test"
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
@@ -52,12 +52,12 @@ jobs:
           directory: build
           options: --verbose
           meson-version: 0.61.3
-          setup-options: -Ddefault_library=static -Db_lto=false
+          setup-options: -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false
       - name: clearing build directory
         run: Remove-Item -recurse -force build
 
   windows-shared-msvc:
-    name: "windows compile and test"
+    name: "windows shared msvc compile and test"
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
@@ -69,7 +69,7 @@ jobs:
           directory: build
           options: --verbose
           meson-version: 0.61.3
-          setup-options: -Ddefault_library=shared -Db_lto=false
+          setup-options: -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false
       - name: clearing build directory
         run: Remove-Item -recurse -force build
         
