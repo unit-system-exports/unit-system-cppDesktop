@@ -28,7 +28,7 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2          
+      - uses: actions/setup-python@v4          
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
@@ -44,13 +44,15 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2  
+      - uses: actions/setup-python@v4
+      - name: install meson
+        run: pip install meson
       - name: meson setup
         run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
       - name: meson compile
         run: meson compile -C build
       - name: meson test
-        run: meson test -C build        
+        run: meson test -C build
       - name: clearing build directory
         run: Remove-Item -recurse -force build
 
@@ -59,7 +61,9 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
+      - name: install meson
+        run: pip install meson
       - name: meson setup
         run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
       - name: meson compile
@@ -74,7 +78,7 @@ jobs:
     runs-on: "macos-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2                
+      - uses: actions/setup-python@v4                
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
