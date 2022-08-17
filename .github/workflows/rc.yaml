@@ -75,7 +75,7 @@ jobs:
   tagged-rc-release:
     name: "Release candidate"
     runs-on: "ubuntu-20.04"
-    needs: [windows, ubunut20, macos]
+    needs: [windows-shared-msvc, windows-static-msvc, ubunut20, macos]
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
