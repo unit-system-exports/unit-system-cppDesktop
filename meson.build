@@ -22,15 +22,6 @@ endif
 
 configure_file(output : 'unit_system_config.hpp', configuration : conf_data, install: true, install_dir: 'include/unit-system')
 
-cpp = meson.get_compiler('cpp')
-if cpp.get_argument_syntax() == 'msvc'
-  if get_option('buildtype') != 'static'
-    add_project_arguments('-DIMGUI_API=__declspec(dllexport)', language: 'cpp')
-  else
-    add_project_arguments('-DIMGUI_API=__declspec(dllimport)', language: 'cpp')
-  endif
-endif
-
 #compile modules
 
 subdir('generic')
