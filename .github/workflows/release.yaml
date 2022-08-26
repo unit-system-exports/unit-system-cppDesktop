@@ -23,37 +23,78 @@ jobs:
       - name: clearing build directory
         run: rm -rf build
 
+
   windows-static-msvc:
-    name: "windows compile and test"
+    name: "windows static msvc compile and test"
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2          
-      - uses: BSFishy/meson-build@v1.0.3
-        name: build full
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/setup-python@v4
         with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.61.3
-          setup-options: -Ddefault_library=static -Db_lto=false
+            python-version: '3.10' 
+      - name: install meson
+        run: pip install meson
+      - name: meson setup
+        run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson compile
+        run: meson compile -C build
+      - name: meson test
+        run: meson test -C build
       - name: clearing build directory
         run: Remove-Item -recurse -force build
 
-  windows-shared-msvc:
-    name: "windows compile and test"
+  windows-static-msys2:
+    name: "windows static msys2 compile and test"
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2          
-      - uses: BSFishy/meson-build@v1.0.3
-        name: build full
+      - uses: msys2/setup-msys2@v2
         with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.61.3
-          setup-options: -Ddefault_library=shared -Db_lto=false
+          update: true
+          install: >-
+            base-devel
+            mingw-w64-x86_64-python3
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-pkg-config
+      - name: meson setup
+        shell: msys2 {0}
+        run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson compile
+        shell: msys2 {0}
+        run: meson compile -C build
+      - name: meson test
+        shell: msys2 {0}
+        run: meson test -C build
+      - name: clearing build directory
+        run: Remove-Item -recurse -force build
+
+  windows-shared-msys2:
+    name: "windows shared msys2 compile and test"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            base-devel
+            mingw-w64-x86_64-python3
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-pkg-config
+      - name: meson setup
+        shell: msys2 {0}
+        run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson compile
+        shell: msys2 {0}
+        run: meson compile -C build
+      - name: meson test
+        shell: msys2 {0}
+        run: meson test -C build
       - name: clearing build directory
         run: Remove-Item -recurse -force build
         
@@ -76,7 +117,7 @@ jobs:
   tagged-rc-release:
     name: "Release candidate"
     runs-on: "ubuntu-20.04"
-    needs: [windows, ubunut20, macos]
+    needs: [windows-shared-msys2, windows-static-msys2, windows-static-msvc, ubunut20, macos]
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
