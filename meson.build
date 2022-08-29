@@ -8,6 +8,13 @@ project(
     version : '0.5.3',
 )
 
+#set windows linker argument
+cpp = meson.get_compiler('cpp')
+if cpp.get_argument_syntax() == 'msvc'
+    add_project_link_arguments('/MAP', language: 'cpp')
+    add_project_link_arguments('/MAPINFO:EXPORTS', language: 'cpp')
+endif
+
 #set the configuration
 conf_data = configuration_data()
 conf_data.set('HAS_GENERIC_SUPPORT', true)
