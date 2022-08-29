@@ -20,16 +20,30 @@ core_deps = [
 
 deffile = meson.project_source_root() + '/windows-extras/base/unit-system-base-0.def'
 
-unit_system_base = library(
-    'unit-system-base', 
-    sources, 
-    version : meson.project_version(), 
-    soversion : '0',
-    include_directories : incdir,
-    vs_module_defs: deffile,
-    dependencies: core_deps,
-    install : true,
-)
+cpp = meson.get_compiler('cpp')
+if cpp.get_argument_syntax() == 'msvc'
+    unit_system_base = library(
+        'unit-system-base', 
+        sources, 
+        version : meson.project_version(), 
+        soversion : '0',
+        include_directories : incdir,
+        vs_module_defs: deffile,
+        dependencies: core_deps,
+        install : true,
+    )
+else
+    unit_system_base = library(
+        'unit-system-base', 
+        sources, 
+        version : meson.project_version(), 
+        soversion : '0',
+        include_directories : incdir,
+        dependencies: core_deps,
+        install : true,
+    )
+endif
+
 
 
 unit_system_base_dep = declare_dependency(
