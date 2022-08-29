@@ -17,12 +17,14 @@ common_deps = [
     dependency('unit-system-base', required: true, version : '=' + meson.project_version()),
 ]
 
+deffile = meson.project_source_root() + '/windows-extras/common/unit-system-common-0.def'
 unit_system_common = library(
     'unit-system-common', 
     sources, 
     version : meson.project_version(), 
     soversion : '0',
     include_directories : incdir,
+    vs_module_defs: deffile,
     dependencies: common_deps,
     install : true,
 )

@@ -17,15 +17,20 @@ core_deps = [
     dependency('threads'),
     dependency('unit-system-generic', required: true, version : '=' + meson.project_version()),
 ]
+
+deffile = meson.project_source_root() + '/windows-extras/base/unit-system-base-0.def'
+
 unit_system_base = library(
     'unit-system-base', 
     sources, 
     version : meson.project_version(), 
     soversion : '0',
     include_directories : incdir,
+    vs_module_defs: deffile,
     dependencies: core_deps,
     install : true,
 )
+
 
 unit_system_base_dep = declare_dependency(
     include_directories : incdir,
