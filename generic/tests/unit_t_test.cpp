@@ -5,14 +5,6 @@
 
 #include <iostream>
 
-//a simple way to check if to bools are equal
-#include <cmath>
-#include <algorithm>
-bool isDoubleEqual(long double v1, long double v2){
-    auto delta = v1-v2;
-    return std::abs(delta) < 0.000001 * std::max(std::abs(v1), std::abs(v1));
-}
-
 using namespace sakurajin::unit_system;
 using namespace sakurajin::unit_system::prefix;
 
@@ -75,16 +67,18 @@ TEST( unit_t_tests, operator_tests ) {
     EXPECT_TRUE(v2 == _v4);
     
     auto v6 = v1 + v2;
-    EXPECT_TRUE(isDoubleEqual(v6.value, 2000.0));
+    EXPECT_DOUBLE_EQ(v6.value, 2000.0);
     EXPECT_TRUE(v6 == v1*2.0);
     EXPECT_TRUE(v1 == v6/2.0);
     
     auto v7 = v2 + v1;
-    EXPECT_TRUE(isDoubleEqual(v7.value, 2.0));
+    EXPECT_DOUBLE_EQ(v7.value, 2.0);
     EXPECT_TRUE(v6 == v7);
     
     auto v8 = v1-v4;
     EXPECT_TRUE(v5 == v8);
+
+    EXPECT_DOUBLE_EQ(v1/v2, 1.0);
     
 };
 

@@ -3,14 +3,6 @@
 #include "base.hpp"
 #include "prefix.hpp"
 
-//a simple way to check if to bools are equal
-#include <cmath>
-#include <algorithm>
-bool isDoubleEqual(long double v1, long double v2){
-    auto delta = v1-v2;
-    return std::abs(delta) < 0.000001 * std::max(std::abs(v1), std::abs(v1));
-}
-
 #include <iostream>
 
 using namespace sakurajin::unit_system::base;
@@ -63,10 +55,10 @@ TEST( base_units_tests, temparature_test ) {
 TEST( base_units_tests, amount_test ) {
     
     const auto five = 5.0_things;
-    EXPECT_TRUE( isDoubleEqual(static_cast<long double>(five), 5.0));
+    EXPECT_DOUBLE_EQ(static_cast<long double>(five), 5.0);
     
     const auto a1 = 2_mol;
-    EXPECT_TRUE( isDoubleEqual(static_cast<long double>(a1), 2.0*avogadro_constant) );
+    EXPECT_DOUBLE_EQ(static_cast<long double>(a1), 2.0*avogadro_constant);
     
 };
 
