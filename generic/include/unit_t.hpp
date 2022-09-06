@@ -91,26 +91,26 @@ namespace sakurajin{
             unit_t operator/(long double scalar) const;
             void operator/=(long double scalar);
             
-            unit_t operator+(const unit_t& other) const;
-            void operator+=(const unit_t& other);
+            unit_t operator+(const unit_t<identifier>& other) const;
+            void operator+=(const unit_t<identifier>& other);
             
-            unit_t operator-(const unit_t& other) const;
-            void operator-=(const unit_t& other);
+            unit_t operator-(const unit_t<identifier>& other) const;
+            void operator-=(const unit_t<identifier>& other);
             
             unit_t operator-() const;
             
-            void operator=(const unit_t& other);
-            
-            bool operator<(const unit_t& other) const;
-            bool operator>(const unit_t& other) const;
-            bool operator<=(const unit_t& other) const;
-            bool operator>=(const unit_t& other) const;
-            bool operator==(const unit_t& other) const;
-            bool operator!=(const unit_t& other) const;
-            
-#if __cplusplus >= 202002L
-            int operator<=>(const unit_t& other) const;
-#endif
+            void operator=(const unit_t<identifier>& other);
+                        
+            #if __cplusplus >= 202002L
+                int operator<=>(const unit_t<identifier>& other) const;
+            #else
+                bool operator<(const unit_t<identifier>& other) const;
+                bool operator>(const unit_t<identifier>& other) const;
+                bool operator<=(const unit_t<identifier>& other) const;
+                bool operator>=(const unit_t<identifier>& other) const;
+                bool operator==(const unit_t<identifier>& other) const;
+                bool operator!=(const unit_t<identifier>& other) const;
+            #endif
             
         };
   
@@ -190,57 +190,58 @@ namespace sakurajin{
         }
 
         //comparison operators
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator<(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            return value < retval.value;
-        }
-
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator>(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            return value > retval.value;
-        }
-
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator<=(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            return value <= retval.value;
-        }
-
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator>=(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            return value >= retval.value;
-        }
-
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator==(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            auto delta = value-retval.value;
-            auto epsilon = 0.000001 * std::max(std::abs(value), std::abs(retval.value));
-            return std::abs(delta) < epsilon;
-        }
-
-        template <std::size_t identifier>
-        bool unit_t<identifier>::operator!=(const unit_t<identifier>& other) const{
-            return ! (*this == other);
-        }
 
         #if __cplusplus >= 202002L
-        template <std::size_t identifier>
-        int unit_t<identifier>::operator<=>(const unit_t<identifier>& other) const{
-            const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
-            if(*this < retval){
-                return -1;
+            template <std::size_t identifier>
+            int unit_t<identifier>::operator<=>(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                if(*this < retval){
+                    return -1;
+                }
+                
+                if(*this > retval){
+                    return 1;
+                }
+                
+                return 0;
             }
-            
-            if(*this > retval){
-                return 1;
+        #else
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator<(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                return value < retval.value;
             }
-            
-            return 0;
-        }
+
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator>(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                return value > retval.value;
+            }
+
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator<=(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                return value <= retval.value;
+            }
+
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator>=(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                return value >= retval.value;
+            }
+
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator==(const unit_t<identifier>& other) const{
+                const auto retval = sakurajin::unit_system::unit_cast(other,multiplier,offset);
+                auto delta = value-retval.value;
+                auto epsilon = 0.000001 * std::max(std::abs(value), std::abs(retval.value));
+                return std::abs(delta) < epsilon;
+            }
+
+            template <std::size_t identifier>
+            bool unit_t<identifier>::operator!=(const unit_t<identifier>& other) const{
+                return ! (*this == other);
+            }
         #endif
 
         //non const member functions
