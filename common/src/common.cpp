@@ -9,6 +9,11 @@
         return os << a1.value << " meter per second^2";
     }
 
+    std::ostream& common::operator<<(std::ostream& os, const common::area& a){
+        auto a1 = sakurajin::unit_system::unit_cast(a,1);
+        return os << a1.value << " meters^2";
+    }
+
     std::ostream& common::operator<<(std::ostream& os, const common::energy& p){
         auto p1 = sakurajin::unit_system::unit_cast(p,1);
         return os << p1.value << " Joules";

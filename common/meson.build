@@ -1,6 +1,7 @@
 cc = meson.get_compiler('cpp')
 
 sources = [
+    'src/area.cpp',
     'src/speed.cpp',
     'src/acceleration.cpp',
     'src/momentum.cpp',

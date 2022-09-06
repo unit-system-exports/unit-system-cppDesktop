@@ -7,6 +7,7 @@
 #include "force.hpp"
 #include "energy.hpp"
 #include "power.hpp"
+#include "area.hpp"
 
 #if __has_include(<iostream>)
 
@@ -16,6 +17,8 @@
         namespace unit_system{
             namespace common{
                 std::ostream& operator<<(std::ostream& os, const acceleration& v);
+
+                std::ostream& operator<<(std::ostream& os, const area& a);
             
                 std::ostream& operator<<(std::ostream& os, const energy& v);
             

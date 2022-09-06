@@ -25,6 +25,7 @@ static const auto p1 = 25_kgmps;
 static const auto F1 = 2.5_N;
 static const auto E1 = 25_J;
 static const auto P1 = 2.5_W;
+static const auto A1 = 100_m2;
 
 TEST( common_tests, speed_test) {
     
@@ -87,7 +88,6 @@ TEST( common_tests, energy_test ) {
     
 };
 
-
 TEST( common_tests, power_test ) {
     
     const auto _P2 = 10_kg * 1_G * 1_mps;
@@ -96,6 +96,15 @@ TEST( common_tests, power_test ) {
     EXPECT_TRUE(F1*v2 == P1);
     EXPECT_TRUE(E1/t1 == P1);
     
+};
+
+TEST( common_tests, area_test ) {
+    
+    const auto _A2 = s1 * s2;
+    EXPECT_TRUE(_A2 == 2500_m2);
+
+    EXPECT_TRUE(square(s2) == A1);
+    EXPECT_TRUE(A1/s2 == s2);
 };
 
 int main(int argc, char **argv){

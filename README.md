@@ -67,6 +67,7 @@ unit_t -> an unit template that is the basis of all of the units
 
 ### Common
 
+* area -> area with `m^2` as base unit
 * speed -> speed with `m / s` as base unit
 * acceleration -> acceleration with `m / s^2` as base unit
 * momentum -> momentum with `kg * m / s` as base unit
