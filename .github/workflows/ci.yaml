@@ -25,7 +25,6 @@ jobs:
       - name: clearing build directory
         run: rm -rf build
 
-
   windows-static-msvc:
     name: "windows static msvc compile and test"
     runs-on: "windows-latest"
@@ -39,6 +38,26 @@ jobs:
         run: pip install meson
       - name: meson setup
         run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson compile
+        run: meson compile -C build
+      - name: meson test
+        run: meson test -C build
+      - name: clearing build directory
+        run: Remove-Item -recurse -force build
+
+  windows-shared-msvc:
+    name: "windows shared msvc compile and test"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10' 
+      - name: install meson
+        run: pip install meson
+      - name: meson setup
+        run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false -Dbuild_tests=false build
       - name: meson compile
         run: meson compile -C build
       - name: meson test

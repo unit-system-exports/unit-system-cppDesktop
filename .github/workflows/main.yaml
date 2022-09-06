@@ -156,7 +156,7 @@ jobs:
   pre-release:
     name: "Pre Release latest"
     runs-on: "ubuntu-20.04"
-    needs: [windows-shared-msys2, windows-static-msys2, windows-static-msvc, ubunut20, macos]
+    needs: [windows-shared-msys2, windows-static-msys2, windows-static-msvc, windows-shared-msvc, ubunut20, macos]
     steps:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
