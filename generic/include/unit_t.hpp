@@ -88,6 +88,7 @@ namespace sakurajin{
             unit_t operator*(long double scalar) const;
             void operator*=(long double scalar);
             
+            long double operator/(const unit_t<identifier>& other) const;
             unit_t operator/(long double scalar) const;
             void operator/=(long double scalar);
             
@@ -162,6 +163,12 @@ namespace sakurajin{
         template <std::size_t identifier>
         unit_t<identifier> operator*(long double scalar, const unit_t<identifier>& val){
             return {val.value*scalar, val.multiplier, val.offset};
+        }
+
+        template <std::size_t identifier>
+        long double unit_t<identifier>::operator/(const unit_t<identifier>& other) const{
+            auto otherVal = unit_cast(other, multiplier, offset);
+            return value/otherVal.value;
         }
 
         template <std::size_t identifier>
