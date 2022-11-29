@@ -4,3 +4,5 @@ option('force_build_tests', type : 'boolean', value : false, description: 'set t
 option('build_base', type : 'boolean', value : true, description: 'set to false if you do not want to build/include the base units')
 option('build_common', type : 'boolean', value : true, description: 'set to false if you do not want to build/include the common units')
 option('build_full', type : 'boolean', value : false, description: 'set to true if you to build all components and create unit_system_full as dependency.')
+
+option('generateUnits', type: 'boolean', value: false)

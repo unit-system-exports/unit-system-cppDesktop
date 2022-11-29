@@ -44,3 +44,6 @@ subprojects/*
 !subprojects/*.wrap
 
 unit-system-arduino/
+/generated/
+
+.venv/
