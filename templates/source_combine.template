@@ -1,0 +1,31 @@
+#include "combinations.hpp"
+
+using namespace sakurajin::unit_system;
+
+{% for combination in combinations %}
+{{ combination[2] }} operator*(const {{ combination[0] }}& v1, const {{ combination[1] }}& v2){
+    {{ combination[0] }} _v1 = sakurajin::unit_system::unit_cast(v1,v1.multiplier,0);
+    {{ combination[1] }} _v2 = sakurajin::unit_system::unit_cast(v2,v2.multiplier,0);
+    return {{ combination[2] }}{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+}
+
+{{ combination[1] }} operator/(const {{ combination[2] }}& v1, const {{ combination[0] }}& v2){
+    {{ combination[2] }} _v1 = sakurajin::unit_system::unit_cast(v1,v1.multiplier,0);
+    {{ combination[0] }} _v2 = sakurajin::unit_system::unit_cast(v2,v2.multiplier,0);
+    return {{ combination[1] }}{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+}
+
+{% if combination[0] != combination[1] %}
+{{ combination[2] }} operator*(const {{ combination[1] }}& v1, const {{ combination[0] }}& v2){
+    {{ combination[1] }} _v1 = sakurajin::unit_system::unit_cast(v1,v1.multiplier,0);
+    {{ combination[0] }} _v2 = sakurajin::unit_system::unit_cast(v2,v2.multiplier,0);
+    return {{ combination[2] }}{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+}
+
+{{ combination[0] }} operator/(const {{ combination[2] }}& v1, const {{ combination[1] }}& v2){
+    {{ combination[2] }} _v1 = sakurajin::unit_system::unit_cast(v1,v1.multiplier,0);
+    {{ combination[1] }} _v2 = sakurajin::unit_system::unit_cast(v2,v2.multiplier,0);
+    return {{ combination[0] }}{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+}
+{% endif %}
+{% endfor %}

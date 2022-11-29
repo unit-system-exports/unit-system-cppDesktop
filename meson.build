@@ -166,18 +166,23 @@ if get_option('generateUnits')
         generatedUnits += unit[0]
     endforeach
     
+    combinations = []
+    combinations += ['--combine','speed','time_si','length']
+    combinations += ['--combine','length','length','area']
+    
     gen_sources += custom_target(
         'units.hpp',
-        output: 'units.hpp',
+        output: ['units.hpp','combinations.hpp','combinations.cpp'],
         input: 'unitHeaders.py',
         command : [
             pyinstall, '@INPUT@',
             '--outDir', '@OUTDIR@',
             generatedUnits,
+            combinations,
             '--exportMacro',
-            '--unitHeader'
+            '--unitHeader',
+            '--combinations',
         ],
-        
     )
     
     unit_system_common_gen = library(
