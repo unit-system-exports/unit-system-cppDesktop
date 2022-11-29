@@ -1,0 +1,6 @@
+#pragma once
+
+// This header simply includes all units from the unit-system library
+{% for unit_name in units %}
+#include "{{ unit_name }}.hpp"
+{% endfor %}

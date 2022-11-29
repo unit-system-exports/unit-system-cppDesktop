@@ -145,6 +145,7 @@ if get_option('generateUnits')
     ]]]
     
     gen_sources = []
+    generatedUnits = []
     incdirs = include_directories('.')
     foreach unit : units
         gen_sources += custom_target(
@@ -160,7 +161,24 @@ if get_option('generateUnits')
                 '--exportMacro'
             ],
         )
+        
+        generatedUnits += '--unit'
+        generatedUnits += unit[0]
     endforeach
+    
+    gen_sources += custom_target(
+        'units.hpp',
+        output: 'units.hpp',
+        input: 'unitHeaders.py',
+        command : [
+            pyinstall, '@INPUT@',
+            '--outDir', '@OUTDIR@',
+            generatedUnits,
+            '--exportMacro',
+            '--unitHeader'
+        ],
+        
+    )
     
     unit_system_common_gen = library(
         'unit-system-common-gen', 
