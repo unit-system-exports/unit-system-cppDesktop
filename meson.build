@@ -168,7 +168,14 @@ if get_option('generateUnits')
     
     combinations = []
     combinations += ['--combine','speed','time_si','length']
+    combinations += ['--combine','acceleration','time_si','speed']
     combinations += ['--combine','length','length','area']
+    combinations += ['--combine','force','length','energy']
+    combinations += ['--combine','power','time_si','energy']
+    combinations += ['--combine','momentum','speed','energy']
+    combinations += ['--combine','force','time_si','momentum']
+    combinations += ['--combine','mass','acceleration','force']
+    combinations += ['--combine','mass','speed','momentum']
     
     gen_sources += custom_target(
         'units.hpp',
