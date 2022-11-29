@@ -105,13 +105,43 @@ if get_option('generateUnits')
     
     
     # common units
+    units += [['energy', '8', [
+        '-l', '{"name":"MJ", "multiplier":1e6}',
+        '-l', '{"name":"kJ", "multiplier":1e3}',
+        '-l', '{"name":"J", "multiplier":1e0}',
+        '-l', '{"name":"Nm", "multiplier":1e0}',
+        '-l', '{"name":"kWh", "multiplier":3600000}',
+        '-l', '{"name":"Wh", "multiplier":3600}',
+        '-l', '{"name":"GeV", "multiplier":1.602176565e-10}',
+        '-l', '{"name":"MeV", "multiplier":1.602176565e-13}',
+        '-l', '{"name":"keV", "multiplier":1.602176565e-16}',
+        '-l', '{"name":"eV", "multiplier":1.602176565e-19}',
+    ]]]
+    units += [['power', '801', [
+        '-l', '{"name":"GW", "multiplier":1e9}',
+        '-l', '{"name":"MW", "multiplier":1e6}',
+        '-l', '{"name":"kW", "multiplier":1e3}',
+        '-l', '{"name":"W", "multiplier":1e0}',
+        '-l', '{"name":"mW", "multiplier":1e-3}',
+    ]]]
     units += [['speed', '201', [
         '-l', '{"name":"kmph", "multiplier":3.6}',
-        '-l', '{"name":"mps"}',
+        '-l', '{"name":"mps", "multiplier":1e0}',
     ]]]
     units += [['acceleration', '2011', [
         '-l', '{"name":"G", "multiplier":9.81}',
-        '-l', '{"name":"mps2"}',
+        '-l', '{"name":"mps2", "multiplier":1e0}',
+    ]]]
+    units += [['area', '22', [
+        '-l', '{"name":"km2", "multiplier":1e6}',
+        '-l', '{"name":"m2", "multiplier":1e0}',
+        '-l', '{"name":"mm2", "multiplier":1e-6}',
+    ]]]
+    units += [['force', '32011', [
+        '-l', '{"name":"Newton", "multiplier":1.0}',
+    ]]]
+    units += [['momentum', '3201', [
+        '-l', '{"name":"kgmps", "multiplier":1.0}',
     ]]]
     
     gen_sources = []
@@ -138,7 +168,7 @@ if get_option('generateUnits')
         version : meson.project_version(), 
         soversion : '0',
         include_directories : incdirs,
-        dependencies: [dependency('threads'), dependency('unit-system-base', required: true, version : '=' + meson.project_version())],
+        dependencies: [dependency('threads'), dependency('unit-system-generic', required: true, version : '=' + meson.project_version())],
         install : false,
     )
     
