@@ -2,19 +2,19 @@
 
 using namespace sakurajin::unit_system;
 
-{{ unit_namespace }}::{{ unit_name }}::{{ unit_name }}(): {{ unit_name }}(0){};
-{{ unit_namespace }}::{{ unit_name }}::{{ unit_name }}(unit_t<{{ unit_id }}> val): {{ unit_name }}(val.value,val.multiplier){};
-{{ unit_namespace }}::{{ unit_name }}::{{ unit_name }}(long double val): {{ unit_name }}(val,1){};
-{{ unit_namespace }}::{{ unit_name }}::{{ unit_name }}(long double val, long double mult ): unit_t<{{ unit_id }}>(val,mult){};
-{{ unit_namespace }}::{{ unit_name }}::{{ unit_name }}(long double val, long double mult, long double offset ): unit_t<{{ unit_id }}>(val,mult,offset){};
+{{ unit_name }}::{{ unit_name }}(): {{ unit_name }}(0){};
+{{ unit_name }}::{{ unit_name }}(unit_t<{{ unit_id }}> val): {{ unit_name }}(val.value,val.multiplier){};
+{{ unit_name }}::{{ unit_name }}(long double val): {{ unit_name }}(val,1){};
+{{ unit_name }}::{{ unit_name }}(long double val, long double mult ): unit_t<{{ unit_id }}>(val,mult){};
+{{ unit_name }}::{{ unit_name }}(long double val, long double mult, long double offset ): unit_t<{{ unit_id }}>(val,mult,offset){};
 {% if create_literals %}
 {% for literal in literals %}
-{{ unit_namespace }}::{{ unit_name }} {{ unit_namespace }}::literals::operator "" _{{ literal.name }}(long double len){
-    return {{ unit_namespace }}::{{ unit_name }}{len,{{ literal.multiplier }}, {{ literal.offset }}};
+{{ unit_name }} literals::operator "" _{{ literal.name }}(long double len){
+    return {{ unit_name }}{len,{{ literal.multiplier }}, {{ literal.offset }}};
 }
 
-{{ unit_namespace }}::{{ unit_name }} {{ unit_namespace }}::literals::operator "" _{{ literal.name }}(unsigned long long int len){
-    return {{ unit_namespace }}::{{ unit_name }}{static_cast<long double>(len),{{ literal.multiplier }}, {{ literal.offset }}};
+{{ unit_name }} literals::operator "" _{{ literal.name }}(unsigned long long int len){
+    return {{ unit_name }}{static_cast<long double>(len),{{ literal.multiplier }}, {{ literal.offset }}};
 }
 {% endfor %}
 {% endif %}

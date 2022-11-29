@@ -29,14 +29,12 @@ class Unit:
     def __init__(
         self,
         name: str,
-        namespace: str,
         unit_id: int,
         literals: List[UnitLiteral],
         export_macro: str,
         out_dir: bool
     ):
         self.name = name
-        self.namespace = namespace
         self.unit_id = unit_id
         self.literals = literals
         self.export_macro = export_macro
@@ -46,8 +44,7 @@ class Unit:
         if self.out_dir:
             path = self.out_dir
         else:
-            path = os.path.join(base_dir, self.namespace)
-            path = os.path.join(path, include_subdir)
+            path = os.path.join(base_dir, include_subdir)
         path = os.path.join(path, self.name + '.hpp')
 
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -57,8 +54,7 @@ class Unit:
         if self.out_dir:
             path = self.out_dir
         else:
-            path = os.path.join(base_dir, self.namespace)
-            path = os.path.join(path, include_subdir)
+            path = os.path.join(base_dir, include_subdir)
         path = os.path.join(path, self.name + '.cpp')
 
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -83,7 +79,6 @@ def generate_source(current_unit: Unit):
     # generate header file
     template_header = jinja2.Template(header_template_string)
     header_text = template_header.render({
-        'unit_namespace': current_unit.namespace,
         'unit_name': current_unit.name,
         'unit_id': current_unit.unit_id,
         'literals': current_unit.literals,
@@ -99,7 +94,6 @@ def generate_source(current_unit: Unit):
     # generate source file
     template_source = jinja2.Template(source_template_string)
     source_text = template_source.render({
-        'unit_namespace': current_unit.namespace,
         'unit_name': current_unit.name,
         'unit_id': current_unit.unit_id,
         'literals': current_unit.literals,
@@ -133,15 +127,6 @@ parser.add_argument(
     required=True,
     type=int,
     dest='unit_id'
-)
-parser.add_argument(
-    "-ns",
-    "--namespace",
-    help="namespace of the unit",
-    required=False,
-    default='common',
-    type=str,
-    dest='namespace'
 )
 parser.add_argument(
     "-l",
@@ -190,7 +175,6 @@ if args['literals']:
 # get the actual unit from the parsed input
 currUnit = Unit(
     args['name'],
-    args['namespace'],
     args['unit_id'],
     currLiteral,
     args['exportMacro'],

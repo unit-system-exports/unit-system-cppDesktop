@@ -55,8 +55,8 @@ if get_option('generateUnits')
     r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
     
     units = []
-    units += [['speed', 'common', '201', ['-l', '{"name":"kmph", "multiplier":3.6}', '-l', '{"name":"mps"}']]]
-    units += [['acceleration', 'common', '2011', ['-l', '{"name":"G", "multiplier":9.81}', '-l', '{"name":"mps2"}']]]
+    units += [['speed', '201', ['-l', '{"name":"kmph", "multiplier":3.6}', '-l', '{"name":"mps"}']]]
+    units += [['acceleration', '2011', ['-l', '{"name":"G", "multiplier":9.81}', '-l', '{"name":"mps2"}']]]
     
     gen_sources = []
     incdirs = include_directories('.')
@@ -68,10 +68,9 @@ if get_option('generateUnits')
             command : [
                 pyinstall, '@INPUT@',
                 '--name', unit[0],
-                '--namespace', unit[1],
-                '--unit_identifier', unit[2],
+                '--unit_identifier', unit[1],
                 '--outDir', '@OUTDIR@',
-                unit[3],
+                unit[2],
                 '--exportMacro'
             ],
         )

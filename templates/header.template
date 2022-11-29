@@ -10,24 +10,22 @@
 
 namespace sakurajin{
     namespace unit_system{
-        namespace {{ unit_namespace }}{
-            class {{ unit_name }} : public unit_t<{{ unit_id }}>{
-            public:
-                {{ export_macro }}{{ unit_name }}();
-                {{ export_macro }}{{ unit_name }}(unit_t<{{ unit_id }}> val);
-                {{ export_macro }}explicit {{ unit_name }}(long double val);
-                {{ export_macro }}{{ unit_name }}(long double val, long double mult);
-                {{ export_macro }}{{ unit_name }}(long double val, long double mult, long double offset);
-            };
-            {% if create_literals %}
+        class {{ unit_name }} : public unit_t<{{ unit_id }}>{
+        public:
+            {{ export_macro }}{{ unit_name }}();
+            {{ export_macro }}{{ unit_name }}(unit_t<{{ unit_id }}> val);
+            {{ export_macro }}explicit {{ unit_name }}(long double val);
+            {{ export_macro }}{{ unit_name }}(long double val, long double mult);
+            {{ export_macro }}{{ unit_name }}(long double val, long double mult, long double offset);
+        };
+        {% if create_literals %}
 
-            inline namespace literals{
-                {% for literal in literals %}
-                {{ export_macro }}{{ unit_name }} operator "" _{{ literal.name }}(long double val);
-                {{ export_macro }}{{ unit_name }} operator "" _{{ literal.name }}(unsigned long long int val);
-                {% endfor %}
-            }
-            {% endif %}
+        inline namespace literals{
+            {% for literal in literals %}
+            {{ export_macro }}{{ unit_name }} operator "" _{{ literal.name }}(long double val);
+            {{ export_macro }}{{ unit_name }} operator "" _{{ literal.name }}(unsigned long long int val);
+            {% endfor %}
         }
+        {% endif %}
     }
 }
