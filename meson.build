@@ -55,8 +55,64 @@ if get_option('generateUnits')
     r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
     
     units = []
-    units += [['speed', '201', ['-l', '{"name":"kmph", "multiplier":3.6}', '-l', '{"name":"mps"}']]]
-    units += [['acceleration', '2011', ['-l', '{"name":"G", "multiplier":9.81}', '-l', '{"name":"mps2"}']]]
+    # base units
+    units += [['time_si', '1', [
+        '-l', '{"name":"a", "multiplier":31536000000}',
+        '-l', '{"name":"d", "multiplier":86400000}',
+        '-l', '{"name":"h", "multiplier":3600}',
+        '-l', '{"name":"minute", "multiplier":60}',
+        '-l', '{"name":"s", "multiplier":1e0}',
+        '-l', '{"name":"ms", "multiplier":1e-3}',
+        '-l', '{"name":"ns", "multiplier":1e-6}',
+        '-l', '{"name":"us", "multiplier":1e-9}',
+        '-l', '{"name":"fs", "multiplier":1e-12}',
+    ]]]
+    units += [['length', '2', [
+        '-l', '{"name":"km", "multiplier":1e3}',
+        '-l', '{"name":"m", "multiplier":1e0}',
+        '-l', '{"name":"dm", "multiplier":1e-1}',
+        '-l', '{"name":"cm", "multiplier":1e-2}',
+        '-l', '{"name":"mm", "multiplier":1e-3}',
+        '-l', '{"name":"um", "multiplier":1e-6}',
+        '-l', '{"name":"nm", "multiplier":1e-9}',
+    ]]]
+    units += [['mass', '3', [
+        '-l', '{"name":"t", "multiplier":1e3}',
+        '-l', '{"name":"kg", "multiplier":1e0}',
+        '-l', '{"name":"g", "multiplier":1e-3}',
+        '-l', '{"name":"mg", "multiplier":1e-6}',
+        '-l', '{"name":"ug", "multiplier":1e-9}',
+    ]]]
+    units += [['temperature', '4', [
+        '-l', '{"name":"K", "multiplier":1e0}',
+        '-l', '{"name":"Celsius", "multiplier":1e0, "offset":273.15}',
+    ]]]
+    units += [['amount', '5', [
+        '-l', '{"name":"mol", "multiplier":6.02214076e23}',
+        '-l', '{"name":"things", "multiplier":1e0}',
+    ]]]
+    units += [['electric_current', '6', [
+        '-l', '{"name":"MA", "multiplier":1e6}',
+        '-l', '{"name":"kA", "multiplier":1e3}',
+        '-l', '{"name":"A", "multiplier":1e-0}',
+        '-l', '{"name":"mA", "multiplier":1e-3}',
+        '-l', '{"name":"uA", "multiplier":1e-6}',
+        '-l', '{"name":"nA", "multiplier":1e-9}',
+    ]]]
+    units += [['luminous_intensity', '7', [
+        '-l', '{"name":"cd", "multiplier":1e-0}',
+    ]]]
+    
+    
+    # common units
+    units += [['speed', '201', [
+        '-l', '{"name":"kmph", "multiplier":3.6}',
+        '-l', '{"name":"mps"}',
+    ]]]
+    units += [['acceleration', '2011', [
+        '-l', '{"name":"G", "multiplier":9.81}',
+        '-l', '{"name":"mps2"}',
+    ]]]
     
     gen_sources = []
     incdirs = include_directories('.')
