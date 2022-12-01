@@ -29,6 +29,15 @@ parser.add_argument(
     nargs=3,
 )
 parser.add_argument(
+    "--constant",
+    help="a constant value that gets defined.",
+    required=False,
+    type=str,
+    dest='constants',
+    action='append',
+    nargs=2,
+)
+parser.add_argument(
     "--exportMacro",
     help="the export macro that should be used for the types",
     required=False,
@@ -61,6 +70,14 @@ parser.add_argument(
     dest='genCombinations',
     action='store_true'
 )
+parser.add_argument(
+    "--genConstants",
+    help="This should generate the constants header",
+    required=False,
+    default=False,
+    dest='genConstants',
+    action='store_true'
+)
 
 args = vars(parser.parse_args())
 
@@ -69,6 +86,11 @@ export_macro = args['exportMacro']
 output_dir = args['outDir']
 script_dir = os.path.realpath(os.path.dirname(__file__))
 combinations = args['combinations']
+constants = []
+for pair in args['constants']:
+    c_name = pair[0]
+    c_value = float(pair[1])
+    constants += [dict({'name': c_name, 'value': c_value})]
 
 if args['unitHeader']:
     template_file_name = script_dir + '/templates/units.template'
@@ -123,3 +145,20 @@ if args['genCombinations'] and args['unitHeader']:
     source_file = open(os.path.join(output_dir, 'combinations.cpp'), "w")
     source_file.write(source_text)
     source_file.close()
+
+if args['genConstants']:
+    template_file_name = script_dir + '/templates/constants.template'
+    constants_template_file = open(template_file_name, "r")
+    constants_template_string = constants_template_file.read()
+    constants_template_file.close()
+
+    template_constants = jinja2.Template(constants_template_string)
+    constants_text = template_constants.render({
+        'constants': constants,
+        'export_macro': export_macro,
+    })
+
+    # print(len(current_unit.literals), current_unit.literals)
+    constants_file = open(os.path.join(output_dir, 'constants.hpp'), "w")
+    constants_file.write(constants_text)
+    constants_file.close()

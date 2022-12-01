@@ -11,8 +11,15 @@ project(
 #set windows linker argument
 cpp = meson.get_compiler('cpp')
 if cpp.get_argument_syntax() == 'msvc'
-    add_project_link_arguments('/MAP', language: 'cpp')
-    add_project_link_arguments('/MAPINFO:EXPORTS', language: 'cpp')
+  if get_option('buildtype') != 'static'
+    add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllexport)', language: 'cpp')
+  else
+    add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllimport)', language: 'cpp')
+  endif
+else
+  if target_machine.system() == 'windows'
+    add_project_link_arguments('-ldwmapi', language: 'cpp')
+  endif
 endif
 
 #set the configuration
@@ -177,18 +184,24 @@ if get_option('generateUnits')
     combinations += ['--combine','mass','acceleration','force']
     combinations += ['--combine','mass','speed','momentum']
     
+    constants = []
+    constants += ['--constant', 'avogadro_constant', '6.02214076e23']
+    constants += ['--constant', 'waterFreezinPoint', '273.15']
+    
     gen_sources += custom_target(
         'units.hpp',
-        output: ['units.hpp','combinations.hpp','combinations.cpp'],
+        output: ['units.hpp','combinations.hpp','combinations.cpp','constants.hpp'],
         input: 'unitHeaders.py',
         command : [
             pyinstall, '@INPUT@',
             '--outDir', '@OUTDIR@',
             generatedUnits,
             combinations,
+            constants,
             '--exportMacro',
             '--unitHeader',
             '--combinations',
+            '--genConstants',
         ],
     )
     

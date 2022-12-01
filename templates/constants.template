@@ -1,0 +1,17 @@
+#pragma once
+
+{% if export_macro %}
+#ifndef {{ export_macro }}
+    #define {{ export_macro }}
+#endif
+{% endif %}
+
+namespace sakurajin{
+    namespace unit_system{
+        namespace constants{
+            {% for constant in constants %}
+            {{ export_macro }}const long double {{ constant.name }} = {{ constant.value }};
+            {% endfor %}
+        }
+    }
+}
