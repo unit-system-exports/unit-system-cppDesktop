@@ -6,7 +6,7 @@ using namespace sakurajin::unit_system::base;
 
     std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const ::sakurajin::unit_system::base::amount& t){
         auto t1 = sakurajin::unit_system::unit_cast(t,1);
-        return os << t1.value << " seconds";
+        return os << t1.value << " things";
     }
 
     std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const ::sakurajin::unit_system::base::electric_current& I){
@@ -26,7 +26,7 @@ using namespace sakurajin::unit_system::base;
 
     std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const mass& s){
         auto s1 = sakurajin::unit_system::unit_cast(s,1);
-        return os << s1.value << " meter";
+        return os << s1.value << " kilogram";
     }
 
     std::ostream& ::sakurajin::unit_system::base::operator<<(std::ostream& os, const temperature& J){

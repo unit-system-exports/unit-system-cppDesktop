@@ -7,6 +7,14 @@ using namespace sakurajin::unit_system;
 {{ unit_name }}::{{ unit_name }}(long double val): {{ unit_name }}(val,1){}
 {{ unit_name }}::{{ unit_name }}(long double val, long double mult ): unit_t<{{ unit_id }}>(val,mult){}
 {{ unit_name }}::{{ unit_name }}(long double val, long double mult, long double offset ): unit_t<{{ unit_id }}>(val,mult,offset){}
+
+{% if gen_ostream %}
+std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::{{ unit_name }}& t){
+    auto t1 = sakurajin::unit_system::unit_cast(t,1);
+    return os << t1.value << " {{ unit_base_name }}";
+}
+{% endif %}
+
 {% if create_literals %}
 {% for literal in literals %}
 {{ unit_name }} literals::operator "" _{{ literal.name }}(long double len){

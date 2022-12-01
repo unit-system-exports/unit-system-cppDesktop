@@ -8,6 +8,10 @@
 #endif
 {% endif %}
 
+{% if gen_ostream %}
+#include <iostream>
+{% endif %}
+
 namespace sakurajin{
     namespace unit_system{
         class {{ unit_name }} : public unit_t<{{ unit_id }}>{
@@ -19,6 +23,10 @@ namespace sakurajin{
             {{ export_macro }}{{ unit_name }}(long double val, long double mult, long double offset);
         };
         {% if create_literals %}
+
+        {% if gen_ostream %}
+        {{ export_macro }}std::ostream& operator<<(std::ostream& os, const {{ unit_name }}& t);
+        {% endif %}
 
         inline namespace literals{
             {% for literal in literals %}

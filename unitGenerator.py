@@ -29,16 +29,23 @@ class Unit:
     def __init__(
         self,
         name: str,
+        base_name: str,
         unit_id: int,
         literals: List[UnitLiteral],
         export_macro: str,
-        out_dir: bool
+        out_dir: bool,
+        ostream: bool,
     ):
         self.name = name
+        if base_name == '' or base_name is None:
+            self.base_name = name
+        else:
+            self.base_name = base_name
         self.unit_id = unit_id
         self.literals = literals
         self.export_macro = export_macro
         self.out_dir = out_dir
+        self.ostream = ostream
 
     def get_header_path(self) -> str:
         if self.out_dir:
@@ -80,10 +87,12 @@ def generate_source(current_unit: Unit):
     template_header = jinja2.Template(header_template_string)
     header_text = template_header.render({
         'unit_name': current_unit.name,
+        'unit_base_name': current_unit.base_name,
         'unit_id': current_unit.unit_id,
         'literals': current_unit.literals,
         'create_literals': len(current_unit.literals) > 0,
         'export_macro': current_unit.export_macro,
+        'gen_ostream': current_unit.ostream,
     })
 
     # print(len(current_unit.literals), current_unit.literals)
@@ -95,10 +104,12 @@ def generate_source(current_unit: Unit):
     template_source = jinja2.Template(source_template_string)
     source_text = template_source.render({
         'unit_name': current_unit.name,
+        'unit_base_name': current_unit.base_name,
         'unit_id': current_unit.unit_id,
         'literals': current_unit.literals,
         'create_literals': len(current_unit.literals) > 0,
         'export_macro': current_unit.export_macro,
+        'gen_ostream': current_unit.ostream,
     })
 
     source_file = open(current_unit.get_source_path(), "w")
@@ -119,6 +130,13 @@ parser.add_argument(
     required=True,
     type=str,
     dest='name'
+)
+parser.add_argument(
+    "--baseName",
+    help="the name of the basic unit (e.g. meters for length).",
+    required=False,
+    type=str,
+    dest='baseName'
 )
 parser.add_argument(
     "-id",
@@ -162,6 +180,14 @@ parser.add_argument(
     dest='outDir',
     type=str,
 )
+parser.add_argument(
+    "--genOstream",
+    help="Create the std stream functions",
+    required=False,
+    default=False,
+    dest='genOstream',
+    action='store_true'
+)
 
 args = vars(parser.parse_args())
 
@@ -175,10 +201,12 @@ if args['literals']:
 # get the actual unit from the parsed input
 currUnit = Unit(
     args['name'],
+    args['baseName'],
     args['unit_id'],
     currLiteral,
     args['exportMacro'],
     args['outDir'],
+    args['genOstream'],
 )
 
 # generate the sources for that unit
