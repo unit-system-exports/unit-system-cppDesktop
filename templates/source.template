@@ -10,7 +10,7 @@ using namespace sakurajin::unit_system;
 
 {% if gen_ostream %}
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::{{ unit_name }}& t){
-    auto t1 = sakurajin::unit_system::unit_cast(t,1);
+    auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
     return os << t1.value << " {{ unit_base_name }}";
 }
 {% endif %}

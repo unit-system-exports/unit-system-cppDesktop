@@ -78,6 +78,14 @@ parser.add_argument(
     dest='genConstants',
     action='store_true'
 )
+parser.add_argument(
+    "--enableChrono",
+    help="Add compatibility with std::chrono::duration for time",
+    required=False,
+    default=False,
+    dest='enableChrono',
+    action='store_true'
+)
 
 args = vars(parser.parse_args())
 
@@ -102,10 +110,13 @@ if args['unitHeader']:
     units_template_string = units_template_file.read()
     units_template_file.close()
 
+    enableChrono = args['enableChrono'] and 'time_si' in units
+
     template_units = jinja2.Template(units_template_string)
     units_text = template_units.render({
         'units': units,
         'export_macro': export_macro,
+        'enableChrono': enableChrono,
     })
 
     # print(len(current_unit.literals), current_unit.literals)

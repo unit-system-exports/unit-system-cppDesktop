@@ -204,6 +204,7 @@ if get_option('generateUnits')
             '--unitHeader',
             '--combinations',
             '--genConstants',
+            '--enableChrono',
         ],
     )
     
