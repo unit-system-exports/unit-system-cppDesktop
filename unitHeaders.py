@@ -85,7 +85,11 @@ units = args['units']
 export_macro = args['exportMacro']
 output_dir = args['outDir']
 script_dir = os.path.realpath(os.path.dirname(__file__))
-combinations = args['combinations']
+combinations = []
+for comb in args['combinations']:
+    if comb[0] in units and comb[1] in units and comb[2] in units:
+        combinations += [comb]
+
 constants = []
 for pair in args['constants']:
     c_name = pair[0]
