@@ -23,7 +23,7 @@ TEST( unit_t_tests, cast_tests ) {
     
     EXPECT_TRUE(abs(v5) == abs(v6));
     
-};
+}
 
 TEST( unit_t_tests, compare_tests) {
     
@@ -47,7 +47,7 @@ TEST( unit_t_tests, compare_tests) {
     EXPECT_TRUE( (v1 <=> v1) == 0)
     #endif
     
-};
+}
 
 TEST( unit_t_tests, operator_tests ) {
     
@@ -76,7 +76,7 @@ TEST( unit_t_tests, operator_tests ) {
 
     EXPECT_DOUBLE_EQ(v1/v2, 1.0);
     
-};
+}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);

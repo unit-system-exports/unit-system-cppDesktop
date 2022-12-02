@@ -4,7 +4,7 @@
 #include "unit_system.hpp"
 
 #include <iostream>
-;
+
 using namespace sakurajin::unit_system::literals;
 using namespace sakurajin::unit_system;
 
@@ -43,7 +43,7 @@ TEST( common_tests, speed_test) {
     
     EXPECT_TRUE( _v3*_t1 == _t1*_v3 );
     
-};
+}
 
 TEST( common_tests, acceleration_test ) {
     
@@ -55,7 +55,7 @@ TEST( common_tests, acceleration_test ) {
     
     EXPECT_TRUE(_a2 * t1 == t1 * _a2);
     
-};
+}
 
 TEST( common_tests, momentum_test ) {
 
@@ -63,7 +63,7 @@ TEST( common_tests, momentum_test ) {
     EXPECT_TRUE(_p1 == m1*v1);
     EXPECT_TRUE(_p1 == p1);
     
-};
+}
 
 TEST( common_tests, force_test ) {
     
@@ -73,7 +73,7 @@ TEST( common_tests, force_test ) {
     EXPECT_TRUE(p1/10_s == F1);
     EXPECT_TRUE(m1*a1 == F1);
     
-};
+}
 
 TEST( common_tests, energy_test ) {
     
@@ -83,7 +83,7 @@ TEST( common_tests, energy_test ) {
     EXPECT_TRUE(F1*s2 == E1);
     EXPECT_TRUE(p1*v2 == E1);
     
-};
+}
 
 TEST( common_tests, power_test ) {
     
@@ -93,7 +93,7 @@ TEST( common_tests, power_test ) {
     EXPECT_TRUE(F1*v2 == P1);
     EXPECT_TRUE(E1/t1 == P1);
     
-};
+}
 
 TEST( common_tests, area_test ) {
     
@@ -102,7 +102,7 @@ TEST( common_tests, area_test ) {
 
     EXPECT_TRUE(square(s2) == A1);
     EXPECT_TRUE(A1/s2 == s2);
-};
+}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
