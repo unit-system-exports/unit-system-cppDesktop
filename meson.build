@@ -148,7 +148,7 @@ gen_sources += custom_target(
 
 foreach unit : units
     gen_sources += custom_target(
-        unit[0] + '.cpp',
+        unit[0],
         output : ['unit_system_'+unit[0]+'.cpp', 'unit_system_'+unit[0]+'.hpp'],
         input : 'unitGenerator.py',
         command : [
@@ -162,7 +162,7 @@ foreach unit : units
         ],
         install : true,
         install_dir: [false, header_install_location],
-    )[0]
+    )
     
     generatedUnits += '--unit'
     generatedUnits += unit[0]
@@ -236,7 +236,10 @@ gen_sources += custom_target(
     ],
     install : true,
     install_dir: [header_install_location, false],
-)[1]
+)
+
+# Allow 'meson build generate -C build' which genereates all sources before full compile
+alias_target('generate', gen_sources)
 
 unit_system_gen = library(
     'unit-system-common-gen', 
@@ -245,7 +248,6 @@ unit_system_gen = library(
     soversion : '0',
     include_directories : incdirs,
     install : true,
-    link_depends: gen_sources,
 )
     
     

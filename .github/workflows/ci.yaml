@@ -38,6 +38,8 @@ jobs:
         run: pip install meson
       - name: meson setup
         run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson generate
+        run: meson compile generate -C build
       - name: meson compile
         run: meson compile -C build
       - name: meson test
@@ -58,6 +60,8 @@ jobs:
         run: pip install meson
       - name: meson setup
         run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
+      - name: meson generate
+        run: meson compile generate -C build
       - name: meson compile
         run: meson compile -C build
       - name: meson test
@@ -87,6 +91,9 @@ jobs:
       - name: meson setup
         shell: msys2 {0}
         run: meson setup -Ddefault_library=static -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
+      - name: meson generate
+        shell: msys2 {0}
+        run: meson compile generate -C build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build
@@ -118,6 +125,9 @@ jobs:
       - name: meson setup
         shell: msys2 {0}
         run: meson setup -Ddefault_library=shared -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
+      - name: meson generate
+        shell: msys2 {0}
+        run: meson compile generate -C build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build

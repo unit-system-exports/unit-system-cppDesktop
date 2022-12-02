@@ -16,7 +16,6 @@ foreach test_obj : tests
         test_obj, 
         test_obj + '.cpp',
         dependencies: deps,
-        link_depends: gen_sources,
     )
     test(
         test_obj + ' Test',
