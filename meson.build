@@ -11,17 +11,12 @@ project(
 #set windows linker argument
 cpp = meson.get_compiler('cpp')
 if target_machine.system() == 'windows'
-  if get_option('buildtype') != 'static'
-    add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllexport)', language: 'cpp')
-  else
-    add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllimport)', language: 'cpp')
-  endif
+    if get_option('buildtype') != 'static'
+        add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllexport)', language: 'cpp')
+    else
+        add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllimport)', language: 'cpp')
+    endif
 endif
-
-if cpp.get_argument_syntax() != 'msvc'
-    add_project_link_arguments('-ldwmapi', language: 'cpp')
-endif
-
 
 #compile modules
 pymod = import('python')
