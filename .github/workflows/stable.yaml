@@ -164,7 +164,11 @@ ubunut20:
     needs: [windows-shared-msys2, windows-static-msys2, windows-static-msvc, windows-shared-msvc, ubunut20, macos]
     steps:
       - uses: actions/checkout@v3
-      
+      - uses: actions/setup-python@v2 
+      - name: install python deps
+        run: pip install -r requirements.txt
+      - name: generate the code
+        run: ./genArduino.py
       - name: copy files into arduino ports
         run: |
           mkdir unit-system-adruino
