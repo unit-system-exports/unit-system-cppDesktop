@@ -30,7 +30,9 @@ if not pyinstall.dependency().found()
     error('python is needed to generate the code but not found.')
 endif
 
-r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
+if not get_option('no_pip_install')
+    r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
+endif
 
 units = []
 # base units
@@ -125,6 +127,21 @@ units += [['momentum', 'kilogram * meter per second', '3201', [
 gen_sources = []
 generatedUnits = []
 incdirs = include_directories('.','include')
+
+gen_sources += custom_target(
+    'unit_system_unit_t.hpp',
+    output: [
+        'unit_system_unit_t.hpp',
+    ],
+    input: 'unitHeaders.py',
+    command : [
+        pyinstall, '@INPUT@',
+        '--outDir', '@OUTDIR@',
+        '--exportMacro',
+        '--genUnit_t',
+    ],
+)
+
 foreach unit : units
     gen_sources += custom_target(
         unit[0] + '.cpp',
@@ -161,22 +178,6 @@ constants = []
 constants += ['--constant', 'avogadro_constant', '6.02214076e23']
 constants += ['--constant', 'waterFreezinPoint', '273.15']
 
-gen_sources += custom_target(
-    'unit_system_unit_t.hpp',
-    output: [
-        'unit_system_unit_t.hpp',
-    ],
-    input: 'unitHeaders.py',
-    command : [
-        pyinstall, '@INPUT@',
-        '--outDir', '@OUTDIR@',
-        generatedUnits,
-        combinations,
-        constants,
-        '--exportMacro',
-        '--genUnit_t',
-    ],
-)
 gen_sources += custom_target(
     'unit_system_units.hpp',
     output: [
