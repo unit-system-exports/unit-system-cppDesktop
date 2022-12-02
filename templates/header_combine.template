@@ -15,6 +15,8 @@ namespace sakurajin{
         {% if combination[0] != combination[1] %}
         {{ export_macro }}{{ combination[2] }} operator*(const {{ combination[1] }}& v1, const {{ combination[0] }}& v2);
         {{ export_macro }}{{ combination[0] }} operator/(const {{ combination[2] }}& v1, const {{ combination[1] }}& v2);
+        {% else %}
+        {{ export_macro }}{{ combination[2] }} square(const {{ combination[0] }}& v1);
         {% endif %}
         {% endfor %}
     }

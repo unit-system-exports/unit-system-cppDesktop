@@ -75,6 +75,8 @@ namespace sakurajin{
 
             {{ export_macro }}void operator=(const unit_t<identifier>& other);
 
+            {{ export_macro }}explicit operator long double() const;
+
             #if __cplusplus >= 202002L
                 {{ export_macro }}int operator<=>(const unit_t<identifier>& other) const;
             #else
@@ -113,7 +115,7 @@ namespace sakurajin{
             return unit.value < 0 ? -unit : unit;
         }
 
-        template<std::size_t _Num, std::size_t _Den = 1>
+        template<std::intmax_t _Num, std::intmax_t _Den = 1>
         {{ export_macro }}long double multiplier(std::ratio<_Num, _Den>){
             long double num = static_cast<long double>(_Num);
             long double den = static_cast<long double>(_Den);
@@ -174,6 +176,12 @@ namespace sakurajin{
         template <std::size_t identifier>
         unit_t<identifier> unit_t<identifier>::operator-() const{
             return unit_t<identifier>{-value,multiplier,offset};
+        }
+
+        template <std::size_t identifier>
+        unit_t<identifier>::operator long double() const{
+            auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
+            return retval.value;
         }
 
         //comparison operators

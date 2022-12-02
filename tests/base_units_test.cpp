@@ -1,14 +1,12 @@
 #include <gtest/gtest.h>
 
-#include "base.hpp"
-#include "prefix.hpp"
+#include "unit_system.hpp"
 
 #include <iostream>
 
-using namespace sakurajin::unit_system::base;
-using namespace sakurajin::unit_system::prefix;
-using namespace sakurajin::unit_system::base::literals;
-using namespace sakurajin::unit_system::base::constants;
+using namespace sakurajin::unit_system;
+using namespace sakurajin::unit_system::literals;
+using namespace sakurajin::unit_system::constants;
 
 TEST( base_units_tests, time_test ) {
     

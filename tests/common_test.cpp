@@ -1,14 +1,11 @@
 #include <gtest/gtest.h>
 
-#include "prefix.hpp"
-#include "common.hpp"
+
+#include "unit_system.hpp"
 
 #include <iostream>
-
-using namespace sakurajin::unit_system::prefix;
-using namespace sakurajin::unit_system::common;
-using namespace sakurajin::unit_system::base;
-using namespace sakurajin::unit_system::base::literals;
+;
+using namespace sakurajin::unit_system::literals;
 using namespace sakurajin::unit_system;
 
 //base units

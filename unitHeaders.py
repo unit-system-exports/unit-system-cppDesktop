@@ -86,6 +86,14 @@ parser.add_argument(
     dest='disableSTD',
     action='store_true'
 )
+parser.add_argument(
+    "--genUnit_t",
+    help="generate the unit type header",
+    required=False,
+    default=False,
+    dest='genUnit_t',
+    action='store_true'
+)
 
 args = vars(parser.parse_args())
 
@@ -95,31 +103,34 @@ output_dir = args['outDir']
 script_dir = os.path.realpath(os.path.dirname(__file__))
 combinations = []
 
-for comb in args['combinations']:
-    if comb[0] in units and comb[1] in units and comb[2] in units:
-        combinations += [comb]
+if args['combinations']:
+    for comb in args['combinations']:
+        if comb[0] in units and comb[1] in units and comb[2] in units:
+            combinations += [comb]
 
 constants = []
-for pair in args['constants']:
-    c_name = pair[0]
-    c_value = float(pair[1])
-    constants += [dict({'name': c_name, 'value': c_value})]
+if args['constants']:
+    for pair in args['constants']:
+        c_name = pair[0]
+        c_value = float(pair[1])
+        constants += [dict({'name': c_name, 'value': c_value})]
 
-template_file_name = script_dir + '/templates/unit_type.template'
-unit_t_template_file = open(template_file_name, "r")
-unit_t_template_string = unit_t_template_file.read()
-unit_t_template_file.close()
+if args['genUnit_t']:
+    template_file_name = script_dir + '/templates/unit_type.template'
+    unit_t_template_file = open(template_file_name, "r")
+    unit_t_template_string = unit_t_template_file.read()
+    unit_t_template_file.close()
 
-template_unit_t = jinja2.Template(unit_t_template_string)
-unit_t_text = template_unit_t.render({
-    'export_macro': export_macro,
-    'disable_std': args['disableSTD'],
-})
+    template_unit_t = jinja2.Template(unit_t_template_string)
+    unit_t_text = template_unit_t.render({
+        'export_macro': export_macro,
+        'disable_std': args['disableSTD'],
+    })
 
-# print(len(current_unit.literals), current_unit.literals)
-unit_t_file = open(os.path.join(output_dir, 'unit_system_unit_t.hpp'), "w")
-unit_t_file.write(unit_t_text)
-unit_t_file.close()
+    # print(len(current_unit.literals), current_unit.literals)
+    unit_t_file = open(os.path.join(output_dir, 'unit_system_unit_t.hpp'), "w")
+    unit_t_file.write(unit_t_text)
+    unit_t_file.close()
 
 if args['unitHeader']:
     template_file_name = script_dir + '/templates/units.template'
@@ -138,7 +149,7 @@ if args['unitHeader']:
     units_file.write(units_text)
     units_file.close()
 
-if args['genCombinations'] and args['unitHeader']:
+if args['genCombinations']:
     # the file names for the templates
     header_file_name = script_dir + '/templates/header_combine.template'
     source_file_name = script_dir + '/templates/source_combine.template'

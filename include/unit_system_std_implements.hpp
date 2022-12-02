@@ -20,6 +20,7 @@
 
     namespace std{
         using size_t = unsigned long long;
+        using intmax_t = long long;
         
         template <typename T>
         T abs(T var){
@@ -31,12 +32,12 @@
             return v1 > v2 ? v1 : v2;
         }
         
-        template <size_t num, size_t den = 1>
+        template <intmax_t num, intmax_t den = 1>
         class ratio {
         public:
             typedef ratio<num, den> type;
-            static constexpr size_t n = num;
-            static constexpr size_t d = den;
+            static constexpr intmax_t n = num;
+            static constexpr intmax_t d = den;
         };
         
         typedef ratio<1,       1000000000000000000> atto;

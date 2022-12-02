@@ -2,11 +2,13 @@
 gtest = dependency('gtest', required: true, fallback:['gtest','gtest_dep'])
 
 #make both dependencies into one array
-deps = [unit_system_generic_dep]
+deps = [unit_system_dep]
 deps += gtest
 
 tests = [
     'unit_t_test',
+    'base_units_test',
+    'common_test',
 ]
 
 #create all the tests

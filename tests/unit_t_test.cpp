@@ -1,21 +1,17 @@
 #include <gtest/gtest.h>
 
-#include "unit_t.hpp"
-#include "prefix.hpp"
-
-#include <iostream>
+#include "unit_system.hpp"
 
 using namespace sakurajin::unit_system;
-using namespace sakurajin::unit_system::prefix;
 
 TEST( unit_t_tests, cast_tests ) {
-    
+
     const unit_t<0> v1{1000,1};
     const unit_t<0> v2{1,1000};
     const unit_t<0> v3{10,100};
     const unit_t<0> v4{1,1};
-    const unit_t<0> v5{1,kilo};
-    const unit_t<0> v6{-1,kilo};
+    const unit_t<0> v5{1, multiplier(std::kilo::type{})};
+    const unit_t<0> v6{-1,multiplier(std::kilo::type{})};
     
     
     EXPECT_TRUE(v1 == v2);
@@ -35,7 +31,7 @@ TEST( unit_t_tests, compare_tests) {
     const unit_t<0> v2{1,1000};
     const unit_t<0> v3{10,100};
     const unit_t<0> v4{1,1};
-    const unit_t<0> v5{1,kilo};
+    const unit_t<0> v5{1,multiplier(std::kilo::type{})};
     
     EXPECT_TRUE(v4 < v5);
     EXPECT_TRUE(v5 > v4);
