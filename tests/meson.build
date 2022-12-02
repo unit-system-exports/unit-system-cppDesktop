@@ -1,8 +1,8 @@
-#get gtest
-gtest = dependency('gtest', required: true, fallback:['gtest','gtest_dep'])
-
 #make both dependencies into one array
-deps = [unit_system_dep, gtest]
+deps = [
+    dependency('unit-system', required: true),
+    dependency('gtest', required: true, fallback:['gtest','gtest_dep'])
+]
 
 tests = [
     'unit_t_test',
@@ -15,7 +15,12 @@ foreach test_obj : tests
     exe = executable(
         test_obj, 
         test_obj + '.cpp',
-        dependencies: deps
+        dependencies: deps,
+        link_depends: gen_sources,
     )
-    test(test_obj + ' Test', exe)
+    test(
+        test_obj + ' Test',
+        exe,
+        protocol: 'gtest',
+    )
 endforeach
