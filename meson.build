@@ -153,7 +153,7 @@ if get_option('generateUnits')
     
     gen_sources = []
     generatedUnits = []
-    incdirs = include_directories('.')
+    incdirs = include_directories('.','include')
     foreach unit : units
         gen_sources += custom_target(
             unit[0] + '.cpp',

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNIT_SYSTEM_UNIT_TYPE_TEMPLATE
+#define UNIT_SYSTEM_UNIT_TYPE_TEMPLATE
 
 {% if export_macro %}
 #ifndef {{ export_macro }}
@@ -11,32 +12,7 @@
     #define UNIT_SYSTEM_NO_STD
 #endif
 {% endif %}
-
-#ifndef UNIT_SYSTEM_NO_STD
-    #include <cstddef>
-    #include <cmath>
-    #include <algorithm>
-#else
-    #ifdef abs
-        #undef abs
-    #endif
-
-    #ifdef max
-        #undef max
-    #endif
-
-    namespace std{
-        using size_t = unsigned int;
-        template <typename T>
-        T abs(T var){
-            return var > 0 ? var : -var;
-        }
-        template <typename T>
-        T max(T v1, T v2){
-            return v1 > v2 ? v1 : v2;
-        }
-    }
-#endif
+#include "unit_system_std_implements.hpp"
 
 namespace sakurajin{
     namespace unit_system{
@@ -135,6 +111,13 @@ namespace sakurajin{
         template <std::size_t identifier>
         {{ export_macro }}unit_t<identifier> abs(const unit_t<identifier>& unit){
             return unit.value < 0 ? -unit : unit;
+        }
+
+        template<std::size_t _Num, std::size_t _Den = 1>
+        {{ export_macro }}long double multiplier(std::ratio<_Num, _Den>){
+            long double num = static_cast<long double>(_Num);
+            long double den = static_cast<long double>(_Den);
+            return num/den;
         }
 
         //All of the constructors
@@ -279,3 +262,5 @@ namespace sakurajin{
 
     }
 }
+
+#endif
