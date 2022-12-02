@@ -92,13 +92,17 @@ jobs:
           install: >-
             base-devel
             mingw-w64-x86_64-python3
+            mingw-w64-x86_64-python-pip
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: install pip deps
+        shell: msys2 {0}
+        run: pip install -r requirements.txt
       - name: meson setup
         shell: msys2 {0}
-        run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+        run: meson setup -Ddefault_library=static -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build
@@ -119,13 +123,17 @@ jobs:
           install: >-
             base-devel
             mingw-w64-x86_64-python3
+            mingw-w64-x86_64-python-pip
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: install pip deps
+        shell: msys2 {0}
+        run: pip install -r requirements.txt
       - name: meson setup
         shell: msys2 {0}
-        run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
+        run: meson setup -Ddefault_library=shared -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build
