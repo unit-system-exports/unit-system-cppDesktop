@@ -34,6 +34,8 @@ if not get_option('no_pip_install')
     r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
 endif
 
+header_install_location = 'include/unit_system'
+
 units = []
 # base units
 units += [['time_si', 'seconds', '1', [
@@ -140,6 +142,8 @@ gen_sources += custom_target(
         '--exportMacro',
         '--genUnit_t',
     ],
+    install : true,
+    install_dir: header_install_location,
 )
 
 foreach unit : units
@@ -156,6 +160,8 @@ foreach unit : units
             unit[3],
             '--exportMacro',
         ],
+        install : true,
+        install_dir: [false, header_install_location],
     )
     
     generatedUnits += '--unit'
@@ -191,6 +197,8 @@ gen_sources += custom_target(
         '--exportMacro',
         '--unitHeader',
     ],
+    install : true,
+    install_dir: header_install_location,
 )
 gen_sources += custom_target(
     'unit_system_combinations.cpp',
@@ -208,6 +216,8 @@ gen_sources += custom_target(
         '--unitHeader',
         '--combinations',
     ],
+    install : true,
+    install_dir: [header_install_location, false],
 )
 gen_sources += custom_target(
     'unit_system_constants.hpp',
@@ -223,6 +233,8 @@ gen_sources += custom_target(
         '--exportMacro',
         '--genConstants',
     ],
+    install : true,
+    install_dir: header_install_location,
 )
 
 unit_system_gen = library(
@@ -241,10 +253,10 @@ unit_system_dep = declare_dependency(
     version: meson.project_version(),
 )
 
-install_subdir('include', install_dir : 'include/unit-system', strip_directory : true)
+install_subdir('include', install_dir : header_install_location, strip_directory : true)
 
 pkg = import('pkgconfig')
-pkg.generate(unit_system_gen)
+pkg.generate(unit_system_gen, subdirs: 'unit_system')
 
 meson.override_dependency('unit-system', unit_system_dep)
 
