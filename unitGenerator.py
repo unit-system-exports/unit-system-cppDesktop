@@ -74,42 +74,49 @@ def load_template(filepath: os.path) -> str:
     return template_string
 
 
-def generate_source(current_unit: Unit, infile: os.path, outfile: os.path):
-    # load the template
-    template_string = load_template(infile)
+def fill_template_string(template_str: str, values: Dict) -> str:
+    template = jinja2.Template(template_str)
+    return template.render(values)
 
-    # generate header file
-    template_source = jinja2.Template(template_string)
-    source_text = template_source.render({
-        'unit_name': current_unit.name,
-        'unit_base_name': current_unit.base_name,
-        'unit_id': current_unit.unit_id,
-        'literals': current_unit.literals,
-        'create_literals': len(current_unit.literals) > 0,
-        'export_macro': current_unit.export_macro,
-    })
 
-    # print(len(current_unit.literals), current_unit.literals)
+def fill_template_file(filepath: os.path, values: Dict) -> str:
+    return fill_template_string(load_template(filepath), values)
+
+
+def write_str_to_file(data_str: str, outfile: os.path):
     source_file = open(outfile, "w")
-    source_file.write(source_text)
+    source_file.write(data_str)
     source_file.close()
+
+
+def fill_template(infile: os.path, values: Dict, outfile: os.path):
+    write_str_to_file(fill_template_file(infile, values), outfile)
 
 
 def generate_sources(current_unit: Unit):
     # the file names for the templates
     template_dir = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'templates')
 
+    fill_dict = {
+        'unit_name': current_unit.name,
+        'unit_base_name': current_unit.base_name,
+        'unit_id': current_unit.unit_id,
+        'literals': current_unit.literals,
+        'create_literals': len(current_unit.literals) > 0,
+        'export_macro': current_unit.export_macro,
+    }
+
     # generate the header
-    generate_source(
-        current_unit,
+    fill_template(
         os.path.join(template_dir, 'header.template'),
+        fill_dict,
         current_unit.get_header_path()
     )
 
     # generate the source
-    generate_source(
-        current_unit,
+    fill_template(
         os.path.join(template_dir, 'source.template'),
+        fill_dict,
         current_unit.get_source_path()
     )
 
