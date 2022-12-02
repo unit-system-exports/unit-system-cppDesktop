@@ -130,7 +130,7 @@ gen_sources = []
 generatedUnits = []
 incdirs = include_directories('.','include')
 
-unit_t = custom_target(
+gen_sources += custom_target(
     'unit_system_unit_t.hpp',
     output: [
         'unit_system_unit_t.hpp',
@@ -160,10 +160,9 @@ foreach unit : units
             unit[3],
             '--exportMacro',
         ],
-        depends: unit_t,
         install : true,
         install_dir: [false, header_install_location],
-    )
+    )[0]
     
     generatedUnits += '--unit'
     generatedUnits += unit[0]
@@ -216,7 +215,6 @@ gen_sources += custom_target(
         '--exportMacro',
         '--unitHeader',
     ],
-    depends: gen_sources,
     install : true,
     install_dir: header_install_location,
 )
@@ -236,10 +234,9 @@ gen_sources += custom_target(
         '--unitHeader',
         '--combinations',
     ],
-    depends: gen_sources,
     install : true,
     install_dir: [header_install_location, false],
-)
+)[1]
 
 unit_system_gen = library(
     'unit-system-common-gen', 
@@ -248,7 +245,6 @@ unit_system_gen = library(
     soversion : '0',
     include_directories : incdirs,
     install : true,
-    extra_files: gen_sources + unit_t,
     link_depends: gen_sources,
 )
     
