@@ -1,4 +1,4 @@
-#include "{{ unit_name }}.hpp"
+#include "unit_system_{{ unit_name }}.hpp"
 
 using namespace sakurajin::unit_system;
 
@@ -8,12 +8,12 @@ using namespace sakurajin::unit_system;
 {{ unit_name }}::{{ unit_name }}(long double val, long double mult ): unit_t<{{ unit_id }}>(val,mult){}
 {{ unit_name }}::{{ unit_name }}(long double val, long double mult, long double offset ): unit_t<{{ unit_id }}>(val,mult,offset){}
 
-{% if gen_ostream %}
+#ifndef UNIT_SYSTEM_NO_STD
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::{{ unit_name }}& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
     return os << t1.value << " {{ unit_base_name }}";
 }
-{% endif %}
+#endif
 
 {% if create_literals %}
 {% for literal in literals %}

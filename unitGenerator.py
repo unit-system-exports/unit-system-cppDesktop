@@ -34,7 +34,6 @@ class Unit:
         literals: List[UnitLiteral],
         export_macro: str,
         out_dir: bool,
-        ostream: bool,
     ):
         self.name = name
         if base_name == '' or base_name is None:
@@ -45,14 +44,13 @@ class Unit:
         self.literals = literals
         self.export_macro = export_macro
         self.out_dir = out_dir
-        self.ostream = ostream
 
     def get_header_path(self) -> str:
         if self.out_dir:
             path = self.out_dir
         else:
             path = os.path.join(base_dir, include_subdir)
-        path = os.path.join(path, self.name + '.hpp')
+        path = os.path.join(path, 'unit_system_' + self.name + '.hpp')
 
         os.makedirs(os.path.dirname(path), exist_ok=True)
         return path
@@ -62,7 +60,7 @@ class Unit:
             path = self.out_dir
         else:
             path = os.path.join(base_dir, include_subdir)
-        path = os.path.join(path, self.name + '.cpp')
+        path = os.path.join(path, 'unit_system_' + self.name + '.cpp')
 
         os.makedirs(os.path.dirname(path), exist_ok=True)
         return path
@@ -92,7 +90,6 @@ def generate_source(current_unit: Unit):
         'literals': current_unit.literals,
         'create_literals': len(current_unit.literals) > 0,
         'export_macro': current_unit.export_macro,
-        'gen_ostream': current_unit.ostream,
     })
 
     # print(len(current_unit.literals), current_unit.literals)
@@ -109,7 +106,6 @@ def generate_source(current_unit: Unit):
         'literals': current_unit.literals,
         'create_literals': len(current_unit.literals) > 0,
         'export_macro': current_unit.export_macro,
-        'gen_ostream': current_unit.ostream,
     })
 
     source_file = open(current_unit.get_source_path(), "w")
@@ -180,14 +176,6 @@ parser.add_argument(
     dest='outDir',
     type=str,
 )
-parser.add_argument(
-    "--genOstream",
-    help="Create the std stream functions",
-    required=False,
-    default=False,
-    dest='genOstream',
-    action='store_true'
-)
 
 args = vars(parser.parse_args())
 
@@ -206,7 +194,6 @@ currUnit = Unit(
     currLiteral,
     args['exportMacro'],
     args['outDir'],
-    args['genOstream'],
 )
 
 # generate the sources for that unit

@@ -79,11 +79,11 @@ parser.add_argument(
     action='store_true'
 )
 parser.add_argument(
-    "--enableChrono",
-    help="Add compatibility with std::chrono::duration for time",
+    "--disableSTD",
+    help="disable the std functions",
     required=False,
     default=False,
-    dest='enableChrono',
+    dest='disableSTD',
     action='store_true'
 )
 
@@ -94,6 +94,7 @@ export_macro = args['exportMacro']
 output_dir = args['outDir']
 script_dir = os.path.realpath(os.path.dirname(__file__))
 combinations = []
+
 for comb in args['combinations']:
     if comb[0] in units and comb[1] in units and comb[2] in units:
         combinations += [comb]
@@ -104,23 +105,36 @@ for pair in args['constants']:
     c_value = float(pair[1])
     constants += [dict({'name': c_name, 'value': c_value})]
 
+template_file_name = script_dir + '/templates/unit_type.template'
+unit_t_template_file = open(template_file_name, "r")
+unit_t_template_string = unit_t_template_file.read()
+unit_t_template_file.close()
+
+template_unit_t = jinja2.Template(unit_t_template_string)
+unit_t_text = template_unit_t.render({
+    'export_macro': export_macro,
+    'disable_std': args['disableSTD'],
+})
+
+# print(len(current_unit.literals), current_unit.literals)
+unit_t_file = open(os.path.join(output_dir, 'unit_system_unit_t.hpp'), "w")
+unit_t_file.write(unit_t_text)
+unit_t_file.close()
+
 if args['unitHeader']:
     template_file_name = script_dir + '/templates/units.template'
     units_template_file = open(template_file_name, "r")
     units_template_string = units_template_file.read()
     units_template_file.close()
 
-    enableChrono = args['enableChrono'] and 'time_si' in units
-
     template_units = jinja2.Template(units_template_string)
     units_text = template_units.render({
         'units': units,
         'export_macro': export_macro,
-        'enableChrono': enableChrono,
     })
 
     # print(len(current_unit.literals), current_unit.literals)
-    units_file = open(os.path.join(output_dir, 'units.hpp'), "w")
+    units_file = open(os.path.join(output_dir, 'unit_system_units.hpp'), "w")
     units_file.write(units_text)
     units_file.close()
 
@@ -146,7 +160,7 @@ if args['genCombinations'] and args['unitHeader']:
     })
 
     # print(len(current_unit.literals), current_unit.literals)
-    header_file = open(os.path.join(output_dir, 'combinations.hpp'), "w")
+    header_file = open(os.path.join(output_dir, 'unit_system_combinations.hpp'), "w")
     header_file.write(header_text)
     header_file.close()
 
@@ -157,7 +171,7 @@ if args['genCombinations'] and args['unitHeader']:
         'export_macro': export_macro,
     })
 
-    source_file = open(os.path.join(output_dir, 'combinations.cpp'), "w")
+    source_file = open(os.path.join(output_dir, 'unit_system_combinations.cpp'), "w")
     source_file.write(source_text)
     source_file.close()
 
@@ -174,6 +188,6 @@ if args['genConstants']:
     })
 
     # print(len(current_unit.literals), current_unit.literals)
-    constants_file = open(os.path.join(output_dir, 'constants.hpp'), "w")
+    constants_file = open(os.path.join(output_dir, 'unit_system_constants.hpp'), "w")
     constants_file.write(constants_text)
     constants_file.close()

@@ -157,7 +157,7 @@ if get_option('generateUnits')
     foreach unit : units
         gen_sources += custom_target(
             unit[0] + '.cpp',
-            output : [unit[0]+'.cpp', unit[0]+'.hpp'],
+            output : ['unit_system_'+unit[0]+'.cpp', 'unit_system_'+unit[0]+'.hpp'],
             input : 'unitGenerator.py',
             command : [
                 pyinstall, '@INPUT@',
@@ -167,7 +167,6 @@ if get_option('generateUnits')
                 '--outDir', '@OUTDIR@',
                 unit[3],
                 '--exportMacro',
-                '--genOstream',
             ],
         )
         
@@ -192,7 +191,13 @@ if get_option('generateUnits')
     
     gen_sources += custom_target(
         'units.hpp',
-        output: ['units.hpp','combinations.hpp','combinations.cpp','constants.hpp'],
+        output: [
+            'unit_system_unit_t.hpp',
+            'unit_system_units.hpp',
+            'unit_system_combinations.hpp',
+            'unit_system_combinations.cpp',
+            'unit_system_constants.hpp',
+        ],
         input: 'unitHeaders.py',
         command : [
             pyinstall, '@INPUT@',
@@ -204,7 +209,6 @@ if get_option('generateUnits')
             '--unitHeader',
             '--combinations',
             '--genConstants',
-            '--enableChrono',
         ],
     )
     

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "units.hpp"
+#include "unit_system_units.hpp"
 {% if export_macro %}
 #ifndef {{ export_macro }}
     #define {{ export_macro }}

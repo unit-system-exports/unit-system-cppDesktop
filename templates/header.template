@@ -1,6 +1,6 @@
 #pragma once
 
-#include "unit_t.hpp"
+#include "unit_system_unit_t.hpp"
 
 {% if export_macro %}
 #ifndef {{ export_macro }}
@@ -8,9 +8,9 @@
 #endif
 {% endif %}
 
-{% if gen_ostream %}
+#ifndef UNIT_SYSTEM_NO_STD
 #include <iostream>
-{% endif %}
+#endif
 
 namespace sakurajin{
     namespace unit_system{
@@ -24,9 +24,9 @@ namespace sakurajin{
         };
         {% if create_literals %}
 
-        {% if gen_ostream %}
+        #ifndef UNIT_SYSTEM_NO_STD
         {{ export_macro }}std::ostream& operator<<(std::ostream& os, const {{ unit_name }}& t);
-        {% endif %}
+        #endif
 
         inline namespace literals{
             {% for literal in literals %}
