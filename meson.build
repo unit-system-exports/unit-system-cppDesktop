@@ -176,7 +176,7 @@ combinations += ['--combine','force','speed','power']
 
 constants = []
 constants += ['--constant', 'avogadro_constant', '6.02214076e23']
-constants += ['--constant', 'waterFreezinPoint', '273.15']
+constants += ['--constant', 'waterFreezingPoint', '273.15']
 
 gen_sources += custom_target(
     'unit_system_units.hpp',
