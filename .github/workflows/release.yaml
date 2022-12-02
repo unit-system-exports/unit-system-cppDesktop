@@ -23,24 +23,6 @@ jobs:
       - name: clearing build directory
         run: rm -rf build
 
-ubunut20:
-    name: "ubuntu compile and test"
-    runs-on: "ubuntu-20.04"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-            python-version: '3.10'         
-      - uses: BSFishy/meson-build@v1.0.3
-        name: build full
-        with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.61.3
-      - name: clearing build directory
-        run: rm -rf build
-
   windows-static-msvc:
     name: "windows static msvc compile and test"
     runs-on: "windows-latest"
