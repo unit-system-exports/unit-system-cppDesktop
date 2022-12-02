@@ -33,7 +33,7 @@ class Unit:
         unit_id: int,
         literals: List[UnitLiteral],
         export_macro: str,
-        out_dir: bool,
+        out_dir: str,
     ):
         self.name = name
         if base_name == '' or base_name is None:
@@ -66,39 +66,20 @@ class Unit:
         return path
 
 
-def generate_source(current_unit: Unit):
-    # the file names for the templates
-    script_dir = os.path.realpath(os.path.dirname(__file__))
-    header_file_name = script_dir + '/templates/header.template'
-    source_file_name = script_dir + '/templates/source.template'
+def load_template(filepath: os.path) -> str:
+    template_file = open(filepath, "r")
+    template_string = template_file.read()
+    template_file.close()
 
-    # load the template files
-    header_template_file = open(header_file_name, "r")
-    header_template_string = header_template_file.read()
-    header_template_file.close()
+    return template_string
 
-    source_template_file = open(source_file_name, "r")
-    source_template_string = source_template_file.read()
-    source_template_file.close()
+
+def generate_source(current_unit: Unit, infile: os.path, outfile: os.path):
+    # load the template
+    template_string = load_template(infile)
 
     # generate header file
-    template_header = jinja2.Template(header_template_string)
-    header_text = template_header.render({
-        'unit_name': current_unit.name,
-        'unit_base_name': current_unit.base_name,
-        'unit_id': current_unit.unit_id,
-        'literals': current_unit.literals,
-        'create_literals': len(current_unit.literals) > 0,
-        'export_macro': current_unit.export_macro,
-    })
-
-    # print(len(current_unit.literals), current_unit.literals)
-    header_file = open(current_unit.get_header_path(), "w")
-    header_file.write(header_text)
-    header_file.close()
-
-    # generate source file
-    template_source = jinja2.Template(source_template_string)
+    template_source = jinja2.Template(template_string)
     source_text = template_source.render({
         'unit_name': current_unit.name,
         'unit_base_name': current_unit.base_name,
@@ -108,93 +89,114 @@ def generate_source(current_unit: Unit):
         'export_macro': current_unit.export_macro,
     })
 
-    source_file = open(current_unit.get_source_path(), "w")
+    # print(len(current_unit.literals), current_unit.literals)
+    source_file = open(outfile, "w")
     source_file.write(source_text)
     source_file.close()
 
 
-# create the parser for the cmd inputs
-msg = "A code generator for the unit system library."
+def generate_sources(current_unit: Unit):
+    # the file names for the templates
+    template_dir = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'templates')
 
-parser = argparse.ArgumentParser(
-    description=msg
-)
-parser.add_argument(
-    "-n",
-    "--name",
-    help="name of the unit",
-    required=True,
-    type=str,
-    dest='name'
-)
-parser.add_argument(
-    "--baseName",
-    help="the name of the basic unit (e.g. meters for length).",
-    required=False,
-    type=str,
-    dest='baseName'
-)
-parser.add_argument(
-    "-id",
-    "--unit_identifier",
-    help="id of the unit",
-    required=True,
-    type=int,
-    dest='unit_id'
-)
-parser.add_argument(
-    "-l",
-    "--literal",
-    help="a literal of the unit in json format. One literal per argument.",
-    required=False,
-    type=str,
-    dest='literals',
-    action='append'
-)
-parser.add_argument(
-    "--baseDir",
-    help="the base directory to output to",
-    required=False,
-    default='generated',
-    type=str,
-    dest='baseDir'
-)
-parser.add_argument(
-    "--exportMacro",
-    help="the export macro that should be used for the types",
-    required=False,
-    default='',
-    dest='exportMacro',
-    action='store_const',
-    const='UNIT_SYSTEM_EXPORT_MACRO '
-)
-parser.add_argument(
-    "--outDir",
-    help="Put all files in the same given directory. This overwrites the baseDir.",
-    required=False,
-    default='',
-    dest='outDir',
-    type=str,
-)
+    # generate the header
+    generate_source(
+        current_unit,
+        os.path.join(template_dir, 'header.template'),
+        current_unit.get_header_path()
+    )
 
-args = vars(parser.parse_args())
+    # generate the source
+    generate_source(
+        current_unit,
+        os.path.join(template_dir, 'source.template'),
+        current_unit.get_source_path()
+    )
 
-base_dir = args['baseDir']
 
-currLiteral = []
-if args['literals']:
-    for data in args['literals']:
-        currLiteral.append(UnitLiteral(json.loads(data)))
+if __name__ == "__main__":
+    # create the parser for the cmd inputs
+    msg = "A code generator for the unit system library."
 
-# get the actual unit from the parsed input
-currUnit = Unit(
-    args['name'],
-    args['baseName'],
-    args['unit_id'],
-    currLiteral,
-    args['exportMacro'],
-    args['outDir'],
-)
+    parser = argparse.ArgumentParser(
+        description=msg
+    )
+    parser.add_argument(
+        "-n",
+        "--name",
+        help="name of the unit",
+        required=True,
+        type=str,
+        dest='name'
+    )
+    parser.add_argument(
+        "--baseName",
+        help="the name of the basic unit (e.g. meters for length).",
+        required=False,
+        type=str,
+        dest='baseName'
+    )
+    parser.add_argument(
+        "-id",
+        "--unit_identifier",
+        help="id of the unit",
+        required=True,
+        type=int,
+        dest='unit_id'
+    )
+    parser.add_argument(
+        "-l",
+        "--literal",
+        help="a literal of the unit in json format. One literal per argument.",
+        required=False,
+        type=str,
+        dest='literals',
+        action='append'
+    )
+    parser.add_argument(
+        "--baseDir",
+        help="the base directory to output to",
+        required=False,
+        default='generated',
+        type=str,
+        dest='baseDir'
+    )
+    parser.add_argument(
+        "--exportMacro",
+        help="the export macro that should be used for the types",
+        required=False,
+        default='',
+        dest='exportMacro',
+        action='store_const',
+        const='UNIT_SYSTEM_EXPORT_MACRO '
+    )
+    parser.add_argument(
+        "--outDir",
+        help="Put all files in the same given directory. This overwrites the baseDir.",
+        required=False,
+        default='',
+        dest='outDir',
+        type=str,
+    )
 
-# generate the sources for that unit
-generate_source(currUnit)
+    args = vars(parser.parse_args())
+
+    base_dir = args['baseDir']
+
+    currLiteral = []
+    if args['literals']:
+        for data in args['literals']:
+            currLiteral.append(UnitLiteral(json.loads(data)))
+
+    # get the actual unit from the parsed input
+    currUnit = Unit(
+        args['name'],
+        args['baseName'],
+        args['unit_id'],
+        currLiteral,
+        args['exportMacro'],
+        args['outDir'],
+    )
+
+    # generate the sources for that unit
+    generate_sources(currUnit)

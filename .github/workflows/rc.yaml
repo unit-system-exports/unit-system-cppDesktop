@@ -22,6 +22,24 @@ jobs:
       - name: clearing build directory
         run: rm -rf build
 
+ubunut20:
+    name: "ubuntu compile and test"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10'         
+      - uses: BSFishy/meson-build@v1.0.3
+        name: build full
+        with:
+          action: test
+          directory: build
+          options: --verbose
+          meson-version: 0.61.3
+      - name: clearing build directory
+        run: rm -rf build
+
   windows-static-msvc:
     name: "windows static msvc compile and test"
     runs-on: "windows-latest"
@@ -73,13 +91,17 @@ jobs:
           install: >-
             base-devel
             mingw-w64-x86_64-python3
+            mingw-w64-x86_64-python-pip
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: install pip deps
+        shell: msys2 {0}
+        run: pip install -r requirements.txt
       - name: meson setup
         shell: msys2 {0}
-        run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
+        run: meson setup -Ddefault_library=static -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build
@@ -100,13 +122,17 @@ jobs:
           install: >-
             base-devel
             mingw-w64-x86_64-python3
+            mingw-w64-x86_64-python-pip
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: install pip deps
+        shell: msys2 {0}
+        run: pip install -r requirements.txt
       - name: meson setup
         shell: msys2 {0}
-        run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
+        run: meson setup -Ddefault_library=shared -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
       - name: meson compile
         shell: msys2 {0}
         run: meson compile -C build

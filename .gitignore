@@ -47,3 +47,7 @@ unit-system-arduino/
 /generated/
 
 .venv/
+
+__pycache__/
+
+unit-system-adruino/
