@@ -14,7 +14,7 @@ namespace sakurajin{
             auto t = std::chrono::duration_cast<long double, 1>(other);
             auto retval = time_si{t.count(), 1};
             return unit_cast(retval, new_multiplier);
-        };
+        }
     }
 }
 #endif

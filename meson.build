@@ -130,7 +130,7 @@ gen_sources = []
 generatedUnits = []
 incdirs = include_directories('.','include')
 
-gen_sources += custom_target(
+unit_t = custom_target(
     'unit_system_unit_t.hpp',
     output: [
         'unit_system_unit_t.hpp',
@@ -160,6 +160,7 @@ foreach unit : units
             unit[3],
             '--exportMacro',
         ],
+        depends: unit_t,
         install : true,
         install_dir: [false, header_install_location],
     )
@@ -185,6 +186,24 @@ constants += ['--constant', 'avogadro_constant', '6.02214076e23']
 constants += ['--constant', 'waterFreezingPoint', '273.15']
 
 gen_sources += custom_target(
+    'unit_system_constants.hpp',
+    output: [
+        'unit_system_constants.hpp',
+    ],
+    input: 'unitHeaders.py',
+    command : [
+        pyinstall, '@INPUT@',
+        '--outDir', '@OUTDIR@',
+        generatedUnits,
+        constants,
+        '--exportMacro',
+        '--genConstants',
+    ],
+    install : true,
+    install_dir: header_install_location,
+)
+
+gen_sources += custom_target(
     'unit_system_units.hpp',
     output: [
         'unit_system_units.hpp',
@@ -197,6 +216,7 @@ gen_sources += custom_target(
         '--exportMacro',
         '--unitHeader',
     ],
+    depends: gen_sources,
     install : true,
     install_dir: header_install_location,
 )
@@ -216,25 +236,9 @@ gen_sources += custom_target(
         '--unitHeader',
         '--combinations',
     ],
+    depends: gen_sources,
     install : true,
     install_dir: [header_install_location, false],
-)
-gen_sources += custom_target(
-    'unit_system_constants.hpp',
-    output: [
-        'unit_system_constants.hpp',
-    ],
-    input: 'unitHeaders.py',
-    command : [
-        pyinstall, '@INPUT@',
-        '--outDir', '@OUTDIR@',
-        generatedUnits,
-        constants,
-        '--exportMacro',
-        '--genConstants',
-    ],
-    install : true,
-    install_dir: header_install_location,
 )
 
 unit_system_gen = library(
@@ -244,6 +248,8 @@ unit_system_gen = library(
     soversion : '0',
     include_directories : incdirs,
     install : true,
+    extra_files: gen_sources + unit_t,
+    link_depends: gen_sources,
 )
     
     
