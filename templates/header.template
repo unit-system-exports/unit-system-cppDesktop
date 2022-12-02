@@ -14,13 +14,13 @@
 
 namespace sakurajin{
     namespace unit_system{
-        class {{ unit_name }} : public unit_t<{{ unit_id }}>{
+        class {{ export_macro }}{{ unit_name }} : public unit_t<{{ unit_id }}>{
         public:
-            {{ export_macro }}{{ unit_name }}();
-            {{ export_macro }}{{ unit_name }}(unit_t<{{ unit_id }}> val);
-            {{ export_macro }}explicit {{ unit_name }}(long double val);
-            {{ export_macro }}{{ unit_name }}(long double val, long double mult);
-            {{ export_macro }}{{ unit_name }}(long double val, long double mult, long double offset);
+            {{ unit_name }}();
+            {{ unit_name }}(unit_t<{{ unit_id }}> val);
+            explicit {{ unit_name }}(long double val);
+            {{ unit_name }}(long double val, long double mult);
+            {{ unit_name }}(long double val, long double mult, long double offset);
         };
         {% if create_literals %}
 

@@ -44,48 +44,48 @@ namespace sakurajin{
         //   8 for energy (J) instead of 322011
         //   801 for Power (W) instead of 3220111
         template <std::size_t identifier>
-        class unit_t{
+        class {{ export_macro }}unit_t{
         public:
-            {{ export_macro }}const long double multiplier;
-            {{ export_macro }}long double value = 0;
-            {{ export_macro }}const long double offset;
-            {{ export_macro }}long double rel_error = 0.000001;
+            const long double multiplier;
+            long double value = 0;
+            const long double offset;
+            long double rel_error = 0.000001;
 
-            {{ export_macro }}unit_t();
-            {{ export_macro }}unit_t(const unit_t<identifier>& other) = default;
+            unit_t();
+            unit_t(const unit_t<identifier>& other) = default;
 
-            {{ export_macro }}explicit unit_t(long double v);
-            {{ export_macro }}unit_t(long double v, long double mult);
-            {{ export_macro }}unit_t(long double v, long double mult, long double off);
+            explicit unit_t(long double v);
+            unit_t(long double v, long double mult);
+            unit_t(long double v, long double mult, long double off);
 
-            {{ export_macro }}unit_t operator*(long double scalar) const;
-            {{ export_macro }}void operator*=(long double scalar);
+            unit_t operator*(long double scalar) const;
+            void operator*=(long double scalar);
 
-            {{ export_macro }}long double operator/(const unit_t<identifier>& other) const;
-            {{ export_macro }}unit_t operator/(long double scalar) const;
-            {{ export_macro }}void operator/=(long double scalar);
+            long double operator/(const unit_t<identifier>& other) const;
+            unit_t operator/(long double scalar) const;
+            void operator/=(long double scalar);
 
-            {{ export_macro }}unit_t operator+(const unit_t<identifier>& other) const;
-            {{ export_macro }}void operator+=(const unit_t<identifier>& other);
+            unit_t operator+(const unit_t<identifier>& other) const;
+            void operator+=(const unit_t<identifier>& other);
 
-            {{ export_macro }}unit_t operator-(const unit_t<identifier>& other) const;
-            {{ export_macro }}void operator-=(const unit_t<identifier>& other);
+            unit_t operator-(const unit_t<identifier>& other) const;
+            void operator-=(const unit_t<identifier>& other);
 
-            {{ export_macro }}unit_t operator-() const;
+            unit_t operator-() const;
 
-            {{ export_macro }}void operator=(const unit_t<identifier>& other);
+            void operator=(const unit_t<identifier>& other);
 
-            {{ export_macro }}explicit operator long double() const;
+            explicit operator long double() const;
 
             #if __cplusplus >= 202002L
-                {{ export_macro }}int operator<=>(const unit_t<identifier>& other) const;
+                int operator<=>(const unit_t<identifier>& other) const;
             #else
-                {{ export_macro }}bool operator<(const unit_t<identifier>& other) const;
-                {{ export_macro }}bool operator>(const unit_t<identifier>& other) const;
-                {{ export_macro }}bool operator<=(const unit_t<identifier>& other) const;
-                {{ export_macro }}bool operator>=(const unit_t<identifier>& other) const;
-                {{ export_macro }}bool operator==(const unit_t<identifier>& other) const;
-                {{ export_macro }}bool operator!=(const unit_t<identifier>& other) const;
+                bool operator<(const unit_t<identifier>& other) const;
+                bool operator>(const unit_t<identifier>& other) const;
+                bool operator<=(const unit_t<identifier>& other) const;
+                bool operator>=(const unit_t<identifier>& other) const;
+                bool operator==(const unit_t<identifier>& other) const;
+                bool operator!=(const unit_t<identifier>& other) const;
             #endif
 
         };
