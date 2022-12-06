@@ -16,6 +16,7 @@ import unitGenerator
 # gen_combinations: A boolean indicating whether to generate the "combinations.cpp" and "combinations.hpp" files.
 # gen_constants: A boolean indicating whether to generate the "constants.hpp" file.
 # output_dir: The directory where the generated files should be saved.
+# print_file: set to True to print the files that are genreated
 def create_headers(
     fill_dict: Dict,
     gen_unit_t: bool,
@@ -23,11 +24,12 @@ def create_headers(
     gen_combinations: bool,
     gen_constants: bool,
     output_dir: os.path,
+    print_file = False,
 ):
     # Get the absolute path of the script directory.
     script_dir = os.path.realpath(os.path.dirname(__file__))
 
-    # Get the absolute path of the templates directory, which is in the script directory.
+    # Get the absolute path of the templates' directory, which is in the script directory.
     template_dir = os.path.join(script_dir, 'templates')
 
     # If `gen_unit_t` is `True`, fill in the "unit_type.template" file with the data in `fill_dict`
@@ -38,6 +40,8 @@ def create_headers(
             fill_dict,
             os.path.join(output_dir, 'unit_system_unit_t.hpp')
         )
+        if print_file:
+            print(os.path.join(output_dir, 'unit_system_unit_t.hpp'))
 
     # If `gen_unit_header` is `True`, fill in the "units.template" file with the data in `fill_dict`
     # and write the output to the "unit_system_units.hpp" file in the output directory.
@@ -47,6 +51,8 @@ def create_headers(
             fill_dict,
             os.path.join(output_dir, 'unit_system_units.hpp')
         )
+        if print_file:
+            print(os.path.join(output_dir, 'unit_system_units.hpp'))
 
     # If `gen_combinations` is `True`, fill in the "header_combine.template" file with the data in `fill_dict`
     # and write the output to the "unit_system_combinations.hpp" file in the output directory.
@@ -64,6 +70,9 @@ def create_headers(
             fill_dict,
             os.path.join(output_dir, 'unit_system_combinations.cpp')
         )
+        if print_file:
+            print(os.path.join(output_dir, 'unit_system_combinations.hpp'))
+            print(os.path.join(output_dir, 'unit_system_combinations.cpp'))
 
     # If `gen_constants` is `True`, fill in the "constants.template" file with the data in `fill_dict`
     # and write the output to the "unit_system_constants.hpp" file in the output directory.
@@ -73,6 +82,8 @@ def create_headers(
             fill_dict,
             os.path.join(output_dir, 'unit_system_constants.hpp')
         )
+        if print_file:
+            print(os.path.join(output_dir, 'unit_system_constants.hpp'))
 
 
 # If this script is run directly (as opposed to being imported as a module),

@@ -111,8 +111,12 @@ def unit_from_json(json_object_str: Dict) -> Unit:
     name = json_object_str['name']
     base_name = json_object_str['base_name']
     unit_id = json_object_str['unit_id']
-    export_macro = json_object_str['export_macro']
-    out_dir = json_object_str['out_dir']
+    export_macro = ''
+    out_dir = ''
+    if 'export_macro' in json_object_str:
+        export_macro = json_object_str['export_macro']
+    if 'out_dir' in json_object_str:
+        out_dir = json_object_str['out_dir']
 
     # Use the get() method to get the 'literals' value from the JSON object string,
     # with an empty list as the default value
