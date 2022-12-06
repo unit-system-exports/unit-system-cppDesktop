@@ -160,11 +160,9 @@ jobs:
       - name: install python deps
         run: pip install -r requirements.txt
       - name: generate the code
-        run: ./genSources.py
+        run: ./genSources.py --genArduino --outDir unit-system-adruino/src
       - name: copy files into arduino ports
         run: |
-          mkdir unit-system-adruino
-          mkdir unit-system-adruino/src
           cp    library.properties  unit-system-adruino/
           cp    LICENSE             unit-system-adruino/
           cp    README.md           unit-system-adruino/
