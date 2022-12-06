@@ -38,7 +38,7 @@ PROJECT_NAME           = unit-system
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = 0.5.3
+PROJECT_NUMBER         = 0.6.0
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -823,9 +823,9 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = base/src \
-                         base/include \
+INPUT                  = build \
                          README.md \
+                         include \
                          docs
 
 # This tag can be used to specify the character encoding of the source files
