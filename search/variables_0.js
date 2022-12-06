@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['avogadro_5fconstant_138',['avogadro_constant',['../namespacesakurajin_1_1unit__system_1_1base_1_1constants.html#a48ece16027ee286fe02ffc63d853f371',1,'sakurajin::unit_system::base::constants']]]
+  ['d_36',['d',['../classstd_1_1ratio.html#a943f433a699fe1bdabd09bc5dc5370c9',1,'std::ratio']]]
 ];

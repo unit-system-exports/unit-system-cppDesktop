@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['amount_2ecpp_79',['amount.cpp',['../amount_8cpp.html',1,'']]],
-  ['amount_2ehpp_80',['amount.hpp',['../amount_8hpp.html',1,'']]]
+  ['readme_2emd_31',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
 ];

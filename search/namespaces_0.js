@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['base_74',['base',['../namespacesakurajin_1_1unit__system_1_1base.html',1,'sakurajin::unit_system']]],
-  ['constants_75',['constants',['../namespacesakurajin_1_1unit__system_1_1base_1_1constants.html',1,'sakurajin::unit_system::base']]],
-  ['literals_76',['literals',['../namespacesakurajin_1_1unit__system_1_1base_1_1literals.html',1,'sakurajin::unit_system::base']]],
-  ['sakurajin_77',['sakurajin',['../namespacesakurajin.html',1,'']]],
-  ['unit_5fsystem_78',['unit_system',['../namespacesakurajin_1_1unit__system.html',1,'sakurajin']]]
+  ['std_30',['std',['../namespacestd.html',1,'']]]
 ];

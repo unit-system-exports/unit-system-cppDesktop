@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['electric_5fcurrent_97',['electric_current',['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#a70efe73366022c22478338c097afdc45',1,'sakurajin::unit_system::base::electric_current::electric_current()'],['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#a14b3190c873a4f312894557d80542b18',1,'sakurajin::unit_system::base::electric_current::electric_current(unit_t&lt; 6 &gt; val)'],['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#a2b172fbf6c3587880728883b91b6de68',1,'sakurajin::unit_system::base::electric_current::electric_current(long double val)'],['../classsakurajin_1_1unit__system_1_1base_1_1electric__current.html#ad8f6f4b815e2ebdee70b8cc220c194ee',1,'sakurajin::unit_system::base::electric_current::electric_current(long double val, long double mult)']]]
+  ['max_35',['max',['../namespacestd.html#a675a6d7933ea2657d2b4030221e097e0',1,'std']]]
 ];
