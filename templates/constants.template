@@ -10,7 +10,7 @@ namespace sakurajin{
     namespace unit_system{
         namespace constants{
             {% for constant in constants %}
-            {{ export_macro }}constexpr long double {{ constant.name }} = {{ constant.value }};
+            const long double {{ constant.name }} = {{ constant.value }};
             {% endfor %}
         }
     }
