@@ -1,0 +1,10 @@
+[
+  {
+    "name": "avogadro_constant",
+    "value": 6.02214076e23
+  },
+  {
+    "name": "waterFreezingPoint",
+    "value": 273.15
+  }
+]
