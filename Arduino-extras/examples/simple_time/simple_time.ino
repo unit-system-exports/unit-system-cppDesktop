@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include "base.hpp"
+#include "unit_system.hpp"
 
-using namespace sakurajin::unit_system::base;
-using namespace sakurajin::unit_system::base::literals;
+using namespace sakurajin::unit_system;
+using namespace sakurajin::unit_system::literals;
 
 const int LED = 25;
 time_si delta_t = 500_ms;

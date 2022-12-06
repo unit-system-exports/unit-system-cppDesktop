@@ -1,9 +1,8 @@
 #include <Arduino.h>
-#include "base.hpp"
+#include "unit_system.hpp"
 
 using namespace sakurajin::unit_system;
-using namespace sakurajin::unit_system::base;
-using namespace sakurajin::unit_system::base::literals;
+using namespace sakurajin::unit_system::literals;
 
 const int LED = LED_BUILTIN;
 time_si t_on  = 500_ms; /* time as milliseconds */
@@ -26,8 +25,8 @@ void loop() {
 /* SI delay function */
 void delay_si(time_si& t){
   if(t <= 16383_us){ /* delayMicroseconds has a limit of 16838us */
-    delayMicroseconds(unit_cast(t, prefix::micro).value);
+    delayMicroseconds(unit_cast(t, multiplier(std::micro::type{})).value);
   } else {
-    delay(unit_cast(t, prefix::milli).value);
+    delay(unit_cast(t, multiplier(std::milli::type{})).value);
   }
 }
