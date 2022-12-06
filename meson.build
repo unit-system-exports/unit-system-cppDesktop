@@ -5,7 +5,7 @@ project(
         'cpp_std=c++17',
         'warning_level=3'
     ],
-    version : '0.6.0',
+    version : '0.6.1',
 )
 
 #set windows linker argument
