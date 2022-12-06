@@ -37,26 +37,26 @@ class UnitLiteral(Dict):
 
 
 # A class representing a unit fo the unit system.
-# 
+#
 # Attributes:
-#     name: The name of the unit system.
-#     base_name: The base name of the unit system. If the base name is not provided, this will be
+#     name: The name of the unit.
+#     base_name: The base name of the unit. If the base name is not provided, this will be
 #                   set to the value of the `name` attribute.
-#     unit_id: The unit ID of the unit system.
-#     literals: A list of `UnitLiteral` objects that represent the literals for the unit system.
-#     export_macro: The export macro for the unit system.
-#     out_dir: The output directory for the unit system.
+#     unit_id: The unit ID of the unit.
+#     literals: A list of `UnitLiteral` objects that represent the literals for the unit.
+#     export_macro: The export macro for the unit.
+#     out_dir: The output directory for the unit.
 #     include_subdir: The subdirectory for the header files (defaults to 'include').
 #     src_subdir: The subdirectory for the source files (defaults to 'src').
 class Unit:
     def __init__(
         self,
-        name: str,  # the name of the unit system
-        base_name: str,  # the base name of the unit system
-        unit_id: int,  # the unit ID of the unit system
-        literals: List[UnitLiteral],  # a list of UnitLiteral objects that represent the literals for the unit system
-        export_macro: str,  # the export macro for the unit system
-        out_dir: str,  # the output directory for the unit system
+        name: str,  # the name of the unit
+        base_name: str,  # the base name of the unit
+        unit_id: int,  # the unit ID of the unit
+        literals: List[UnitLiteral],  # a list of UnitLiteral objects that represent the literals for the unit
+        export_macro: str,  # the export macro for the unit
+        out_dir: str,  # the output directory for the unit
         include_subdir='include',  # the subdirectory for the header files (defaults to 'include')
         src_subdir='src',  # the subdirectory for the source files (defaults to 'src')
     ):
@@ -105,8 +105,28 @@ class Unit:
         return path
 
 
+# This function takes a JSON object string as its argument and returns a Unit object
+def unit_from_json(json_object_str: Dict) -> Unit:
+    # Extract the values from the JSON object string and assign them to variables
+    name = json_object_str['name']
+    base_name = json_object_str['base_name']
+    unit_id = json_object_str['unit_id']
+    export_macro = json_object_str['export_macro']
+    out_dir = json_object_str['out_dir']
+
+    # Use the get() method to get the 'literals' value from the JSON object string,
+    # with an empty list as the default value
+    literals = json_object_str.get('literals', [])
+
+    # Use a list comprehension to create the 'literals' list
+    literals = [UnitLiteral(literal) for literal in literals]
+
+    # Return a Unit object, using keyword arguments to specify the names of the arguments
+    return Unit(name, base_name, unit_id, literals, export_macro, out_dir)
+
+
 # loads the contents of a file at the given filepath as a string
-def load_template(filepath: os.path) -> str:
+def load_file_to_string(filepath: os.path) -> str:
     # open the file for reading
     template_file = open(filepath, "r")
     # read the contents of the file
@@ -129,7 +149,7 @@ def fill_template_string(template_str: str, values: Dict) -> str:
 # fills a template file at the given filepath with the given values
 def fill_template_file(filepath: os.path, values: Dict) -> str:
     # load the template file as a string
-    template_str = load_template(filepath)
+    template_str = load_file_to_string(filepath)
     # fill the template string with the given values and return the result
     return fill_template_string(template_str, values)
 
@@ -159,26 +179,27 @@ def generate_sources(current_unit: Unit):
 
     # the values to fill into the templates
     fill_dict = {
-        'unit_name': current_unit.name, # the name of the unit system
-        'unit_base_name': current_unit.base_name, # the base name of the unit system
-        'unit_id': current_unit.unit_id, # the unit ID of the unit system
-        'literals': current_unit.literals, # a list of UnitLiteral objects that represent the literals for the unit system
-        'create_literals': len(current_unit.literals) > 0, # whether or not to create the literals for the unit system
-        'export_macro': current_unit.export_macro, # the export macro for the unit system
+        'unit_name': current_unit.name,  # the name of the unit system
+        'unit_base_name': current_unit.base_name,  # the base name of the unit system
+        'unit_id': current_unit.unit_id,  # the unit ID of the unit system
+        'literals': current_unit.literals,  # a list of UnitLiteral objects that represent
+                                            # the literals for the unit system
+        'create_literals': len(current_unit.literals) > 0,  # create literals if there is at least one
+        'export_macro': current_unit.export_macro,  # the export macro for the unit system
     }
 
     # generate the header
     fill_template(
-        os.path.join(template_dir, 'header.template'), # the path to the header template file
-        fill_dict, # the values to fill into the template
-        current_unit.get_header_path() # the path to the output header file
+        os.path.join(template_dir, 'header.template'),  # the path to the header template file
+        fill_dict,  # the values to fill into the template
+        current_unit.get_header_path()  # the path to the output header file
     )
 
     # generate the source
     fill_template(
-        os.path.join(template_dir, 'source.template'), # the path to the source template file
-        fill_dict, # the values to fill into the template
-        current_unit.get_source_path() # the path to the output source file
+        os.path.join(template_dir, 'source.template'),  # the path to the source template file
+        fill_dict,  # the values to fill into the template
+        current_unit.get_source_path()  # the path to the output source file
     )
 
 
