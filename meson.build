@@ -96,8 +96,8 @@ endforeach
 # Allow 'meson build generate -C build' which genereates all sources before full compile
 alias_target('generate', gen_sources)
 
-unit_system_gen = library(
-    'unit-system-common-gen', 
+unit_system = library(
+    'unit-system', 
     gen_sources, 
     version : meson.project_version(), 
     soversion : '0',
@@ -108,14 +108,14 @@ unit_system_gen = library(
     
 unit_system_dep = declare_dependency(
     include_directories : incdirs,
-    link_with : unit_system_gen,
+    link_with : unit_system,
     version: meson.project_version(),
 )
 
 install_subdir('include', install_dir : header_install_location, strip_directory : true)
 
 pkg = import('pkgconfig')
-pkg.generate(unit_system_gen, subdirs: 'unit_system')
+pkg.generate(unit_system, subdirs: 'unit_system')
 
 meson.override_dependency('unit-system', unit_system_dep)
 
