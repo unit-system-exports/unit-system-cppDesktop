@@ -59,7 +59,7 @@ generatedFiles = [
 
 gen_sources = []
 gen_sources += custom_target(
-    '',
+    'generated_unit_system_headers',
     output: generatedFiles,
     input: 'genSources.py',
     command : [
