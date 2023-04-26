@@ -3,7 +3,8 @@ project(
     'cpp',
     default_options : [
         'cpp_std=c++17',
-        'warning_level=3'
+        'warning_level=3',
+        'python.install_env=venv'
     ],
     version : '0.6.3',
 )

@@ -40,11 +40,19 @@ int main(){
 
 Depending on your build system you might have to figure out how to include and link this library by yourself.
 
+***Important note:***
+
+As of version 0.7.0 you need to activate a virtual environment before you can build the sources.
+This is needed due to changes in how python handles dependencies.
+If there are meson changes that allow it to create and/or activate a venv the manual creation of a venv will no longer be required.
+To create and activate a venv check the [python documentation](https://docs.python.org/3/tutorial/venv.html).
+
 ### meson
 
 unit-system is written in C++ with the meson build system.
 Integrating this library is very easy.
 Just use the wrapdb to download the version you need, and then you can add the library as a dependency object.
+***This will also require you to have an active venv.***
 
 ## Units that are currently supported
 

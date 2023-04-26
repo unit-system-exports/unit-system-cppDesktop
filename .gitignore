@@ -42,6 +42,7 @@ doc
 
 subprojects/*
 !subprojects/*.wrap
+.meson-subproject-wrap-hash.txt
 
 unit-system-arduino/
 /generated/
