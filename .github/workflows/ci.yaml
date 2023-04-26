@@ -13,15 +13,19 @@ jobs:
     name: "ubuntu compile and test"
     runs-on: "ubuntu-20.04"
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2          
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v3   
+      - name: setup venv
+        run: python3 -m venv .venv
+      - name: activate venv
+        run: source ./.venv/bin/activate
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.61.3
+          meson-version: 1.1.0
       - name: clearing build directory
         run: rm -rf build
 
@@ -29,11 +33,15 @@ jobs:
     name: "windows static msvc compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
         with:
-            python-version: '3.10' 
+            python-version: '3.11'
+      - name: setup venv
+        run: python3 -m venv .venv
+      - name: activate venv
+        run: source ./.venv/bin/activate.ps1
       - name: install meson
         run: pip install meson
       - name: meson setup
@@ -51,11 +59,15 @@ jobs:
     name: "windows shared msvc compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
         with:
-            python-version: '3.10' 
+            python-version: '3.11' 
+      - name: setup venv
+        run: python3 -m venv .venv
+      - name: activate venv
+        run: source ./.venv/bin/activate.ps1
       - name: install meson
         run: pip install meson
       - name: meson setup
@@ -73,7 +85,7 @@ jobs:
     name: "windows static msys2 compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -85,6 +97,12 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: setup venv
+        shell: msys2 {0}
+        run: python3 -m venv .venv
+      - name: activate venv
+        shell: msys2 {0}
+        run: source ./.venv/bin/activate
       - name: install pip deps
         shell: msys2 {0}
         run: pip install -r requirements.txt
@@ -107,7 +125,7 @@ jobs:
     name: "windows shared msys2 compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -119,6 +137,12 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
+      - name: setup venv
+        shell: msys2 {0}
+        run: python3 -m venv .venv
+      - name: activate venv
+        shell: msys2 {0}
+        run: source ./.venv/bin/activate
       - name: install pip deps
         shell: msys2 {0}
         run: pip install -r requirements.txt
@@ -141,15 +165,19 @@ jobs:
     name: "mac os compile and test"
     runs-on: "macos-latest"
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2                
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v3
+      - name: setup venv
+        run: python3 -m venv .venv
+      - name: activate venv
+        run: source ./.venv/bin/activate                
       - uses: BSFishy/meson-build@v1.0.3
         name: build full
         with:
           action: test
           directory: build
           options: --verbose
-          meson-version: 0.61.3
+          meson-version: 1.0.0
       - name: clearing build directory
         run: rm -rf build
         

@@ -6,7 +6,8 @@ project(
         'warning_level=3',
         'python.install_env=venv'
     ],
-    version : '0.6.3',
+    version : '0.7.0',
+    meson_version: '>= 1.0.0',
 )
 
 #set windows linker argument
@@ -28,7 +29,7 @@ if not pyinstall.dependency().found()
 endif
 
 if not get_option('no_pip_install')
-    r = run_command(pyinstall.path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
+    r = run_command(pyinstall.full_path(), '-m', 'pip', 'install', '-r', 'requirements.txt', check: true)
 endif
 
 header_install_location = 'include/unit_system'
