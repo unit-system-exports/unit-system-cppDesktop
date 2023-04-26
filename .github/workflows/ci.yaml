@@ -13,7 +13,7 @@ jobs:
     name: "ubuntu compile and test"
     runs-on: "ubuntu-20.04"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: actions/setup-python@v3   
       - name: setup venv
         run: python3 -m venv .venv
@@ -33,7 +33,7 @@ jobs:
     name: "windows static msvc compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
         with:
@@ -59,7 +59,7 @@ jobs:
     name: "windows shared msvc compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/setup-python@v4
         with:
@@ -85,7 +85,7 @@ jobs:
     name: "windows static msys2 compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -125,7 +125,7 @@ jobs:
     name: "windows shared msys2 compile and test"
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -165,7 +165,7 @@ jobs:
     name: "mac os compile and test"
     runs-on: "macos-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
       - name: setup venv
         run: python3 -m venv .venv

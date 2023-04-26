@@ -23,158 +23,131 @@ jobs:
         FOLDER: doc/html
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  ubunut20:
-    name: "ubuntu compile and test"
-    runs-on: "ubuntu-20.04"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-            python-version: '3.10'         
-      - uses: BSFishy/meson-build@v1.0.3
-        name: build full
-        with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.61.3
-      - name: clearing build directory
-        run: rm -rf build
 
-  windows-static-msvc:
-    name: "windows static msvc compile and test"
-    runs-on: "windows-latest"
+  build_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-20.04", "ubuntu-22.04", "macos-latest", "windows-latest"]
+        buildType: ["static", "shared"]
+        pipBefore: [true, false]
+        useMsys: [true, false]
+        exclude:
+          - useMsys: true
+            os: "ubuntu-20.04"
+          - useMsys: true
+            os: "ubuntu-22.04"
+          - useMsys: true
+            os: "macos-latest"
+        include:
+          - script_file: "source ./.venv/bin/activate"
+            os: "ubuntu-20.04"
+          - script_file: "source ./.venv/bin/activate"
+            os: "ubuntu-22.04"
+          - script_file: "source ./.venv/bin/activate"
+            os: "macos-latest"
+          - script_file: "source ./.venv/bin/activate"
+            os: "windows-latest"
+            useMsys: true
+          - script_file: ".venv/Scripts/activate.ps1"
+            os: "windows-latest"
+            useMsys: false
+          - setupExtras: "-Db_lto=false -Dgtest:b_lto=false"
+            os: "windows-latest"
+            
+    name: ${{ matrix.os }} ${{ matrix.buildType }} pipBefore ${{ matrix.pipBefore }} msys ${{ matrix.useMsys }}
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: actions/setup-python@v4
+      
+      - uses: actions/setup-python@v3
+        if: ${{ !matrix.useMsys }}
+      - name: default - setup venv
+        if: ${{ !matrix.useMsys }}
+        run: python3 -m venv .venv
+      - name: default - install meson and ninja
+        if: ${{ !matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            pip install meson ninja
+      - name: default - Prepare MSVC
+        if: ${{ !matrix.useMsys && matrix.os == 'windows-latest' }}
+        uses: bus1/cabuild/action/msdevshell@v1
         with:
-            python-version: '3.10' 
-      - name: install meson
-        run: pip install meson
-      - name: meson setup
-        run: meson setup -Ddefault_library=static -Db_lto=false -Dgtest:b_lto=false build
-      - name: meson generate
-        run: meson compile generate -C build
-      - name: meson compile
-        run: meson compile -C build
-      - name: meson test
-        run: meson test -C build
-      - name: clearing build directory
-        run: Remove-Item -recurse -force build
-
-  windows-shared-msvc:
-    name: "windows shared msvc compile and test"
-    runs-on: "windows-latest"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: actions/setup-python@v4
-        with:
-            python-version: '3.10' 
-      - name: install meson
-        run: pip install meson
-      - name: meson setup
-        run: meson setup -Ddefault_library=shared -Db_lto=false -Dgtest:b_lto=false build
-      - name: meson generate
-        run: meson compile generate -C build
-      - name: meson compile
-        run: meson compile -C build
-      - name: meson test
-        run: meson test -C build
-      - name: clearing build directory
-        run: Remove-Item -recurse -force build
-
-  windows-static-msys2:
-    name: "windows static msys2 compile and test"
-    runs-on: "windows-latest"
-    steps:
-      - uses: actions/checkout@v3
+            architecture: x64
+      - name: default - install pip deps
+        if: ${{ matrix.pipBefore && !matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            pip install -r requirements.txt
+      - name: default - setup the project
+        if: ${{ !matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            meson setup ${{ matrix.setupExtras }} -Ddefault_library=${{ matrix.buildType }} -Dno_pip_install=${{ matrix.pipBefore }} build
+      - name: default - compile the project
+        if: ${{ !matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            meson compile -C build
+      - name: default - test the project
+        if: ${{ !matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            meson test --verbose -C build
+    
       - uses: msys2/setup-msys2@v2
+        if: ${{ matrix.useMsys }}
         with:
           update: true
           install: >-
             base-devel
             mingw-w64-x86_64-python3
             mingw-w64-x86_64-python-pip
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-ninja
-            mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-pkg-config
-      - name: install pip deps
+      - name: msys2 - setup venv
+        if: ${{ matrix.useMsys }}
         shell: msys2 {0}
-        run: pip install -r requirements.txt
-      - name: meson setup
+        run: python3 -m venv .venv
+      - name: msys2 - install pip deps
         shell: msys2 {0}
-        run: meson setup -Ddefault_library=static -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
-      - name: meson generate
+        if: ${{ matrix.pipBefore && matrix.useMsys }}
+        run: |
+            ${{ matrix.script_file }}
+            pip install -r requirements.txt
+      - name: msys2 - setup the project
+        if: ${{ matrix.useMsys }}
         shell: msys2 {0}
-        run: meson compile generate -C build
-      - name: meson compile
+        run: |
+            ${{ matrix.script_file }}
+            meson setup ${{ matrix.setupExtras }} -Ddefault_library=${{ matrix.buildType }} -Dno_pip_install=${{ matrix.pipBefore }} build
+      - name: msys2 - compile the project
+        if: ${{ matrix.useMsys }}
         shell: msys2 {0}
-        run: meson compile -C build
-      - name: meson test
+        run: |
+            ${{ matrix.script_file }}
+            meson compile -C build
+      - name: msys2 - test the project
+        if: ${{ matrix.useMsys }}
         shell: msys2 {0}
-        run: meson test -C build
-      - name: clearing build directory
-        run: Remove-Item -recurse -force build
-
-  windows-shared-msys2:
-    name: "windows shared msys2 compile and test"
-    runs-on: "windows-latest"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: msys2/setup-msys2@v2
+        run: |
+            ${{ matrix.script_file }}
+            meson test --verbose -C build
+            
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          update: true
-          install: >-
-            base-devel
-            mingw-w64-x86_64-python3
-            mingw-w64-x86_64-python-pip
-            mingw-w64-x86_64-meson
-            mingw-w64-x86_64-ninja
-            mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-pkg-config
-      - name: install pip deps
-        shell: msys2 {0}
-        run: pip install -r requirements.txt
-      - name: meson setup
-        shell: msys2 {0}
-        run: meson setup -Ddefault_library=shared -Db_lto=false -Dno_pip_install=true -Dgtest:b_lto=false build
-      - name: meson generate
-        shell: msys2 {0}
-        run: meson compile generate -C build
-      - name: meson compile
-        shell: msys2 {0}
-        run: meson compile -C build
-      - name: meson test
-        shell: msys2 {0}
-        run: meson test -C build
-      - name: clearing build directory
-        run: Remove-Item -recurse -force build
-        
-  macos:
-    name: "mac os compile and test"
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-            python-version: '3.10' 
-      - uses: BSFishy/meson-build@v1.0.3
-        name: build full
-        with:
-          action: test
-          directory: build
-          options: --verbose
-          meson-version: 0.61.3
-      - name: clearing build directory
-        run: rm -rf build
+          name: build-artifact-${{ matrix.os }}-${{ matrix.buildType }}-pipBefore-${{ matrix.pipBefore }}-msys-${{ matrix.useMsys }}
+          path: build
 
   pre-release:
     name: "Pre Release latest"
     runs-on: "ubuntu-20.04"
-    needs: [windows-shared-msys2, windows-static-msys2, windows-static-msvc, windows-shared-msvc, ubunut20, macos]
+    needs: build_matrix
     steps:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -184,10 +157,4 @@ jobs:
           title: "Development Build"
           files: |
             LICENSE
-            
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: build-artifact-${{ matrix.os }}-${{ matrix.compiler }}
-          path: .
 
