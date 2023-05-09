@@ -1,4 +1,1 @@
-option('build_tests', type : 'boolean', value : true, description: 'set to false if you do not want to compile the tests.')
-option('force_build_tests', type : 'boolean', value : false, description: 'set to true if you do not want to compile the tests even with unit-system as subproject.')
-
-option('no_pip_install', type : 'boolean', value : false, description: 'set true to disable the pip install during the setup')
+option('build_tests', type : 'feature', value : 'auto', description: 'disable to not build tests when compiling directly. enable to also build tests if built as subproject')

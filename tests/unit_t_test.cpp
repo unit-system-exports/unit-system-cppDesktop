@@ -21,7 +21,7 @@ TEST( unit_t_tests, cast_tests ) {
     
     EXPECT_TRUE(v1 != v4);
     
-    EXPECT_TRUE(abs(v5) == abs(v6));
+    EXPECT_TRUE(std::abs(v5) == std::abs(v6));
     
 }
 

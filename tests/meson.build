@@ -10,12 +10,15 @@ tests = [
     'common_test',
 ]
 
+test_incdir = include_directories('.')
+
 #create all the tests
 foreach test_obj : tests
     exe = executable(
         test_obj, 
         test_obj + '.cpp',
         dependencies: deps,
+        include_directories : test_incdir,
     )
     test(
         test_obj + ' Test',

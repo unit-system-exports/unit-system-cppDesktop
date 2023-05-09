@@ -1,7 +1,4 @@
-#include <gtest/gtest.h>
-
-
-#include "unit_system.hpp"
+#include "test_functions.hpp"
 
 #include <iostream>
 
@@ -33,75 +30,75 @@ TEST( common_tests, speed_test) {
     const auto _s2 = 250.0_km;
     
     const speed _v1 = _s1/_t1;
-    EXPECT_TRUE(_v1 == 10.0_mps);
+    EXPECT_UNIT_EQ(_v1, 10.0_mps);
     
     const auto _v2 = _s2/_t2;
-    EXPECT_TRUE(_v2 == 25.0_kmph);
+    EXPECT_UNIT_EQ(_v2, 25.0_kmph);
     
     const auto _v3 = unit_cast(3.6_kmph,1);
-    EXPECT_TRUE(_v3 == 1.0_mps);
+    EXPECT_UNIT_EQ(_v3, 1.0_mps);
     
-    EXPECT_TRUE( _v3*_t1 == _t1*_v3 );
+    EXPECT_UNIT_EQ( _v3*_t1, _t1*_v3 );
     
 }
 
 TEST( common_tests, acceleration_test ) {
     
     const auto _a1 = v1/t1;
-    EXPECT_TRUE(_a1 == a1);
+    EXPECT_UNIT_EQ(_a1, a1);
     
     const auto _a2 = unit_cast(9.81_mps/1.0_s,1);
-    EXPECT_TRUE(_a2 == 1.0_G);
+    EXPECT_UNIT_EQ(_a2, 1.0_G);
     
-    EXPECT_TRUE(_a2 * t1 == t1 * _a2);
+    EXPECT_UNIT_EQ(_a2 * t1, t1 * _a2);
     
 }
 
 TEST( common_tests, momentum_test ) {
 
     const auto _p1 = v1*m1;
-    EXPECT_TRUE(_p1 == m1*v1);
-    EXPECT_TRUE(_p1 == p1);
+    EXPECT_UNIT_EQ(_p1, m1*v1);
+    EXPECT_UNIT_EQ(_p1, p1);
     
 }
 
 TEST( common_tests, force_test ) {
     
     const auto _F2 = 10_kg * 1_G;
-    EXPECT_TRUE(_F2 == 98.1_N);
+    EXPECT_UNIT_EQ(_F2, 98.1_N);
     
-    EXPECT_TRUE(p1/10_s == F1);
-    EXPECT_TRUE(m1*a1 == F1);
+    EXPECT_UNIT_EQ(p1/10_s, F1);
+    EXPECT_UNIT_EQ(m1*a1, F1);
     
 }
 
 TEST( common_tests, energy_test ) {
     
     const auto _E2 = 10_kg * 1_G * 1_m;
-    EXPECT_TRUE(_E2 == 98.1_J);
+    EXPECT_UNIT_EQ(_E2, 98.1_J);
     
-    EXPECT_TRUE(F1*s2 == E1);
-    EXPECT_TRUE(p1*v2 == E1);
+    EXPECT_UNIT_EQ(F1*s2, E1);
+    EXPECT_UNIT_EQ(p1*v2, E1);
     
 }
 
 TEST( common_tests, power_test ) {
     
     const auto _P2 = 10_kg * 1_G * 1_mps;
-    EXPECT_TRUE(_P2 == 98.1_W);
+    EXPECT_UNIT_EQ(_P2, 98.1_W);
     
-    EXPECT_TRUE(F1*v2 == P1);
-    EXPECT_TRUE(E1/t1 == P1);
+    EXPECT_UNIT_EQ(F1*v2, P1);
+    EXPECT_UNIT_EQ(E1/t1, P1);
     
 }
 
 TEST( common_tests, area_test ) {
     
     const auto _A2 = s1 * s2;
-    EXPECT_TRUE(_A2 == 2500_m2);
+    EXPECT_UNIT_EQ(_A2, 2500_m2);
 
-    EXPECT_TRUE(square(s2) == A1);
-    EXPECT_TRUE(A1/s2 == s2);
+    EXPECT_UNIT_EQ(square(s2), A1);
+    EXPECT_UNIT_EQ(A1/s2, s2);
 }
 
 int main(int argc, char **argv){
