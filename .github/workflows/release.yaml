@@ -102,7 +102,7 @@ jobs:
         uses: "noah1510/update-wrapdb-action@latest"
         with:
           source-repository: "https://github.com/noah1510/unit-system"
-          release-tag: ${{ github.ref }}
+          release-tag: ${{ github.ref_name }}
           provides: "unit-system = unit_system_dep"
           push-repository: "https://github.com/noah1510/wrapdb"
           github_token: ${{ secrets.CI_GITHUB_TOKEN }}
