@@ -18,6 +18,36 @@ std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sak
 
 
 
+power literals::operator "" _W(long double len){
+    return power{len,1.0, 0.0};
+}
+
+power literals::operator "" _W(unsigned long long int len){
+    return power{static_cast<long double>(len),1.0, 0.0};
+}
+
+
+
+power literals::operator "" _PW(long double len){
+    return power{len,1000000000000000.0, 0.0};
+}
+
+power literals::operator "" _PW(unsigned long long int len){
+    return power{static_cast<long double>(len),1000000000000000.0, 0.0};
+}
+
+
+
+power literals::operator "" _TW(long double len){
+    return power{len,1000000000000.0, 0.0};
+}
+
+power literals::operator "" _TW(unsigned long long int len){
+    return power{static_cast<long double>(len),1000000000000.0, 0.0};
+}
+
+
+
 power literals::operator "" _GW(long double len){
     return power{len,1000000000.0, 0.0};
 }
@@ -48,22 +78,62 @@ power literals::operator "" _kW(unsigned long long int len){
 
 
 
-power literals::operator "" _W(long double len){
-    return power{len,1.0, 0.0};
-}
-
-power literals::operator "" _W(unsigned long long int len){
-    return power{static_cast<long double>(len),1.0, 0.0};
-}
-
-
-
 power literals::operator "" _mW(long double len){
     return power{len,0.001, 0.0};
 }
 
 power literals::operator "" _mW(unsigned long long int len){
     return power{static_cast<long double>(len),0.001, 0.0};
+}
+
+
+
+power literals::operator "" _uW(long double len){
+    return power{len,1e-06, 0.0};
+}
+
+power literals::operator "" _uW(unsigned long long int len){
+    return power{static_cast<long double>(len),1e-06, 0.0};
+}
+
+
+
+power literals::operator "" _nW(long double len){
+    return power{len,1e-09, 0.0};
+}
+
+power literals::operator "" _nW(unsigned long long int len){
+    return power{static_cast<long double>(len),1e-09, 0.0};
+}
+
+
+
+power literals::operator "" _pW(long double len){
+    return power{len,1e-12, 0.0};
+}
+
+power literals::operator "" _pW(unsigned long long int len){
+    return power{static_cast<long double>(len),1e-12, 0.0};
+}
+
+
+
+power literals::operator "" _fW(long double len){
+    return power{len,1e-15, 0.0};
+}
+
+power literals::operator "" _fW(unsigned long long int len){
+    return power{static_cast<long double>(len),1e-15, 0.0};
+}
+
+
+
+power literals::operator "" _aW(long double len){
+    return power{len,1e-18, 0.0};
+}
+
+power literals::operator "" _aW(unsigned long long int len){
+    return power{static_cast<long double>(len),1e-18, 0.0};
 }
 
 

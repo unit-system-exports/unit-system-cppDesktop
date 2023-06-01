@@ -27,14 +27,14 @@ namespace sakurajin{
         inline namespace literals{
             
             
-            UNIT_SYSTEM_EXPORT_MACRO speed operator "" _kmph(long double val);
-            UNIT_SYSTEM_EXPORT_MACRO speed operator "" _kmph(unsigned long long int val);
-            
-            
-            
-            
             UNIT_SYSTEM_EXPORT_MACRO speed operator "" _mps(long double val);
             UNIT_SYSTEM_EXPORT_MACRO speed operator "" _mps(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO speed operator "" _kmph(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO speed operator "" _kmph(unsigned long long int val);
             
             
             

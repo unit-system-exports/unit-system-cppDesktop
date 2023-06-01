@@ -27,14 +27,14 @@ namespace sakurajin{
         inline namespace literals{
             
             
-            UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(long double val);
-            UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(unsigned long long int val);
-            
-            
-            
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _m(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _m(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(unsigned long long int val);
             
             
             
@@ -65,6 +65,24 @@ namespace sakurajin{
             
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _nm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _nm(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _pm(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _pm(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _fm(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _fm(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _am(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO length operator "" _am(unsigned long long int val);
             
             
             

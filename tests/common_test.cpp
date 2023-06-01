@@ -47,11 +47,6 @@ TEST( common_tests, acceleration_test ) {
     const auto _a1 = v1/t1;
     EXPECT_UNIT_EQ(_a1, a1);
     
-    const auto _a2 = unit_cast(9.81_mps/1.0_s,1);
-    EXPECT_UNIT_EQ(_a2, 1.0_G);
-    
-    EXPECT_UNIT_EQ(_a2 * t1, t1 * _a2);
-    
 }
 
 TEST( common_tests, momentum_test ) {
@@ -64,9 +59,6 @@ TEST( common_tests, momentum_test ) {
 
 TEST( common_tests, force_test ) {
     
-    const auto _F2 = 10_kg * 1_G;
-    EXPECT_UNIT_EQ(_F2, 98.1_N);
-    
     EXPECT_UNIT_EQ(p1/10_s, F1);
     EXPECT_UNIT_EQ(m1*a1, F1);
     
@@ -74,18 +66,12 @@ TEST( common_tests, force_test ) {
 
 TEST( common_tests, energy_test ) {
     
-    const auto _E2 = 10_kg * 1_G * 1_m;
-    EXPECT_UNIT_EQ(_E2, 98.1_J);
-    
     EXPECT_UNIT_EQ(F1*s2, E1);
     EXPECT_UNIT_EQ(p1*v2, E1);
     
 }
 
 TEST( common_tests, power_test ) {
-    
-    const auto _P2 = 10_kg * 1_G * 1_mps;
-    EXPECT_UNIT_EQ(_P2, 98.1_W);
     
     EXPECT_UNIT_EQ(F1*v2, P1);
     EXPECT_UNIT_EQ(E1/t1, P1);

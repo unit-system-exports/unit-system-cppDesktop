@@ -97,3 +97,12 @@ jobs:
         with:
           repo_token: "${{ secrets.CI_GITHUB_TOKEN }}"
           prerelease: ${{ contains(github.ref_name, '-rc') }}
+      - name: "update wrapdb"
+        if: ${{ !contains(github.ref_name, '-rc') }}
+        uses: "noah1510/update-wrapdb-action@latest"
+        with:
+          source-repository: "https://github.com/noah1510/unit-system"
+          release-tag: ${{ github.ref }}
+          provides: "unit-system = unit_system_dep"
+          push-repository: "https://github.com/noah1510/wrapdb"
+          github_token: ${{ secrets.CI_GITHUB_TOKEN }}

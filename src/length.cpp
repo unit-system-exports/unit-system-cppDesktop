@@ -12,19 +12,9 @@ length::length(long double val, long double mult, long double offset ): unit_t<2
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::length& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " meter";
+    return os << t1.value << " metre";
 }
 
-
-
-
-length literals::operator "" _km(long double len){
-    return length{len,1000.0, 0.0};
-}
-
-length literals::operator "" _km(unsigned long long int len){
-    return length{static_cast<long double>(len),1000.0, 0.0};
-}
 
 
 
@@ -34,6 +24,16 @@ length literals::operator "" _m(long double len){
 
 length literals::operator "" _m(unsigned long long int len){
     return length{static_cast<long double>(len),1.0, 0.0};
+}
+
+
+
+length literals::operator "" _km(long double len){
+    return length{len,1000.0, 0.0};
+}
+
+length literals::operator "" _km(unsigned long long int len){
+    return length{static_cast<long double>(len),1000.0, 0.0};
 }
 
 
@@ -84,6 +84,36 @@ length literals::operator "" _nm(long double len){
 
 length literals::operator "" _nm(unsigned long long int len){
     return length{static_cast<long double>(len),1e-09, 0.0};
+}
+
+
+
+length literals::operator "" _pm(long double len){
+    return length{len,1e-12, 0.0};
+}
+
+length literals::operator "" _pm(unsigned long long int len){
+    return length{static_cast<long double>(len),1e-12, 0.0};
+}
+
+
+
+length literals::operator "" _fm(long double len){
+    return length{len,1e-15, 0.0};
+}
+
+length literals::operator "" _fm(unsigned long long int len){
+    return length{static_cast<long double>(len),1e-15, 0.0};
+}
+
+
+
+length literals::operator "" _am(long double len){
+    return length{len,1e-18, 0.0};
+}
+
+length literals::operator "" _am(unsigned long long int len){
+    return length{static_cast<long double>(len),1e-18, 0.0};
 }
 
 

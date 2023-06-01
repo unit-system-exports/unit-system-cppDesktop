@@ -27,14 +27,14 @@ namespace sakurajin{
         inline namespace literals{
             
             
-            UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(long double val);
-            UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(unsigned long long int val);
-            
-            
-            
-            
             UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _mps2(long double val);
             UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _mps2(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(unsigned long long int val);
             
             
             

@@ -12,19 +12,9 @@ speed::speed(long double val, long double mult, long double offset ): unit_t<201
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::speed& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " meter per second";
+    return os << t1.value << " metre per second";
 }
 
-
-
-
-speed literals::operator "" _kmph(long double len){
-    return speed{len,0.2777777777777778, 0.0};
-}
-
-speed literals::operator "" _kmph(unsigned long long int len){
-    return speed{static_cast<long double>(len),0.2777777777777778, 0.0};
-}
 
 
 
@@ -34,6 +24,16 @@ speed literals::operator "" _mps(long double len){
 
 speed literals::operator "" _mps(unsigned long long int len){
     return speed{static_cast<long double>(len),1.0, 0.0};
+}
+
+
+
+speed literals::operator "" _kmph(long double len){
+    return speed{len,0.2777777777777778, 0.0};
+}
+
+speed literals::operator "" _kmph(unsigned long long int len){
+    return speed{static_cast<long double>(len),0.2777777777777778, 0.0};
 }
 
 

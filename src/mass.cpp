@@ -67,3 +67,43 @@ mass literals::operator "" _ug(unsigned long long int len){
 }
 
 
+
+mass literals::operator "" _ng(long double len){
+    return mass{len,1.0000000000000002e-12, 0.0};
+}
+
+mass literals::operator "" _ng(unsigned long long int len){
+    return mass{static_cast<long double>(len),1.0000000000000002e-12, 0.0};
+}
+
+
+
+mass literals::operator "" _pg(long double len){
+    return mass{len,1e-15, 0.0};
+}
+
+mass literals::operator "" _pg(unsigned long long int len){
+    return mass{static_cast<long double>(len),1e-15, 0.0};
+}
+
+
+
+mass literals::operator "" _fg(long double len){
+    return mass{len,1e-18, 0.0};
+}
+
+mass literals::operator "" _fg(unsigned long long int len){
+    return mass{static_cast<long double>(len),1e-18, 0.0};
+}
+
+
+
+mass literals::operator "" _ag(long double len){
+    return mass{len,1.0000000000000001e-21, 0.0};
+}
+
+mass literals::operator "" _ag(unsigned long long int len){
+    return mass{static_cast<long double>(len),1.0000000000000001e-21, 0.0};
+}
+
+

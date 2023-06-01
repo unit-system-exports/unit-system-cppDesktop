@@ -56,6 +56,30 @@ namespace sakurajin{
             
             
             
+            
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ng(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ng(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _pg(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _pg(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _fg(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _fg(unsigned long long int val);
+            
+            
+            
+            
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ag(long double val);
+            UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ag(unsigned long long int val);
+            
+            
+            
         }
         
     }
