@@ -12,7 +12,7 @@ luminous_intensity::luminous_intensity(long double val, long double mult, long d
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::luminous_intensity& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " candela";
+    return os << t1.value << " luminous_intensity";
 }
 
 

@@ -12,7 +12,7 @@ momentum::momentum(long double val, long double mult, long double offset ): unit
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::momentum& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " kilogram-meter per second";
+    return os << t1.value << " momentum";
 }
 
 

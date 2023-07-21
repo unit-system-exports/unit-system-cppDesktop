@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             mass(long double val, long double mult);
             mass(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const mass& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _kg(long double val);
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _kg(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _mg(long double val);
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _mg(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ng(long double val);
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ng(unsigned long long int val);
-            
             
             
             
@@ -68,16 +60,13 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _fg(long double val);
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _fg(unsigned long long int val);
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ag(long double val);
             UNIT_SYSTEM_EXPORT_MACRO mass operator "" _ag(unsigned long long int val);
-            
             
             
         }

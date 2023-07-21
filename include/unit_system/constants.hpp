@@ -1,10 +1,8 @@
 #pragma once
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{

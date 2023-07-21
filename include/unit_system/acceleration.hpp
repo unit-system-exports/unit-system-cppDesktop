@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             acceleration(long double val, long double mult);
             acceleration(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const acceleration& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(long double val);
             UNIT_SYSTEM_EXPORT_MACRO acceleration operator "" _G(unsigned long long int val);
-            
             
             
         }

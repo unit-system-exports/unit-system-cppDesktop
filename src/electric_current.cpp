@@ -12,7 +12,7 @@ electric_current::electric_current(long double val, long double mult, long doubl
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::electric_current& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " Ampere";
+    return os << t1.value << " electric_current";
 }
 
 

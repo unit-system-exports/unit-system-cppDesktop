@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             energy(long double val, long double mult);
             energy(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const energy& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _Nm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _Nm(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _Wh(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _Wh(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _PJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _PJ(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _GJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _GJ(unsigned long long int val);
-            
             
             
             
@@ -80,10 +70,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _kJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _kJ(unsigned long long int val);
-            
             
             
             
@@ -92,10 +80,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _uJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _uJ(unsigned long long int val);
-            
             
             
             
@@ -104,10 +90,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _pJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _pJ(unsigned long long int val);
-            
             
             
             
@@ -116,10 +100,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _aJ(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _aJ(unsigned long long int val);
-            
             
             
             
@@ -128,10 +110,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _MNm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _MNm(unsigned long long int val);
-            
             
             
             
@@ -140,10 +120,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _mNm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _mNm(unsigned long long int val);
-            
             
             
             
@@ -152,10 +130,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _PeV(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _PeV(unsigned long long int val);
-            
             
             
             
@@ -164,10 +140,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _GeV(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _GeV(unsigned long long int val);
-            
             
             
             
@@ -176,10 +150,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _keV(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _keV(unsigned long long int val);
-            
             
             
             
@@ -188,10 +160,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _ueV(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _ueV(unsigned long long int val);
-            
             
             
             
@@ -200,10 +170,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _TWh(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _TWh(unsigned long long int val);
-            
             
             
             
@@ -212,16 +180,13 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _MWh(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _MWh(unsigned long long int val);
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _kWh(long double val);
             UNIT_SYSTEM_EXPORT_MACRO energy operator "" _kWh(unsigned long long int val);
-            
             
             
         }

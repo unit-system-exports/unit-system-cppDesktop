@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,16 +18,15 @@ namespace sakurajin{
             momentum(long double val, long double mult);
             momentum(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const momentum& t);
 
+        
         inline namespace literals{
             
             
             UNIT_SYSTEM_EXPORT_MACRO momentum operator "" _kgmps(long double val);
             UNIT_SYSTEM_EXPORT_MACRO momentum operator "" _kgmps(unsigned long long int val);
-            
             
             
         }

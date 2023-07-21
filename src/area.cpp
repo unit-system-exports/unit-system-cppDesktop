@@ -12,7 +12,7 @@ area::area(long double val, long double mult, long double offset ): unit_t<22>(v
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::area& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " metre^2";
+    return os << t1.value << " area";
 }
 
 

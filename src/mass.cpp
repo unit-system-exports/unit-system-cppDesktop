@@ -12,7 +12,7 @@ mass::mass(long double val, long double mult, long double offset ): unit_t<3>(va
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::mass& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " kilogram";
+    return os << t1.value << " mass";
 }
 
 

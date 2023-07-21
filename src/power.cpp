@@ -12,7 +12,7 @@ power::power(long double val, long double mult, long double offset ): unit_t<801
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::power& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " Watt";
+    return os << t1.value << " power";
 }
 
 

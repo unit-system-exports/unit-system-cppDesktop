@@ -12,7 +12,6 @@ project(
 #set windows linker argument
 cpp = meson.get_compiler('cpp')
 
-
 if target_machine.system() == 'windows'
     if get_option('buildtype') != 'static'
         add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllexport)', language: 'cpp')
@@ -20,7 +19,6 @@ if target_machine.system() == 'windows'
         add_project_arguments('-DUNIT_SYSTEM_EXPORT_MACRO=__declspec(dllimport)', language: 'cpp')
     endif
 endif
-
 
 incdirs = include_directories('include')
 sources = [

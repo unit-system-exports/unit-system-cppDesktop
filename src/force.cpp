@@ -12,7 +12,7 @@ force::force(long double val, long double mult, long double offset ): unit_t<320
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::force& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " Newton";
+    return os << t1.value << " force";
 }
 
 

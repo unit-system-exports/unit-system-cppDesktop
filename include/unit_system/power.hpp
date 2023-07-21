@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             power(long double val, long double mult);
             power(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const power& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _PW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _PW(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _GW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _GW(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _kW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _kW(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _uW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _uW(unsigned long long int val);
-            
             
             
             
@@ -80,10 +70,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _pW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _pW(unsigned long long int val);
-            
             
             
             
@@ -92,10 +80,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _aW(long double val);
             UNIT_SYSTEM_EXPORT_MACRO power operator "" _aW(unsigned long long int val);
-            
             
             
         }

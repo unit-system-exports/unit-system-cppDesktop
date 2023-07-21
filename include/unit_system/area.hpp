@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             area(long double val, long double mult);
             area(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const area& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _are(long double val);
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _are(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _km2(long double val);
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _km2(unsigned long long int val);
-            
             
             
             
@@ -56,16 +50,13 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _um2(long double val);
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _um2(unsigned long long int val);
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _nm2(long double val);
             UNIT_SYSTEM_EXPORT_MACRO area operator "" _nm2(unsigned long long int val);
-            
             
             
         }

@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             length(long double val, long double mult);
             length(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const length& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _km(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _cm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _cm(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _um(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _um(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _pm(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _pm(unsigned long long int val);
-            
             
             
             
@@ -80,10 +70,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _am(long double val);
             UNIT_SYSTEM_EXPORT_MACRO length operator "" _am(unsigned long long int val);
-            
             
             
         }

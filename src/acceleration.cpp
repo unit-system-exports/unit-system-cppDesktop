@@ -12,7 +12,7 @@ acceleration::acceleration(long double val, long double mult, long double offset
 
 std::ostream& ::sakurajin::unit_system::operator<<(std::ostream& os, const ::sakurajin::unit_system::acceleration& t){
     auto t1 = ::sakurajin::unit_system::unit_cast(t,1);
-    return os << t1.value << " metre per second^2";
+    return os << t1.value << " acceleration";
 }
 
 

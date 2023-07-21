@@ -1,15 +1,11 @@
 #ifndef UNIT_SYSTEM_UNIT_TYPE_TEMPLATE
 #define UNIT_SYSTEM_UNIT_TYPE_TEMPLATE
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
 
-
-
 #include "unit_system/std_implements.hpp"
-
 
 namespace sakurajin{
     namespace unit_system{

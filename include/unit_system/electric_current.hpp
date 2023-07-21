@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             electric_current(long double val, long double mult);
             electric_current(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const electric_current& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _PA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _PA(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _GA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _GA(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _kA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _kA(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _uA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _uA(unsigned long long int val);
-            
             
             
             
@@ -80,10 +70,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _pA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _pA(unsigned long long int val);
-            
             
             
             
@@ -92,10 +80,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _aA(long double val);
             UNIT_SYSTEM_EXPORT_MACRO electric_current operator "" _aA(unsigned long long int val);
-            
             
             
         }

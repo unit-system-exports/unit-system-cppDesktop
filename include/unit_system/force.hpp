@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             force(long double val, long double mult);
             force(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const force& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _PN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _PN(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _GN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _GN(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _kN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _kN(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _uN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _uN(unsigned long long int val);
-            
             
             
             
@@ -80,10 +70,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _pN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _pN(unsigned long long int val);
-            
             
             
             
@@ -92,10 +80,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _aN(long double val);
             UNIT_SYSTEM_EXPORT_MACRO force operator "" _aN(unsigned long long int val);
-            
             
             
         }

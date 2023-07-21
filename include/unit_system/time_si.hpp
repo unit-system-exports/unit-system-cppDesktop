@@ -4,11 +4,9 @@
 #include "unit_system/unit_t.hpp"
 
 
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
-
 
 namespace sakurajin{
     namespace unit_system{
@@ -20,10 +18,10 @@ namespace sakurajin{
             time_si(long double val, long double mult);
             time_si(long double val, long double mult, long double offset);
         };
-        
 
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const time_si& t);
 
+        
         inline namespace literals{
             
             
@@ -32,10 +30,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _d(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _d(unsigned long long int val);
-            
             
             
             
@@ -44,10 +40,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _minute(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _minute(unsigned long long int val);
-            
             
             
             
@@ -56,10 +50,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _ms(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _ms(unsigned long long int val);
-            
             
             
             
@@ -68,10 +60,8 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _ns(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _ns(unsigned long long int val);
-            
             
             
             
@@ -80,16 +70,13 @@ namespace sakurajin{
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _fs(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _fs(unsigned long long int val);
             
             
             
-            
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _as(long double val);
             UNIT_SYSTEM_EXPORT_MACRO time_si operator "" _as(unsigned long long int val);
-            
             
             
         }
