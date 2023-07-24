@@ -104,9 +104,7 @@ pkg.generate(unit_system, subdirs: 'unit_system')
 
 install_headers('include/unit_system/combinations.hpp', subdir : 'unit-system')
 install_headers('include/unit_system/constants.hpp', subdir : 'unit-system')
-install_headers('include/unit_system/unit_t.hpp', subdir : 'unit-system')
 install_headers('include/unit_system/units.hpp', subdir : 'unit-system')
-install_headers('include/unit_system/std_implements.hpp', subdir : 'unit-system')
 install_headers('include/unit_system.hpp')
 
 meson.override_dependency('unit-system', unit_system_dep)

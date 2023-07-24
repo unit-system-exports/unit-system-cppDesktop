@@ -1,24 +1,68 @@
 #pragma once
 
-
-#include "unit_system/unit_t.hpp"
-
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
 
+#include <cstddef>
+#include <cmath>
+#include <algorithm>
+#include <ratio>
+#include <iostream>
+#include <chrono>
+
 namespace sakurajin{
     namespace unit_system{
-        class UNIT_SYSTEM_EXPORT_MACRO area : public unit_t<22>{
+        class UNIT_SYSTEM_EXPORT_MACRO area {
         public:
+            const long double multiplier;
+            long double value = 0;
+            const long double offset;
+            long double rel_error = 0.000001;
+
             area();
-            area(unit_t<22> val);
-            explicit area(long double val);
-            area(long double val, long double mult);
-            area(long double val, long double mult, long double offset);
+            area(const area& other) = default;
+
+            explicit area(long double v);
+            area(long double v, long double mult);
+            area(long double v, long double mult, long double off);
+
+            template<std::intmax_t numerator, std::intmax_t denumerator = 1>
+            area(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
+            area operator*(long double scalar) const;
+            void operator*=(long double scalar);
+
+            long double operator/(const area& other) const;
+            area operator/(long double scalar) const;
+            void operator/=(long double scalar);
+
+            area operator+(const area& other) const;
+            void operator+=(const area& other);
+
+            area operator-(const area& other) const;
+            void operator-=(const area& other);
+
+            area operator-() const;
+
+            void operator=(const area& other);
+
+            explicit operator long double() const;
+
+            #if __cplusplus >= 202002L
+                int operator<=>(const area& other) const;
+            #else
+                bool operator<(const area& other) const;
+                bool operator>(const area& other) const;
+                bool operator<=(const area& other) const;
+                bool operator>=(const area& other) const;
+                bool operator==(const area& other) const;
+                bool operator!=(const area& other) const;
+            #endif
         };
 
+        UNIT_SYSTEM_EXPORT_MACRO area unit_cast(const area& unit, long double new_multiplier = 1, long double new_offset = 0);
+        UNIT_SYSTEM_EXPORT_MACRO area clamp(const area& unit, const area& lower, const area& upper);
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const area& t);
 
         
@@ -63,3 +107,12 @@ namespace sakurajin{
         
     }
 }
+
+namespace std{
+    UNIT_SYSTEM_EXPORT_MACRO sakurajin::unit_system::area abs(const sakurajin::unit_system::area& unit);
+}
+
+template<std::intmax_t numerator, std::intmax_t denumerator>
+sakurajin::unit_system::area::area(long double v, std::ratio<numerator, denumerator>, long double off): area{
+    v, static_cast<long double>(numerator)/static_cast<long double>(denumerator), off
+}{}

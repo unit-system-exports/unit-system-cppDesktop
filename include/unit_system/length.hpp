@@ -1,24 +1,68 @@
 #pragma once
 
-
-#include "unit_system/unit_t.hpp"
-
-
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
 
+#include <cstddef>
+#include <cmath>
+#include <algorithm>
+#include <ratio>
+#include <iostream>
+#include <chrono>
+
 namespace sakurajin{
     namespace unit_system{
-        class UNIT_SYSTEM_EXPORT_MACRO length : public unit_t<2>{
+        class UNIT_SYSTEM_EXPORT_MACRO length {
         public:
+            const long double multiplier;
+            long double value = 0;
+            const long double offset;
+            long double rel_error = 0.000001;
+
             length();
-            length(unit_t<2> val);
-            explicit length(long double val);
-            length(long double val, long double mult);
-            length(long double val, long double mult, long double offset);
+            length(const length& other) = default;
+
+            explicit length(long double v);
+            length(long double v, long double mult);
+            length(long double v, long double mult, long double off);
+
+            template<std::intmax_t numerator, std::intmax_t denumerator = 1>
+            length(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
+            length operator*(long double scalar) const;
+            void operator*=(long double scalar);
+
+            long double operator/(const length& other) const;
+            length operator/(long double scalar) const;
+            void operator/=(long double scalar);
+
+            length operator+(const length& other) const;
+            void operator+=(const length& other);
+
+            length operator-(const length& other) const;
+            void operator-=(const length& other);
+
+            length operator-() const;
+
+            void operator=(const length& other);
+
+            explicit operator long double() const;
+
+            #if __cplusplus >= 202002L
+                int operator<=>(const length& other) const;
+            #else
+                bool operator<(const length& other) const;
+                bool operator>(const length& other) const;
+                bool operator<=(const length& other) const;
+                bool operator>=(const length& other) const;
+                bool operator==(const length& other) const;
+                bool operator!=(const length& other) const;
+            #endif
         };
 
+        UNIT_SYSTEM_EXPORT_MACRO length unit_cast(const length& unit, long double new_multiplier = 1, long double new_offset = 0);
+        UNIT_SYSTEM_EXPORT_MACRO length clamp(const length& unit, const length& lower, const length& upper);
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const length& t);
 
         
@@ -78,3 +122,12 @@ namespace sakurajin{
         
     }
 }
+
+namespace std{
+    UNIT_SYSTEM_EXPORT_MACRO sakurajin::unit_system::length abs(const sakurajin::unit_system::length& unit);
+}
+
+template<std::intmax_t numerator, std::intmax_t denumerator>
+sakurajin::unit_system::length::length(long double v, std::ratio<numerator, denumerator>, long double off): length{
+    v, static_cast<long double>(numerator)/static_cast<long double>(denumerator), off
+}{}

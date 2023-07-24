@@ -5,7 +5,7 @@ deps = [
 ]
 
 tests = [
-    'unit_t_test',
+    'unit_test',
     'base_units_test',
     'common_test',
 ]
