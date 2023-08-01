@@ -1,5 +1,4 @@
-#include "unit_system/electric_current.hpp"
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::electric_current::electric_current(): electric_current{0.0}{}
 sakurajin::unit_system::electric_current::electric_current(long double v): electric_current{v,1,0}{}

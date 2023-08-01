@@ -1,5 +1,4 @@
-#include "unit_system/amount.hpp"
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::amount::amount(): amount{0.0}{}
 sakurajin::unit_system::amount::amount(long double v): amount{v,1,0}{}

@@ -1,19 +1,4 @@
-#include "unit_system/energy.hpp"
-
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/length.hpp"
-
-#include "unit_system/power.hpp"
-
-#include "unit_system/time_si.hpp"
-
-#include "unit_system/momentum.hpp"
-
-#include "unit_system/speed.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::energy::energy(): energy{0.0}{}
 sakurajin::unit_system::energy::energy(long double v): energy{v,1,0}{}

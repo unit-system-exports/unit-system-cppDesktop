@@ -1,21 +1,4 @@
-#include "unit_system/time_si.hpp"
-
-
-#include "unit_system/speed.hpp"
-
-#include "unit_system/length.hpp"
-
-#include "unit_system/acceleration.hpp"
-
-#include "unit_system/power.hpp"
-
-#include "unit_system/energy.hpp"
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/momentum.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::time_si::time_si(): time_si{0.0}{}
 sakurajin::unit_system::time_si::time_si(long double v): time_si{v,1,0}{}

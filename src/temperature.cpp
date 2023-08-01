@@ -1,5 +1,4 @@
-#include "unit_system/temperature.hpp"
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::temperature::temperature(): temperature{0.0}{}
 sakurajin::unit_system::temperature::temperature(long double v): temperature{v,1,0}{}

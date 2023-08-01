@@ -1,15 +1,4 @@
-#include "unit_system/acceleration.hpp"
-
-
-#include "unit_system/time_si.hpp"
-
-#include "unit_system/speed.hpp"
-
-#include "unit_system/mass.hpp"
-
-#include "unit_system/force.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::acceleration::acceleration(): acceleration{0.0}{}
 sakurajin::unit_system::acceleration::acceleration(long double v): acceleration{v,1,0}{}

@@ -1,17 +1,4 @@
-#include "unit_system/momentum.hpp"
-
-
-#include "unit_system/speed.hpp"
-
-#include "unit_system/energy.hpp"
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/time_si.hpp"
-
-#include "unit_system/mass.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::momentum::momentum(): momentum{0.0}{}
 sakurajin::unit_system::momentum::momentum(long double v): momentum{v,1,0}{}

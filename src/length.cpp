@@ -1,17 +1,4 @@
-#include "unit_system/length.hpp"
-
-
-#include "unit_system/speed.hpp"
-
-#include "unit_system/time_si.hpp"
-
-#include "unit_system/area.hpp"
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/energy.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::length::length(): length{0.0}{}
 sakurajin::unit_system::length::length(long double v): length{v,1,0}{}

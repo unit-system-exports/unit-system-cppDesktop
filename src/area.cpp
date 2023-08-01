@@ -1,9 +1,4 @@
-#include "unit_system/area.hpp"
-
-
-#include "unit_system/length.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::area::area(): area{0.0}{}
 sakurajin::unit_system::area::area(long double v): area{v,1,0}{}

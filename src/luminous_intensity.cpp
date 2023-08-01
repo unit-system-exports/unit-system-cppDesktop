@@ -1,5 +1,4 @@
-#include "unit_system/luminous_intensity.hpp"
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::luminous_intensity::luminous_intensity(): luminous_intensity{0.0}{}
 sakurajin::unit_system::luminous_intensity::luminous_intensity(long double v): luminous_intensity{v,1,0}{}

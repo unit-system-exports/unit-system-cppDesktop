@@ -1,15 +1,4 @@
-#include "unit_system/power.hpp"
-
-
-#include "unit_system/time_si.hpp"
-
-#include "unit_system/energy.hpp"
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/speed.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::power::power(): power{0.0}{}
 sakurajin::unit_system::power::power(long double v): power{v,1,0}{}

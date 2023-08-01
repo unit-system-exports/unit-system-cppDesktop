@@ -1,15 +1,4 @@
-#include "unit_system/mass.hpp"
-
-
-#include "unit_system/acceleration.hpp"
-
-#include "unit_system/force.hpp"
-
-#include "unit_system/speed.hpp"
-
-#include "unit_system/momentum.hpp"
-
-
+#include "unit_system.hpp"
 
 sakurajin::unit_system::mass::mass(): mass{0.0}{}
 sakurajin::unit_system::mass::mass(long double v): mass{v,1,0}{}

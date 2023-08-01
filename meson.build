@@ -71,38 +71,6 @@ unit_system_dep = declare_dependency(
 pkg = import('pkgconfig')
 pkg.generate(unit_system, subdirs: 'unit_system')
 
-
-    install_headers('include/unit_system/time_si.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/length.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/mass.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/temperature.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/amount.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/electric_current.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/luminous_intensity.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/energy.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/power.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/speed.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/acceleration.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/area.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/force.hpp', subdir : 'unit-system')
-
-    install_headers('include/unit_system/momentum.hpp', subdir : 'unit-system')
-
-
-install_headers('include/unit_system/constants.hpp', subdir : 'unit-system')
-install_headers('include/unit_system/units.hpp', subdir : 'unit-system')
 install_headers('include/unit_system.hpp')
 
 meson.override_dependency('unit-system', unit_system_dep)
