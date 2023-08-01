@@ -13,6 +13,12 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+        
+        class length;
+        
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO area {
         public:
             const long double multiplier;
@@ -49,6 +55,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            area convert_multiplier(long double new_multiplier = 1) const;
+            area convert_offset(long double new_offset = 0) const;
+            area convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const area& other) const;
             #else
@@ -59,6 +69,18 @@ namespace sakurajin{
                 bool operator==(const area& other) const;
                 bool operator!=(const area& other) const;
             #endif
+
+        
+        
+            
+            length sqrt() const;
+            
+        
+        
+            length operator/(const length& other) const;
+        
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO area unit_cast(const area& unit, long double new_multiplier = 1, long double new_offset = 0);

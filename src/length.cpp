@@ -1,5 +1,18 @@
 #include "unit_system/length.hpp"
 
+
+#include "unit_system/speed.hpp"
+
+#include "unit_system/time_si.hpp"
+
+#include "unit_system/area.hpp"
+
+#include "unit_system/force.hpp"
+
+#include "unit_system/energy.hpp"
+
+
+
 sakurajin::unit_system::length::length(): length{0.0}{}
 sakurajin::unit_system::length::length(long double v): length{v,1,0}{}
 sakurajin::unit_system::length::length(long double v, long double mult): length{v,mult,0}{}
@@ -44,6 +57,20 @@ sakurajin::unit_system::length sakurajin::unit_system::length::operator-() const
 sakurajin::unit_system::length::operator long double() const{
     auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
     return retval.value;
+}
+
+sakurajin::unit_system::length sakurajin::unit_system::length::convert_multiplier(long double new_multiplier) const{
+    return convert_copy(new_multiplier, offset);
+}
+
+sakurajin::unit_system::length sakurajin::unit_system::length::convert_offset(long double new_offset) const{
+    return convert_copy(multiplier, new_offset);
+}
+
+sakurajin::unit_system::length sakurajin::unit_system::length::convert_copy(long double new_multiplier, long double new_offset) const{
+    auto valBase0 = (value + offset) * multiplier;
+    sakurajin::unit_system::length retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
+    return retval;
 }
 
 //comparison operators
@@ -115,6 +142,51 @@ void sakurajin::unit_system::length::operator=(const sakurajin::unit_system::len
     value = otherVal.value;
 }
 
+
+    
+        
+        sakurajin::unit_system::time_si sakurajin::unit_system::length::operator/(const speed& other) const{
+            sakurajin::unit_system::length _v1 = convert_offset(0);
+            sakurajin::unit_system::speed _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::time_si{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+        
+    
+    
+        sakurajin::unit_system::speed sakurajin::unit_system::length::operator/(const time_si& other) const{
+            sakurajin::unit_system::length _v1 = convert_offset(0);
+            sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::speed{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+    
+
+    
+        
+        sakurajin::unit_system::area sakurajin::unit_system::length::square() const{
+            return sakurajin::unit_system::area{value*value, multiplier*multiplier, offset};
+        }
+        
+    
+    
+        sakurajin::unit_system::area sakurajin::unit_system::length::operator*(const length& other) const{
+            sakurajin::unit_system::length _v1 = convert_offset(0);
+            sakurajin::unit_system::length _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::area{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+        }
+    
+
+    
+        
+        sakurajin::unit_system::energy sakurajin::unit_system::length::operator*(const force& other) const{
+            sakurajin::unit_system::force _v1 = other.convert_offset(0);
+            sakurajin::unit_system::length _v2 = convert_offset(0);
+            return sakurajin::unit_system::energy{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+        }
+        
+    
+    
+
+
 // external functions
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::length& t){
     auto t1 = sakurajin::unit_system::unit_cast(t,1);
@@ -122,9 +194,7 @@ std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakuraj
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::unit_cast(const sakurajin::unit_system::length& unit, long double new_multiplier, long double new_offset){
-    auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
-    sakurajin::unit_system::length retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
-    return retval;
+    return unit.convert_copy(new_multiplier, new_offset);
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::clamp(const sakurajin::unit_system::length& unit, const sakurajin::unit_system::length& lower, const sakurajin::unit_system::length& upper){

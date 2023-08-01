@@ -13,6 +13,8 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO luminous_intensity {
         public:
             const long double multiplier;
@@ -49,6 +51,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            luminous_intensity convert_multiplier(long double new_multiplier = 1) const;
+            luminous_intensity convert_offset(long double new_offset = 0) const;
+            luminous_intensity convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const luminous_intensity& other) const;
             #else
@@ -59,6 +65,8 @@ namespace sakurajin{
                 bool operator==(const luminous_intensity& other) const;
                 bool operator!=(const luminous_intensity& other) const;
             #endif
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO luminous_intensity unit_cast(const luminous_intensity& unit, long double new_multiplier = 1, long double new_offset = 0);

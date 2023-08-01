@@ -13,6 +13,8 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO electric_current {
         public:
             const long double multiplier;
@@ -49,6 +51,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            electric_current convert_multiplier(long double new_multiplier = 1) const;
+            electric_current convert_offset(long double new_offset = 0) const;
+            electric_current convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const electric_current& other) const;
             #else
@@ -59,6 +65,8 @@ namespace sakurajin{
                 bool operator==(const electric_current& other) const;
                 bool operator!=(const electric_current& other) const;
             #endif
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO electric_current unit_cast(const electric_current& unit, long double new_multiplier = 1, long double new_offset = 0);

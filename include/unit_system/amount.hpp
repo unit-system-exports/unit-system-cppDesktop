@@ -13,6 +13,8 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO amount {
         public:
             const long double multiplier;
@@ -49,6 +51,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            amount convert_multiplier(long double new_multiplier = 1) const;
+            amount convert_offset(long double new_offset = 0) const;
+            amount convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const amount& other) const;
             #else
@@ -59,6 +65,8 @@ namespace sakurajin{
                 bool operator==(const amount& other) const;
                 bool operator!=(const amount& other) const;
             #endif
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO amount unit_cast(const amount& unit, long double new_multiplier = 1, long double new_offset = 0);

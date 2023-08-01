@@ -1,5 +1,16 @@
 #include "unit_system/power.hpp"
 
+
+#include "unit_system/time_si.hpp"
+
+#include "unit_system/energy.hpp"
+
+#include "unit_system/force.hpp"
+
+#include "unit_system/speed.hpp"
+
+
+
 sakurajin::unit_system::power::power(): power{0.0}{}
 sakurajin::unit_system::power::power(long double v): power{v,1,0}{}
 sakurajin::unit_system::power::power(long double v, long double mult): power{v,mult,0}{}
@@ -44,6 +55,20 @@ sakurajin::unit_system::power sakurajin::unit_system::power::operator-() const{
 sakurajin::unit_system::power::operator long double() const{
     auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
     return retval.value;
+}
+
+sakurajin::unit_system::power sakurajin::unit_system::power::convert_multiplier(long double new_multiplier) const{
+    return convert_copy(new_multiplier, offset);
+}
+
+sakurajin::unit_system::power sakurajin::unit_system::power::convert_offset(long double new_offset) const{
+    return convert_copy(multiplier, new_offset);
+}
+
+sakurajin::unit_system::power sakurajin::unit_system::power::convert_copy(long double new_multiplier, long double new_offset) const{
+    auto valBase0 = (value + offset) * multiplier;
+    sakurajin::unit_system::power retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
+    return retval;
 }
 
 //comparison operators
@@ -115,6 +140,36 @@ void sakurajin::unit_system::power::operator=(const sakurajin::unit_system::powe
     value = otherVal.value;
 }
 
+
+    
+        
+    
+    
+        sakurajin::unit_system::energy sakurajin::unit_system::power::operator*(const time_si& other) const{
+            sakurajin::unit_system::power _v1 = convert_offset(0);
+            sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::energy{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+        }
+    
+
+    
+        
+        sakurajin::unit_system::speed sakurajin::unit_system::power::operator/(const force& other) const{
+            sakurajin::unit_system::power _v1 = convert_offset(0);
+            sakurajin::unit_system::force _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::speed{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+        
+    
+    
+        sakurajin::unit_system::force sakurajin::unit_system::power::operator/(const speed& other) const{
+            sakurajin::unit_system::power _v1 = convert_offset(0);
+            sakurajin::unit_system::speed _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::force{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+    
+
+
 // external functions
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::power& t){
     auto t1 = sakurajin::unit_system::unit_cast(t,1);
@@ -122,9 +177,7 @@ std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakuraj
 }
 
 sakurajin::unit_system::power sakurajin::unit_system::unit_cast(const sakurajin::unit_system::power& unit, long double new_multiplier, long double new_offset){
-    auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
-    sakurajin::unit_system::power retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
-    return retval;
+    return unit.convert_copy(new_multiplier, new_offset);
 }
 
 sakurajin::unit_system::power sakurajin::unit_system::clamp(const sakurajin::unit_system::power& unit, const sakurajin::unit_system::power& lower, const sakurajin::unit_system::power& upper){

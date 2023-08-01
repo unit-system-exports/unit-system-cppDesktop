@@ -83,7 +83,7 @@ TEST( common_tests, area_test ) {
     const auto _A2 = s1 * s2;
     EXPECT_UNIT_EQ(_A2, 2500_m2);
 
-    EXPECT_UNIT_EQ(square(s2), A1);
+    EXPECT_UNIT_EQ(s2.square(), A1);
     EXPECT_UNIT_EQ(A1/s2, s2);
 }
 

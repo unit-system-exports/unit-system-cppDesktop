@@ -13,6 +13,8 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO temperature {
         public:
             const long double multiplier;
@@ -49,6 +51,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            temperature convert_multiplier(long double new_multiplier = 1) const;
+            temperature convert_offset(long double new_offset = 0) const;
+            temperature convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const temperature& other) const;
             #else
@@ -59,6 +65,8 @@ namespace sakurajin{
                 bool operator==(const temperature& other) const;
                 bool operator!=(const temperature& other) const;
             #endif
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO temperature unit_cast(const temperature& unit, long double new_multiplier = 1, long double new_offset = 0);

@@ -1,5 +1,6 @@
 #include "unit_system/amount.hpp"
 
+
 sakurajin::unit_system::amount::amount(): amount{0.0}{}
 sakurajin::unit_system::amount::amount(long double v): amount{v,1,0}{}
 sakurajin::unit_system::amount::amount(long double v, long double mult): amount{v,mult,0}{}
@@ -44,6 +45,20 @@ sakurajin::unit_system::amount sakurajin::unit_system::amount::operator-() const
 sakurajin::unit_system::amount::operator long double() const{
     auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
     return retval.value;
+}
+
+sakurajin::unit_system::amount sakurajin::unit_system::amount::convert_multiplier(long double new_multiplier) const{
+    return convert_copy(new_multiplier, offset);
+}
+
+sakurajin::unit_system::amount sakurajin::unit_system::amount::convert_offset(long double new_offset) const{
+    return convert_copy(multiplier, new_offset);
+}
+
+sakurajin::unit_system::amount sakurajin::unit_system::amount::convert_copy(long double new_multiplier, long double new_offset) const{
+    auto valBase0 = (value + offset) * multiplier;
+    sakurajin::unit_system::amount retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
+    return retval;
 }
 
 //comparison operators
@@ -115,6 +130,8 @@ void sakurajin::unit_system::amount::operator=(const sakurajin::unit_system::amo
     value = otherVal.value;
 }
 
+
+
 // external functions
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::amount& t){
     auto t1 = sakurajin::unit_system::unit_cast(t,1);
@@ -122,9 +139,7 @@ std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakuraj
 }
 
 sakurajin::unit_system::amount sakurajin::unit_system::unit_cast(const sakurajin::unit_system::amount& unit, long double new_multiplier, long double new_offset){
-    auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
-    sakurajin::unit_system::amount retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
-    return retval;
+    return unit.convert_copy(new_multiplier, new_offset);
 }
 
 sakurajin::unit_system::amount sakurajin::unit_system::clamp(const sakurajin::unit_system::amount& unit, const sakurajin::unit_system::amount& lower, const sakurajin::unit_system::amount& upper){

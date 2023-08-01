@@ -51,7 +51,6 @@ sources = [
     
     'src/momentum.cpp',
     
-    'src/combinations.cpp',
 ]
 
 unit_system = library(
@@ -102,7 +101,6 @@ pkg.generate(unit_system, subdirs: 'unit_system')
     install_headers('include/unit_system/momentum.hpp', subdir : 'unit-system')
 
 
-install_headers('include/unit_system/combinations.hpp', subdir : 'unit-system')
 install_headers('include/unit_system/constants.hpp', subdir : 'unit-system')
 install_headers('include/unit_system/units.hpp', subdir : 'unit-system')
 install_headers('include/unit_system.hpp')

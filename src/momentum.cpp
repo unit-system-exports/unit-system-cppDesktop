@@ -1,5 +1,18 @@
 #include "unit_system/momentum.hpp"
 
+
+#include "unit_system/speed.hpp"
+
+#include "unit_system/energy.hpp"
+
+#include "unit_system/force.hpp"
+
+#include "unit_system/time_si.hpp"
+
+#include "unit_system/mass.hpp"
+
+
+
 sakurajin::unit_system::momentum::momentum(): momentum{0.0}{}
 sakurajin::unit_system::momentum::momentum(long double v): momentum{v,1,0}{}
 sakurajin::unit_system::momentum::momentum(long double v, long double mult): momentum{v,mult,0}{}
@@ -44,6 +57,20 @@ sakurajin::unit_system::momentum sakurajin::unit_system::momentum::operator-() c
 sakurajin::unit_system::momentum::operator long double() const{
     auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
     return retval.value;
+}
+
+sakurajin::unit_system::momentum sakurajin::unit_system::momentum::convert_multiplier(long double new_multiplier) const{
+    return convert_copy(new_multiplier, offset);
+}
+
+sakurajin::unit_system::momentum sakurajin::unit_system::momentum::convert_offset(long double new_offset) const{
+    return convert_copy(multiplier, new_offset);
+}
+
+sakurajin::unit_system::momentum sakurajin::unit_system::momentum::convert_copy(long double new_multiplier, long double new_offset) const{
+    auto valBase0 = (value + offset) * multiplier;
+    sakurajin::unit_system::momentum retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
+    return retval;
 }
 
 //comparison operators
@@ -115,6 +142,53 @@ void sakurajin::unit_system::momentum::operator=(const sakurajin::unit_system::m
     value = otherVal.value;
 }
 
+
+    
+        
+    
+    
+        sakurajin::unit_system::energy sakurajin::unit_system::momentum::operator*(const speed& other) const{
+            sakurajin::unit_system::momentum _v1 = convert_offset(0);
+            sakurajin::unit_system::speed _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::energy{_v1.value*_v2.value,_v1.multiplier*_v2.multiplier};
+        }
+    
+
+    
+        
+        sakurajin::unit_system::time_si sakurajin::unit_system::momentum::operator/(const force& other) const{
+            sakurajin::unit_system::momentum _v1 = convert_offset(0);
+            sakurajin::unit_system::force _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::time_si{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+        
+    
+    
+        sakurajin::unit_system::force sakurajin::unit_system::momentum::operator/(const time_si& other) const{
+            sakurajin::unit_system::momentum _v1 = convert_offset(0);
+            sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::force{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+    
+
+    
+        
+        sakurajin::unit_system::speed sakurajin::unit_system::momentum::operator/(const mass& other) const{
+            sakurajin::unit_system::momentum _v1 = convert_offset(0);
+            sakurajin::unit_system::mass _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::speed{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+        
+    
+    
+        sakurajin::unit_system::mass sakurajin::unit_system::momentum::operator/(const speed& other) const{
+            sakurajin::unit_system::momentum _v1 = convert_offset(0);
+            sakurajin::unit_system::speed _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::mass{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+    
+
+
 // external functions
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::momentum& t){
     auto t1 = sakurajin::unit_system::unit_cast(t,1);
@@ -122,9 +196,7 @@ std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakuraj
 }
 
 sakurajin::unit_system::momentum sakurajin::unit_system::unit_cast(const sakurajin::unit_system::momentum& unit, long double new_multiplier, long double new_offset){
-    auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
-    sakurajin::unit_system::momentum retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
-    return retval;
+    return unit.convert_copy(new_multiplier, new_offset);
 }
 
 sakurajin::unit_system::momentum sakurajin::unit_system::clamp(const sakurajin::unit_system::momentum& unit, const sakurajin::unit_system::momentum& lower, const sakurajin::unit_system::momentum& upper){

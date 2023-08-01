@@ -1,5 +1,10 @@
 #include "unit_system/area.hpp"
 
+
+#include "unit_system/length.hpp"
+
+
+
 sakurajin::unit_system::area::area(): area{0.0}{}
 sakurajin::unit_system::area::area(long double v): area{v,1,0}{}
 sakurajin::unit_system::area::area(long double v, long double mult): area{v,mult,0}{}
@@ -44,6 +49,20 @@ sakurajin::unit_system::area sakurajin::unit_system::area::operator-() const{
 sakurajin::unit_system::area::operator long double() const{
     auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
     return retval.value;
+}
+
+sakurajin::unit_system::area sakurajin::unit_system::area::convert_multiplier(long double new_multiplier) const{
+    return convert_copy(new_multiplier, offset);
+}
+
+sakurajin::unit_system::area sakurajin::unit_system::area::convert_offset(long double new_offset) const{
+    return convert_copy(multiplier, new_offset);
+}
+
+sakurajin::unit_system::area sakurajin::unit_system::area::convert_copy(long double new_multiplier, long double new_offset) const{
+    auto valBase0 = (value + offset) * multiplier;
+    sakurajin::unit_system::area retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
+    return retval;
 }
 
 //comparison operators
@@ -115,6 +134,23 @@ void sakurajin::unit_system::area::operator=(const sakurajin::unit_system::area&
     value = otherVal.value;
 }
 
+
+    
+        
+        sakurajin::unit_system::length sakurajin::unit_system::area::sqrt() const{
+            return sakurajin::unit_system::length{std::sqrt(value), std::sqrt(multiplier), offset};
+        }
+        
+    
+    
+        sakurajin::unit_system::length sakurajin::unit_system::area::operator/(const length& other) const{
+            sakurajin::unit_system::area _v1 = convert_offset(0);
+            sakurajin::unit_system::length _v2 = other.convert_offset(0);
+            return sakurajin::unit_system::length{_v1.value/_v2.value,_v1.multiplier/_v2.multiplier};
+        }
+    
+
+
 // external functions
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::area& t){
     auto t1 = sakurajin::unit_system::unit_cast(t,1);
@@ -122,9 +158,7 @@ std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakuraj
 }
 
 sakurajin::unit_system::area sakurajin::unit_system::unit_cast(const sakurajin::unit_system::area& unit, long double new_multiplier, long double new_offset){
-    auto valBase0 = (unit.value + unit.offset) * unit.multiplier;
-    sakurajin::unit_system::area retval{valBase0/new_multiplier-new_offset, new_multiplier, new_offset};
-    return retval;
+    return unit.convert_copy(new_multiplier, new_offset);
 }
 
 sakurajin::unit_system::area sakurajin::unit_system::clamp(const sakurajin::unit_system::area& unit, const sakurajin::unit_system::area& lower, const sakurajin::unit_system::area& upper){

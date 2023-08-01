@@ -13,6 +13,22 @@
 
 namespace sakurajin{
     namespace unit_system{
+        
+        
+        class force;
+        
+        class length;
+        
+        class power;
+        
+        class time_si;
+        
+        class momentum;
+        
+        class speed;
+        
+        
+
         class UNIT_SYSTEM_EXPORT_MACRO energy {
         public:
             const long double multiplier;
@@ -49,6 +65,10 @@ namespace sakurajin{
 
             explicit operator long double() const;
 
+            energy convert_multiplier(long double new_multiplier = 1) const;
+            energy convert_offset(long double new_offset = 0) const;
+            energy convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
             #if __cplusplus >= 202002L
                 int operator<=>(const energy& other) const;
             #else
@@ -59,6 +79,38 @@ namespace sakurajin{
                 bool operator==(const energy& other) const;
                 bool operator!=(const energy& other) const;
             #endif
+
+        
+        
+            
+            length operator/(const force& other) const;
+            
+        
+        
+            force operator/(const length& other) const;
+        
+
+        
+        
+            
+            time_si operator/(const power& other) const;
+            
+        
+        
+            power operator/(const time_si& other) const;
+        
+
+        
+        
+            
+            speed operator/(const momentum& other) const;
+            
+        
+        
+            momentum operator/(const speed& other) const;
+        
+
+        
         };
 
         UNIT_SYSTEM_EXPORT_MACRO energy unit_cast(const energy& unit, long double new_multiplier = 1, long double new_offset = 0);
