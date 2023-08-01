@@ -61,7 +61,7 @@ sakurajin::unit_system::time_si sakurajin::unit_system::time_si::convert_offset(
 }
 
 sakurajin::unit_system::time_si sakurajin::unit_system::time_si::convert_copy(long double new_multiplier, long double new_offset) const {
-    auto                            valBase0 = (value + offset) * multiplier;
+    auto                            valBase0 = value * multiplier + offset;
     sakurajin::unit_system::time_si retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

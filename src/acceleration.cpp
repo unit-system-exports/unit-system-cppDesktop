@@ -64,7 +64,7 @@ sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::conve
 
 sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::convert_copy(long double new_multiplier,
                                                                                         long double new_offset) const {
-    auto                                 valBase0 = (value + offset) * multiplier;
+    auto                                 valBase0 = value * multiplier + offset;
     sakurajin::unit_system::acceleration retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

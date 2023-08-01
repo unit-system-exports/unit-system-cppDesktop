@@ -61,7 +61,7 @@ sakurajin::unit_system::energy sakurajin::unit_system::energy::convert_offset(lo
 }
 
 sakurajin::unit_system::energy sakurajin::unit_system::energy::convert_copy(long double new_multiplier, long double new_offset) const {
-    auto                           valBase0 = (value + offset) * multiplier;
+    auto                           valBase0 = value * multiplier + offset;
     sakurajin::unit_system::energy retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

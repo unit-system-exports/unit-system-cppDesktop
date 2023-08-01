@@ -62,7 +62,7 @@ sakurajin::unit_system::temperature sakurajin::unit_system::temperature::convert
 
 sakurajin::unit_system::temperature sakurajin::unit_system::temperature::convert_copy(long double new_multiplier,
                                                                                       long double new_offset) const {
-    auto                                valBase0 = (value + offset) * multiplier;
+    auto                                valBase0 = value * multiplier + offset;
     sakurajin::unit_system::temperature retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

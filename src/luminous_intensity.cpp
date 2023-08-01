@@ -65,7 +65,7 @@ sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_inte
 
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_intensity::convert_copy(long double new_multiplier,
                                                                                                     long double new_offset) const {
-    auto                                       valBase0 = (value + offset) * multiplier;
+    auto                                       valBase0 = value * multiplier + offset;
     sakurajin::unit_system::luminous_intensity retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

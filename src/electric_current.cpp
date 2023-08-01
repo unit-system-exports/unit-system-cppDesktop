@@ -64,7 +64,7 @@ sakurajin::unit_system::electric_current sakurajin::unit_system::electric_curren
 
 sakurajin::unit_system::electric_current sakurajin::unit_system::electric_current::convert_copy(long double new_multiplier,
                                                                                                 long double new_offset) const {
-    auto                                     valBase0 = (value + offset) * multiplier;
+    auto                                     valBase0 = value * multiplier + offset;
     sakurajin::unit_system::electric_current retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }

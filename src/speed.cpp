@@ -61,7 +61,7 @@ sakurajin::unit_system::speed sakurajin::unit_system::speed::convert_offset(long
 }
 
 sakurajin::unit_system::speed sakurajin::unit_system::speed::convert_copy(long double new_multiplier, long double new_offset) const {
-    auto                          valBase0 = (value + offset) * multiplier;
+    auto                          valBase0 = value * multiplier + offset;
     sakurajin::unit_system::speed retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
 }
