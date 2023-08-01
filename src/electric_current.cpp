@@ -140,9 +140,11 @@ void sakurajin::unit_system::electric_current::operator=(const sakurajin::unit_s
 
 
 // external functions
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::electric_current& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " electric_current";
+    return os << t1.value << " Ampere";
 }
 
 sakurajin::unit_system::electric_current sakurajin::unit_system::unit_cast(const sakurajin::unit_system::electric_current& unit,

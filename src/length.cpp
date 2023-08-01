@@ -136,17 +136,29 @@ void sakurajin::unit_system::length::operator=(const sakurajin::unit_system::len
 }
 
 
-sakurajin::unit_system::time_si sakurajin::unit_system::length::operator/(const speed& other) const {
+sakurajin::unit_system::time_si sakurajin::unit_system::length::operator/(const sakurajin::unit_system::speed& other) const {
     sakurajin::unit_system::length _v1 = convert_offset(0);
     sakurajin::unit_system::speed  _v2 = other.convert_offset(0);
     return sakurajin::unit_system::time_si{_v1.value / _v2.value, _v1.multiplier / _v2.multiplier};
 }
 
-
-sakurajin::unit_system::speed sakurajin::unit_system::length::operator/(const time_si& other) const {
+sakurajin::unit_system::speed sakurajin::unit_system::length::operator/(const sakurajin::unit_system::time_si& other) const {
     sakurajin::unit_system::length  _v1 = convert_offset(0);
     sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
     return sakurajin::unit_system::speed{_v1.value / _v2.value, _v1.multiplier / _v2.multiplier};
+}
+
+
+sakurajin::unit_system::area sakurajin::unit_system::length::operator*(const sakurajin::unit_system::length& other) const {
+    sakurajin::unit_system::length _v1 = convert_offset(0);
+    sakurajin::unit_system::length _v2 = other.convert_offset(0);
+    return sakurajin::unit_system::area{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
+}
+
+sakurajin::unit_system::energy sakurajin::unit_system::length::operator*(const sakurajin::unit_system::force& other) const {
+    sakurajin::unit_system::length _v1 = convert_offset(0);
+    sakurajin::unit_system::force  _v2 = other.convert_offset(0);
+    return sakurajin::unit_system::energy{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
 }
 
 
@@ -155,24 +167,17 @@ sakurajin::unit_system::area sakurajin::unit_system::length::square() const {
 }
 
 
-sakurajin::unit_system::area sakurajin::unit_system::length::operator*(const length& other) const {
-    sakurajin::unit_system::length _v1 = convert_offset(0);
-    sakurajin::unit_system::length _v2 = other.convert_offset(0);
-    return sakurajin::unit_system::area{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
-}
-
-
-sakurajin::unit_system::energy sakurajin::unit_system::length::operator*(const force& other) const {
-    sakurajin::unit_system::force  _v1 = other.convert_offset(0);
-    sakurajin::unit_system::length _v2 = convert_offset(0);
-    return sakurajin::unit_system::energy{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
-}
-
-
 // external functions
+
+
+sakurajin::unit_system::area sakurajin::unit_system::square(const length& unit) {
+    return unit.square();
+}
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::length& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " length";
+    return os << t1.value << " metre";
 }
 
 sakurajin::unit_system::length

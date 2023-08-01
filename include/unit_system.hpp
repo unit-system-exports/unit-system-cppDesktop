@@ -83,17 +83,12 @@ namespace sakurajin {
 #endif
 
 
-            length operator*(const speed& other) const;
-
-
-            speed operator*(const acceleration& other) const;
-
-
-            energy operator*(const power& other) const;
-
-
+            length   operator*(const speed& other) const;
+            speed    operator*(const acceleration& other) const;
+            energy   operator*(const power& other) const;
             momentum operator*(const force& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO time_si unit_cast(const time_si& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO time_si clamp(const time_si& unit, const time_si& lower, const time_si& upper);
@@ -203,19 +198,18 @@ namespace sakurajin {
 
 
             time_si operator/(const speed& other) const;
+            speed   operator/(const time_si& other) const;
 
 
-            speed operator/(const time_si& other) const;
+            area   operator*(const length& other) const;
+            energy operator*(const force& other) const;
 
 
             area square() const;
-
-
-            area operator*(const length& other) const;
-
-
-            energy operator*(const force& other) const;
         };
+
+
+        UNIT_SYSTEM_EXPORT_MACRO area square(const length& unit);
 
         UNIT_SYSTEM_EXPORT_MACRO length unit_cast(const length& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO length clamp(const length& unit, const length& lower, const length& upper);
@@ -320,11 +314,10 @@ namespace sakurajin {
 #endif
 
 
-            force operator*(const acceleration& other) const;
-
-
+            force    operator*(const acceleration& other) const;
             momentum operator*(const speed& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO mass unit_cast(const mass& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO mass clamp(const mass& unit, const mass& lower, const mass& upper);
@@ -425,6 +418,7 @@ namespace sakurajin {
 #endif
         };
 
+
         UNIT_SYSTEM_EXPORT_MACRO temperature unit_cast(const temperature& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO temperature clamp(const temperature& unit, const temperature& lower, const temperature& upper);
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const temperature& t);
@@ -496,6 +490,7 @@ namespace sakurajin {
 #endif
         };
 
+
         UNIT_SYSTEM_EXPORT_MACRO amount unit_cast(const amount& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO amount clamp(const amount& unit, const amount& lower, const amount& upper);
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const amount& t);
@@ -566,6 +561,7 @@ namespace sakurajin {
             bool operator!=(const electric_current& other) const;
 #endif
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO electric_current unit_cast(const electric_current& unit,
                                                             long double             new_multiplier = 1,
@@ -682,6 +678,7 @@ namespace sakurajin {
 #endif
         };
 
+
         UNIT_SYSTEM_EXPORT_MACRO luminous_intensity unit_cast(const luminous_intensity& unit,
                                                               long double               new_multiplier = 1,
                                                               long double               new_offset     = 0);
@@ -753,23 +750,14 @@ namespace sakurajin {
 #endif
 
 
-            length operator/(const force& other) const;
-
-
-            force operator/(const length& other) const;
-
-
-            time_si operator/(const power& other) const;
-
-
-            power operator/(const time_si& other) const;
-
-
-            speed operator/(const momentum& other) const;
-
-
+            length   operator/(const force& other) const;
+            force    operator/(const length& other) const;
+            time_si  operator/(const power& other) const;
+            power    operator/(const time_si& other) const;
+            speed    operator/(const momentum& other) const;
             momentum operator/(const speed& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO energy unit_cast(const energy& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO energy clamp(const energy& unit, const energy& lower, const energy& upper);
@@ -966,14 +954,13 @@ namespace sakurajin {
 #endif
 
 
-            energy operator*(const time_si& other) const;
-
-
             speed operator/(const force& other) const;
-
-
             force operator/(const speed& other) const;
+
+
+            energy operator*(const time_si& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO power unit_cast(const power& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO power clamp(const power& unit, const power& lower, const power& upper);
@@ -1086,23 +1073,16 @@ namespace sakurajin {
 #endif
 
 
-            length operator*(const time_si& other) const;
-
-
-            time_si operator/(const acceleration& other) const;
-
-
+            time_si      operator/(const acceleration& other) const;
             acceleration operator/(const time_si& other) const;
 
 
-            energy operator*(const momentum& other) const;
-
-
+            length   operator*(const time_si& other) const;
+            energy   operator*(const momentum& other) const;
             momentum operator*(const mass& other) const;
-
-
-            power operator*(const force& other) const;
+            power    operator*(const force& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO speed unit_cast(const speed& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO speed clamp(const speed& unit, const speed& lower, const speed& upper);
@@ -1176,10 +1156,9 @@ namespace sakurajin {
 
 
             speed operator*(const time_si& other) const;
-
-
             force operator*(const mass& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO acceleration unit_cast(const acceleration& unit,
                                                         long double         new_multiplier = 1,
@@ -1254,11 +1233,14 @@ namespace sakurajin {
 #endif
 
 
-            length sqrt() const;
-
-
             length operator/(const length& other) const;
+
+
+            length sqrt() const;
         };
+
+
+        UNIT_SYSTEM_EXPORT_MACRO length sqrt(const area& unit);
 
         UNIT_SYSTEM_EXPORT_MACRO area unit_cast(const area& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO area clamp(const area& unit, const area& lower, const area& upper);
@@ -1351,20 +1333,15 @@ namespace sakurajin {
 #endif
 
 
-            energy operator*(const length& other) const;
-
-
-            momentum operator*(const time_si& other) const;
-
-
             acceleration operator/(const mass& other) const;
+            mass         operator/(const acceleration& other) const;
 
 
-            mass operator/(const acceleration& other) const;
-
-
-            power operator*(const speed& other) const;
+            energy   operator*(const length& other) const;
+            momentum operator*(const time_si& other) const;
+            power    operator*(const speed& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO force unit_cast(const force& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO force clamp(const force& unit, const force& lower, const force& upper);
@@ -1477,20 +1454,15 @@ namespace sakurajin {
 #endif
 
 
-            energy operator*(const speed& other) const;
-
-
             time_si operator/(const force& other) const;
+            force   operator/(const time_si& other) const;
+            speed   operator/(const mass& other) const;
+            mass    operator/(const speed& other) const;
 
 
-            force operator/(const time_si& other) const;
-
-
-            speed operator/(const mass& other) const;
-
-
-            mass operator/(const speed& other) const;
+            energy operator*(const speed& other) const;
         };
+
 
         UNIT_SYSTEM_EXPORT_MACRO momentum unit_cast(const momentum& unit, long double new_multiplier = 1, long double new_offset = 0);
         UNIT_SYSTEM_EXPORT_MACRO momentum clamp(const momentum& unit, const momentum& lower, const momentum& upper);

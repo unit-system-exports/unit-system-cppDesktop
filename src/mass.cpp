@@ -136,14 +136,13 @@ void sakurajin::unit_system::mass::operator=(const sakurajin::unit_system::mass&
 }
 
 
-sakurajin::unit_system::force sakurajin::unit_system::mass::operator*(const acceleration& other) const {
+sakurajin::unit_system::force sakurajin::unit_system::mass::operator*(const sakurajin::unit_system::acceleration& other) const {
     sakurajin::unit_system::mass         _v1 = convert_offset(0);
     sakurajin::unit_system::acceleration _v2 = other.convert_offset(0);
     return sakurajin::unit_system::force{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
 }
 
-
-sakurajin::unit_system::momentum sakurajin::unit_system::mass::operator*(const speed& other) const {
+sakurajin::unit_system::momentum sakurajin::unit_system::mass::operator*(const sakurajin::unit_system::speed& other) const {
     sakurajin::unit_system::mass  _v1 = convert_offset(0);
     sakurajin::unit_system::speed _v2 = other.convert_offset(0);
     return sakurajin::unit_system::momentum{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
@@ -151,9 +150,11 @@ sakurajin::unit_system::momentum sakurajin::unit_system::mass::operator*(const s
 
 
 // external functions
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::mass& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " mass";
+    return os << t1.value << " kilogram";
 }
 
 sakurajin::unit_system::mass

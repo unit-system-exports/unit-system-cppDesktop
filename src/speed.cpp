@@ -136,52 +136,50 @@ void sakurajin::unit_system::speed::operator=(const sakurajin::unit_system::spee
 }
 
 
-sakurajin::unit_system::length sakurajin::unit_system::speed::operator*(const time_si& other) const {
-    sakurajin::unit_system::speed   _v1 = convert_offset(0);
-    sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
-    return sakurajin::unit_system::length{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
-}
-
-
-sakurajin::unit_system::time_si sakurajin::unit_system::speed::operator/(const acceleration& other) const {
+sakurajin::unit_system::time_si sakurajin::unit_system::speed::operator/(const sakurajin::unit_system::acceleration& other) const {
     sakurajin::unit_system::speed        _v1 = convert_offset(0);
     sakurajin::unit_system::acceleration _v2 = other.convert_offset(0);
     return sakurajin::unit_system::time_si{_v1.value / _v2.value, _v1.multiplier / _v2.multiplier};
 }
 
-
-sakurajin::unit_system::acceleration sakurajin::unit_system::speed::operator/(const time_si& other) const {
+sakurajin::unit_system::acceleration sakurajin::unit_system::speed::operator/(const sakurajin::unit_system::time_si& other) const {
     sakurajin::unit_system::speed   _v1 = convert_offset(0);
     sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
     return sakurajin::unit_system::acceleration{_v1.value / _v2.value, _v1.multiplier / _v2.multiplier};
 }
 
 
-sakurajin::unit_system::energy sakurajin::unit_system::speed::operator*(const momentum& other) const {
-    sakurajin::unit_system::momentum _v1 = other.convert_offset(0);
-    sakurajin::unit_system::speed    _v2 = convert_offset(0);
+sakurajin::unit_system::length sakurajin::unit_system::speed::operator*(const sakurajin::unit_system::time_si& other) const {
+    sakurajin::unit_system::speed   _v1 = convert_offset(0);
+    sakurajin::unit_system::time_si _v2 = other.convert_offset(0);
+    return sakurajin::unit_system::length{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
+}
+
+sakurajin::unit_system::energy sakurajin::unit_system::speed::operator*(const sakurajin::unit_system::momentum& other) const {
+    sakurajin::unit_system::speed    _v1 = convert_offset(0);
+    sakurajin::unit_system::momentum _v2 = other.convert_offset(0);
     return sakurajin::unit_system::energy{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
 }
 
-
-sakurajin::unit_system::momentum sakurajin::unit_system::speed::operator*(const mass& other) const {
-    sakurajin::unit_system::mass  _v1 = other.convert_offset(0);
-    sakurajin::unit_system::speed _v2 = convert_offset(0);
+sakurajin::unit_system::momentum sakurajin::unit_system::speed::operator*(const sakurajin::unit_system::mass& other) const {
+    sakurajin::unit_system::speed _v1 = convert_offset(0);
+    sakurajin::unit_system::mass  _v2 = other.convert_offset(0);
     return sakurajin::unit_system::momentum{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
 }
 
-
-sakurajin::unit_system::power sakurajin::unit_system::speed::operator*(const force& other) const {
-    sakurajin::unit_system::force _v1 = other.convert_offset(0);
-    sakurajin::unit_system::speed _v2 = convert_offset(0);
+sakurajin::unit_system::power sakurajin::unit_system::speed::operator*(const sakurajin::unit_system::force& other) const {
+    sakurajin::unit_system::speed _v1 = convert_offset(0);
+    sakurajin::unit_system::force _v2 = other.convert_offset(0);
     return sakurajin::unit_system::power{_v1.value * _v2.value, _v1.multiplier * _v2.multiplier};
 }
 
 
 // external functions
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::speed& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " speed";
+    return os << t1.value << " metre per second";
 }
 
 sakurajin::unit_system::speed

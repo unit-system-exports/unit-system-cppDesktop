@@ -136,22 +136,29 @@ void sakurajin::unit_system::area::operator=(const sakurajin::unit_system::area&
 }
 
 
-sakurajin::unit_system::length sakurajin::unit_system::area::sqrt() const {
-    return sakurajin::unit_system::length{std::sqrt(value), std::sqrt(multiplier), offset};
-}
-
-
-sakurajin::unit_system::length sakurajin::unit_system::area::operator/(const length& other) const {
+sakurajin::unit_system::length sakurajin::unit_system::area::operator/(const sakurajin::unit_system::length& other) const {
     sakurajin::unit_system::area   _v1 = convert_offset(0);
     sakurajin::unit_system::length _v2 = other.convert_offset(0);
     return sakurajin::unit_system::length{_v1.value / _v2.value, _v1.multiplier / _v2.multiplier};
 }
 
 
+sakurajin::unit_system::length sakurajin::unit_system::area::sqrt() const {
+    return sakurajin::unit_system::length{std::sqrt(value), std::sqrt(multiplier), offset};
+}
+
+
 // external functions
+
+
+sakurajin::unit_system::length sakurajin::unit_system::sqrt(const area& unit) {
+    return unit.sqrt();
+}
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::area& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " area";
+    return os << t1.value << " metre^2";
 }
 
 sakurajin::unit_system::area

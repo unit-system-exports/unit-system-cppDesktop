@@ -141,9 +141,11 @@ void sakurajin::unit_system::luminous_intensity::operator=(const sakurajin::unit
 
 
 // external functions
+
+
 std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::luminous_intensity& t) {
     auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " luminous_intensity";
+    return os << t1.value << " candela";
 }
 
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::unit_cast(const sakurajin::unit_system::luminous_intensity& unit,
