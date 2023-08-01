@@ -204,10 +204,8 @@ namespace sakurajin {
             area   operator*(const length& other) const;
             energy operator*(const force& other) const;
 
-
             area square() const;
         };
-
 
         UNIT_SYSTEM_EXPORT_MACRO area square(const length& unit);
 
@@ -1241,9 +1239,8 @@ namespace sakurajin {
 
 
         UNIT_SYSTEM_EXPORT_MACRO length sqrt(const area& unit);
-
-        UNIT_SYSTEM_EXPORT_MACRO area unit_cast(const area& unit, long double new_multiplier = 1, long double new_offset = 0);
-        UNIT_SYSTEM_EXPORT_MACRO area clamp(const area& unit, const area& lower, const area& upper);
+        UNIT_SYSTEM_EXPORT_MACRO area   unit_cast(const area& unit, long double new_multiplier = 1, long double new_offset = 0);
+        UNIT_SYSTEM_EXPORT_MACRO area   clamp(const area& unit, const area& lower, const area& upper);
         UNIT_SYSTEM_EXPORT_MACRO std::ostream& operator<<(std::ostream& os, const area& t);
 
 
