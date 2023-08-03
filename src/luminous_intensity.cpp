@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::luminous_intensity::luminous_intensity()
@@ -143,11 +144,6 @@ void sakurajin::unit_system::luminous_intensity::operator=(const sakurajin::unit
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::luminous_intensity& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " candela";
-}
-
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::unit_cast(const sakurajin::unit_system::luminous_intensity& unit,
                                                                              long double new_multiplier,
                                                                              long double new_offset) {
@@ -164,10 +160,17 @@ sakurajin::unit_system::luminous_intensity sakurajin::unit_system::clamp(const s
     return sakurajin::unit_system::luminous_intensity{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::luminous_intensity std::abs(const sakurajin::unit_system::luminous_intensity& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::luminous_intensity& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " candela";
+}
+
 
 // literals
 

@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::length::length()
@@ -175,11 +176,6 @@ sakurajin::unit_system::area sakurajin::unit_system::square(const length& unit) 
 }
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::length& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " metre";
-}
-
 sakurajin::unit_system::length
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::length& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -195,10 +191,17 @@ sakurajin::unit_system::length sakurajin::unit_system::clamp(const sakurajin::un
     return sakurajin::unit_system::length{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::length std::abs(const sakurajin::unit_system::length& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::length& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " metre";
+}
+
 
 // literals
 

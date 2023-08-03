@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::electric_current::electric_current()
@@ -142,11 +143,6 @@ void sakurajin::unit_system::electric_current::operator=(const sakurajin::unit_s
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::electric_current& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " Ampere";
-}
-
 sakurajin::unit_system::electric_current sakurajin::unit_system::unit_cast(const sakurajin::unit_system::electric_current& unit,
                                                                            long double                                     new_multiplier,
                                                                            long double                                     new_offset) {
@@ -163,10 +159,17 @@ sakurajin::unit_system::electric_current sakurajin::unit_system::clamp(const sak
     return sakurajin::unit_system::electric_current{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::electric_current std::abs(const sakurajin::unit_system::electric_current& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::electric_current& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " Ampere";
+}
+
 
 // literals
 

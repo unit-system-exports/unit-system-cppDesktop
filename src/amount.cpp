@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::amount::amount()
@@ -139,11 +140,6 @@ void sakurajin::unit_system::amount::operator=(const sakurajin::unit_system::amo
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::amount& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " things";
-}
-
 sakurajin::unit_system::amount
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::amount& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -159,10 +155,17 @@ sakurajin::unit_system::amount sakurajin::unit_system::clamp(const sakurajin::un
     return sakurajin::unit_system::amount{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::amount std::abs(const sakurajin::unit_system::amount& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::amount& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " things";
+}
+
 
 // literals
 

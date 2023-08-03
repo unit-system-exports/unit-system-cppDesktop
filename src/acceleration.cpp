@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::acceleration::acceleration()
@@ -155,11 +156,6 @@ sakurajin::unit_system::force sakurajin::unit_system::acceleration::operator*(co
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::acceleration& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " metre per second^2";
-}
-
 sakurajin::unit_system::acceleration
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::acceleration& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -175,10 +171,17 @@ sakurajin::unit_system::acceleration sakurajin::unit_system::clamp(const sakuraj
     return sakurajin::unit_system::acceleration{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::acceleration std::abs(const sakurajin::unit_system::acceleration& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::acceleration& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " metre per second^2";
+}
+
 
 // literals
 

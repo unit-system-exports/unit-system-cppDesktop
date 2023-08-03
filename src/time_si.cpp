@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::time_si::time_si()
@@ -164,11 +165,6 @@ sakurajin::unit_system::momentum sakurajin::unit_system::time_si::operator*(cons
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::time_si& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " second";
-}
-
 sakurajin::unit_system::time_si
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::time_si& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -184,10 +180,17 @@ sakurajin::unit_system::time_si sakurajin::unit_system::clamp(const sakurajin::u
     return sakurajin::unit_system::time_si{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::time_si std::abs(const sakurajin::unit_system::time_si& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::time_si& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " second";
+}
+
 
 // literals
 

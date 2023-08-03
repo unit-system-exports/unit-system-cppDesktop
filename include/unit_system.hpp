@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -10,6 +11,7 @@
 #ifndef UNIT_SYSTEM_EXPORT_MACRO
     #define UNIT_SYSTEM_EXPORT_MACRO
 #endif
+
 
 namespace sakurajin {
     namespace unit_system {
@@ -45,8 +47,10 @@ namespace sakurajin {
             time_si(long double v, long double mult);
             time_si(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             time_si(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             time_si operator*(long double scalar) const;
             void    operator*=(long double scalar);
@@ -147,8 +151,10 @@ namespace sakurajin {
             length(long double v, long double mult);
             length(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             length(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             length operator*(long double scalar) const;
             void   operator*=(long double scalar);
@@ -251,8 +257,10 @@ namespace sakurajin {
             mass(long double v, long double mult);
             mass(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             mass(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             mass operator*(long double scalar) const;
             void operator*=(long double scalar);
@@ -345,8 +353,10 @@ namespace sakurajin {
             temperature(long double v, long double mult);
             temperature(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             temperature(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             temperature operator*(long double scalar) const;
             void        operator*=(long double scalar);
@@ -414,8 +424,10 @@ namespace sakurajin {
             amount(long double v, long double mult);
             amount(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             amount(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             amount operator*(long double scalar) const;
             void   operator*=(long double scalar);
@@ -483,8 +495,10 @@ namespace sakurajin {
             electric_current(long double v, long double mult);
             electric_current(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             electric_current(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             electric_current operator*(long double scalar) const;
             void             operator*=(long double scalar);
@@ -586,8 +600,10 @@ namespace sakurajin {
             luminous_intensity(long double v, long double mult);
             luminous_intensity(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             luminous_intensity(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             luminous_intensity operator*(long double scalar) const;
             void               operator*=(long double scalar);
@@ -656,8 +672,10 @@ namespace sakurajin {
             energy(long double v, long double mult);
             energy(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             energy(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             energy operator*(long double scalar) const;
             void   operator*=(long double scalar);
@@ -826,8 +844,10 @@ namespace sakurajin {
             power(long double v, long double mult);
             power(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             power(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             power operator*(long double scalar) const;
             void  operator*=(long double scalar);
@@ -932,8 +952,10 @@ namespace sakurajin {
             speed(long double v, long double mult);
             speed(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             speed(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             speed operator*(long double scalar) const;
             void  operator*=(long double scalar);
@@ -1011,8 +1033,10 @@ namespace sakurajin {
             acceleration(long double v, long double mult);
             acceleration(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             acceleration(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             acceleration operator*(long double scalar) const;
             void         operator*=(long double scalar);
@@ -1086,8 +1110,10 @@ namespace sakurajin {
             area(long double v, long double mult);
             area(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             area(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             area operator*(long double scalar) const;
             void operator*=(long double scalar);
@@ -1177,8 +1203,10 @@ namespace sakurajin {
             force(long double v, long double mult);
             force(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             force(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             force operator*(long double scalar) const;
             void  operator*=(long double scalar);
@@ -1285,8 +1313,10 @@ namespace sakurajin {
             momentum(long double v, long double mult);
             momentum(long double v, long double mult, long double off);
 
+
             template <std::intmax_t numerator, std::intmax_t denumerator = 1>
             momentum(long double v, std::ratio<numerator, denumerator> mult, long double off = 0);
+
 
             momentum operator*(long double scalar) const;
             void     operator*=(long double scalar);
@@ -1437,6 +1467,7 @@ namespace sakurajin {
         }
     } // namespace unit_system
 } // namespace sakurajin
+
 
 // add all constants
 namespace sakurajin {

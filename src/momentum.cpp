@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::momentum::momentum()
@@ -171,11 +172,6 @@ sakurajin::unit_system::energy sakurajin::unit_system::momentum::operator*(const
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::momentum& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " kilogram-meter per second";
-}
-
 sakurajin::unit_system::momentum
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::momentum& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -191,10 +187,17 @@ sakurajin::unit_system::momentum sakurajin::unit_system::clamp(const sakurajin::
     return sakurajin::unit_system::momentum{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::momentum std::abs(const sakurajin::unit_system::momentum& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::momentum& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " kilogram-meter per second";
+}
+
 
 // literals
 

@@ -1,3 +1,4 @@
+#include "cmath"
 #include "unit_system.hpp"
 
 sakurajin::unit_system::temperature::temperature()
@@ -140,11 +141,6 @@ void sakurajin::unit_system::temperature::operator=(const sakurajin::unit_system
 // external functions
 
 
-std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::temperature& t) {
-    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
-    return os << t1.value << " Kelvin";
-}
-
 sakurajin::unit_system::temperature
 sakurajin::unit_system::unit_cast(const sakurajin::unit_system::temperature& unit, long double new_multiplier, long double new_offset) {
     return unit.convert_copy(new_multiplier, new_offset);
@@ -160,10 +156,17 @@ sakurajin::unit_system::temperature sakurajin::unit_system::clamp(const sakuraji
     return sakurajin::unit_system::temperature{val, unit.multiplier, unit.offset};
 }
 
+
 sakurajin::unit_system::temperature std::abs(const sakurajin::unit_system::temperature& unit) {
     auto inv = -unit;
     return unit > inv ? unit : inv;
 }
+
+std::ostream& sakurajin::unit_system::operator<<(std::ostream& os, const sakurajin::unit_system::temperature& t) {
+    auto t1 = sakurajin::unit_system::unit_cast(t, 1);
+    return os << t1.value << " Kelvin";
+}
+
 
 // literals
 
