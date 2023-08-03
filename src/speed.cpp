@@ -213,7 +213,6 @@ sakurajin::unit_system::speed sakurajin::unit_system::literals::operator"" _mps(
     return sakurajin::unit_system::speed{static_cast<long double>(len), 1.0, 0.0};
 }
 
-
 sakurajin::unit_system::speed sakurajin::unit_system::literals::operator"" _kmph(long double len) {
     return sakurajin::unit_system::speed{len, 0.2777777777777778, 0.0};
 }

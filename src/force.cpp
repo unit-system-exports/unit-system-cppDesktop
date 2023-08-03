@@ -207,7 +207,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _N(un
     return sakurajin::unit_system::force{static_cast<long double>(len), 1.0, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _PN(long double len) {
     return sakurajin::unit_system::force{len, 1000000000000000.0, 0.0};
 }
@@ -215,7 +214,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _PN(l
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _PN(unsigned long long int len) {
     return sakurajin::unit_system::force{static_cast<long double>(len), 1000000000000000.0, 0.0};
 }
-
 
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _TN(long double len) {
     return sakurajin::unit_system::force{len, 1000000000000.0, 0.0};
@@ -225,7 +223,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _TN(u
     return sakurajin::unit_system::force{static_cast<long double>(len), 1000000000000.0, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _GN(long double len) {
     return sakurajin::unit_system::force{len, 1000000000.0, 0.0};
 }
@@ -233,7 +230,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _GN(l
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _GN(unsigned long long int len) {
     return sakurajin::unit_system::force{static_cast<long double>(len), 1000000000.0, 0.0};
 }
-
 
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _MN(long double len) {
     return sakurajin::unit_system::force{len, 1000000.0, 0.0};
@@ -243,7 +239,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _MN(u
     return sakurajin::unit_system::force{static_cast<long double>(len), 1000000.0, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _kN(long double len) {
     return sakurajin::unit_system::force{len, 1000.0, 0.0};
 }
@@ -251,7 +246,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _kN(l
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _kN(unsigned long long int len) {
     return sakurajin::unit_system::force{static_cast<long double>(len), 1000.0, 0.0};
 }
-
 
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _mN(long double len) {
     return sakurajin::unit_system::force{len, 0.001, 0.0};
@@ -261,7 +255,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _mN(u
     return sakurajin::unit_system::force{static_cast<long double>(len), 0.001, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _uN(long double len) {
     return sakurajin::unit_system::force{len, 1e-06, 0.0};
 }
@@ -269,7 +262,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _uN(l
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _uN(unsigned long long int len) {
     return sakurajin::unit_system::force{static_cast<long double>(len), 1e-06, 0.0};
 }
-
 
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _nN(long double len) {
     return sakurajin::unit_system::force{len, 1e-09, 0.0};
@@ -279,7 +271,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _nN(u
     return sakurajin::unit_system::force{static_cast<long double>(len), 1e-09, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _pN(long double len) {
     return sakurajin::unit_system::force{len, 1e-12, 0.0};
 }
@@ -288,7 +279,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _pN(u
     return sakurajin::unit_system::force{static_cast<long double>(len), 1e-12, 0.0};
 }
 
-
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _fN(long double len) {
     return sakurajin::unit_system::force{len, 1e-15, 0.0};
 }
@@ -296,7 +286,6 @@ sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _fN(l
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _fN(unsigned long long int len) {
     return sakurajin::unit_system::force{static_cast<long double>(len), 1e-15, 0.0};
 }
-
 
 sakurajin::unit_system::force sakurajin::unit_system::literals::operator"" _aN(long double len) {
     return sakurajin::unit_system::force{len, 1e-18, 0.0};

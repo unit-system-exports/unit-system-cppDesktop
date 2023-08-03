@@ -192,7 +192,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _m2(un
     return sakurajin::unit_system::area{static_cast<long double>(len), 1.0, 0.0};
 }
 
-
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _are(long double len) {
     return sakurajin::unit_system::area{len, 100.0, 0.0};
 }
@@ -200,7 +199,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _are(l
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _are(unsigned long long int len) {
     return sakurajin::unit_system::area{static_cast<long double>(len), 100.0, 0.0};
 }
-
 
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _hectare(long double len) {
     return sakurajin::unit_system::area{len, 10000.0, 0.0};
@@ -210,7 +208,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _hecta
     return sakurajin::unit_system::area{static_cast<long double>(len), 10000.0, 0.0};
 }
 
-
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _km2(long double len) {
     return sakurajin::unit_system::area{len, 1000000.0, 0.0};
 }
@@ -218,7 +215,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _km2(l
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _km2(unsigned long long int len) {
     return sakurajin::unit_system::area{static_cast<long double>(len), 1000000.0, 0.0};
 }
-
 
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _mm2(long double len) {
     return sakurajin::unit_system::area{len, 1e-06, 0.0};
@@ -228,7 +224,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _mm2(u
     return sakurajin::unit_system::area{static_cast<long double>(len), 1e-06, 0.0};
 }
 
-
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _um2(long double len) {
     return sakurajin::unit_system::area{len, 1e-12, 0.0};
 }
@@ -236,7 +231,6 @@ sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _um2(l
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _um2(unsigned long long int len) {
     return sakurajin::unit_system::area{static_cast<long double>(len), 1e-12, 0.0};
 }
-
 
 sakurajin::unit_system::area sakurajin::unit_system::literals::operator"" _nm2(long double len) {
     return sakurajin::unit_system::area{len, 1e-18, 0.0};

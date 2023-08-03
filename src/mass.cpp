@@ -188,7 +188,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _t(uns
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1000.0, 0.0};
 }
 
-
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _kg(long double len) {
     return sakurajin::unit_system::mass{len, 1.0, 0.0};
 }
@@ -196,7 +195,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _kg(lo
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _kg(unsigned long long int len) {
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1.0, 0.0};
 }
-
 
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _g(long double len) {
     return sakurajin::unit_system::mass{len, 0.001, 0.0};
@@ -206,7 +204,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _g(uns
     return sakurajin::unit_system::mass{static_cast<long double>(len), 0.001, 0.0};
 }
 
-
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _mg(long double len) {
     return sakurajin::unit_system::mass{len, 1e-06, 0.0};
 }
@@ -214,7 +211,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _mg(lo
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _mg(unsigned long long int len) {
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1e-06, 0.0};
 }
-
 
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ug(long double len) {
     return sakurajin::unit_system::mass{len, 1e-09, 0.0};
@@ -224,7 +220,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ug(un
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1e-09, 0.0};
 }
 
-
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ng(long double len) {
     return sakurajin::unit_system::mass{len, 1.0000000000000002e-12, 0.0};
 }
@@ -232,7 +227,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ng(lo
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ng(unsigned long long int len) {
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1.0000000000000002e-12, 0.0};
 }
-
 
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _pg(long double len) {
     return sakurajin::unit_system::mass{len, 1e-15, 0.0};
@@ -242,7 +236,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _pg(un
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1e-15, 0.0};
 }
 
-
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _fg(long double len) {
     return sakurajin::unit_system::mass{len, 1e-18, 0.0};
 }
@@ -250,7 +243,6 @@ sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _fg(lo
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _fg(unsigned long long int len) {
     return sakurajin::unit_system::mass{static_cast<long double>(len), 1e-18, 0.0};
 }
-
 
 sakurajin::unit_system::mass sakurajin::unit_system::literals::operator"" _ag(long double len) {
     return sakurajin::unit_system::mass{len, 1.0000000000000001e-21, 0.0};

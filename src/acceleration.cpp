@@ -191,7 +191,6 @@ sakurajin::unit_system::acceleration sakurajin::unit_system::literals::operator"
     return sakurajin::unit_system::acceleration{static_cast<long double>(len), 1.0, 0.0};
 }
 
-
 sakurajin::unit_system::acceleration sakurajin::unit_system::literals::operator"" _G(long double len) {
     return sakurajin::unit_system::acceleration{len, 9.80665, 0.0};
 }

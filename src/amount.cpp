@@ -175,7 +175,6 @@ sakurajin::unit_system::amount sakurajin::unit_system::literals::operator"" _mol
     return sakurajin::unit_system::amount{static_cast<long double>(len), 6.02214076e+23, 0.0};
 }
 
-
 sakurajin::unit_system::amount sakurajin::unit_system::literals::operator"" _things(long double len) {
     return sakurajin::unit_system::amount{len, 1.0, 0.0};
 }
