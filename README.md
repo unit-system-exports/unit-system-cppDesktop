@@ -1,4 +1,4 @@
-# unit-system Desktop C++17
+# unit-system Desktop C++14
 
 [![GitHub license](https://img.shields.io/github/license/unit-system-exports/unit-system-meson.svg)](https://github.com/unit-system-exports/unit-system-meson/blob/main/License)
 [![stable release](https://img.shields.io/github/v/release/unit-system-exports/unit-system-meson.svg)](https://GitHub.com/unit-system-exports/unit-system-meson/releases/)
@@ -7,8 +7,7 @@
 **This repository only contains the generated source files.**
 **If you want to report a bug or change something check the [generator repository](https:://github.com/noah1510/unit-system-generator).**
 
-
-This is an implementation of the SI unit system for C++17 development.
+This is an implementation of the SI unit system for C++14 development.
 All units, combinations, literals and constants are generated from templates.
 If you feel something is missing open an issue or a pull request on the [generator repository](https:://github.com/noah1510/unit-system-generator).
 
@@ -42,7 +41,6 @@ Just use the wrapdb to download the version you need, and then you can add the l
 
 ## Units that are currently supported
 
-* unit_t -> a unit template that is the basis of all the units
 * time_si -> time with seconds as base unit
 * length -> length with meter as base unit
 * mass -> mass with kg as base unit
@@ -59,6 +57,21 @@ Just use the wrapdb to download the version you need, and then you can add the l
 * power -> power with `kg * m^2 / s^3` (Watts) as base unit
 
 ## Upgrade Instructions
+
+### from version 0.7.x to 0.8.x
+
+Most code should still work.
+
+However, there are two major changes.
+The first one is that there is only one header now.
+All declarations are now in the `unit_system.hpp` header.
+If you only included some parts of the library you have to change that.
+
+The second major change is the removal of the unit_t template class.
+This means all custom types are now broken.
+This is done to simplify the code and make it easier to maintain.
+Now all units have to be created by using the generator script.
+If you want to add a new unit you have to add it to the generator script and run it.
 
 ### from version 0.6.x to 0.7.x
 
