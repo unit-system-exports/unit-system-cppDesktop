@@ -14,33 +14,30 @@ sakurajin::unit_system::length::length(long double v, long double mult, long dou
 
 // const functions
 sakurajin::unit_system::length sakurajin::unit_system::length::operator*(long double scalar) const {
-    sakurajin::unit_system::length retval{value * scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::length{value * scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::length operator*(long double scalar, const sakurajin::unit_system::length& val) {
-    return {val.value * scalar, val.multiplier, val.offset};
+    return sakurajin::unit_system::length{val.value * scalar, val.multiplier, val.offset};
 }
 
 long double sakurajin::unit_system::length::operator/(const sakurajin::unit_system::length& other) const {
-    auto otherVal = unit_cast(other, multiplier, offset);
-    return value / otherVal.value;
+    return value / other.convert_like(*this).value;
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::length::operator/(long double scalar) const {
-    sakurajin::unit_system::length retval{value / scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::length{value / scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::length::operator+(const sakurajin::unit_system::length& other) const {
-    auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value += value;
+    auto retval = convert_like(other);
+    retval.value += other.value;
     return retval;
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::length::operator-(const sakurajin::unit_system::length& other) const {
-    auto retval  = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value = value - retval.value;
+    auto retval = convert_like(other);
+    retval.value -= other.value;
     return retval;
 }
 
@@ -49,8 +46,7 @@ sakurajin::unit_system::length sakurajin::unit_system::length::operator-() const
 }
 
 sakurajin::unit_system::length::operator long double() const {
-    auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
-    return retval.value;
+    return convert_copy(1, 0).value;
 }
 
 sakurajin::unit_system::length sakurajin::unit_system::length::convert_multiplier(long double new_multiplier) const {
@@ -65,6 +61,10 @@ sakurajin::unit_system::length sakurajin::unit_system::length::convert_copy(long
     auto                           valBase0 = value * multiplier + offset;
     sakurajin::unit_system::length retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
+}
+
+sakurajin::unit_system::length sakurajin::unit_system::length::convert_like(const sakurajin::unit_system::length& other) const {
+    return convert_copy(other.multiplier, other.offset);
 }
 
 // comparison operators
@@ -169,6 +169,10 @@ sakurajin::unit_system::area sakurajin::unit_system::length::square() const {
 
 
 // external functions
+
+sakurajin::unit_system::length sakurajin::unit_system::operator*(long double scalar, const sakurajin::unit_system::length& value) {
+    return value * scalar;
+}
 
 
 sakurajin::unit_system::area sakurajin::unit_system::square(const length& unit) {

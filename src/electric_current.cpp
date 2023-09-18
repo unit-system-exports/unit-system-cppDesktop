@@ -14,35 +14,32 @@ sakurajin::unit_system::electric_current::electric_current(long double v, long d
 
 // const functions
 sakurajin::unit_system::electric_current sakurajin::unit_system::electric_current::operator*(long double scalar) const {
-    sakurajin::unit_system::electric_current retval{value * scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::electric_current{value * scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::electric_current operator*(long double scalar, const sakurajin::unit_system::electric_current& val) {
-    return {val.value * scalar, val.multiplier, val.offset};
+    return sakurajin::unit_system::electric_current{val.value * scalar, val.multiplier, val.offset};
 }
 
 long double sakurajin::unit_system::electric_current::operator/(const sakurajin::unit_system::electric_current& other) const {
-    auto otherVal = unit_cast(other, multiplier, offset);
-    return value / otherVal.value;
+    return value / other.convert_like(*this).value;
 }
 
 sakurajin::unit_system::electric_current sakurajin::unit_system::electric_current::operator/(long double scalar) const {
-    sakurajin::unit_system::electric_current retval{value / scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::electric_current{value / scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::electric_current
 sakurajin::unit_system::electric_current::operator+(const sakurajin::unit_system::electric_current& other) const {
-    auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value += value;
+    auto retval = convert_like(other);
+    retval.value += other.value;
     return retval;
 }
 
 sakurajin::unit_system::electric_current
 sakurajin::unit_system::electric_current::operator-(const sakurajin::unit_system::electric_current& other) const {
-    auto retval  = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value = value - retval.value;
+    auto retval = convert_like(other);
+    retval.value -= other.value;
     return retval;
 }
 
@@ -51,8 +48,7 @@ sakurajin::unit_system::electric_current sakurajin::unit_system::electric_curren
 }
 
 sakurajin::unit_system::electric_current::operator long double() const {
-    auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
-    return retval.value;
+    return convert_copy(1, 0).value;
 }
 
 sakurajin::unit_system::electric_current sakurajin::unit_system::electric_current::convert_multiplier(long double new_multiplier) const {
@@ -68,6 +64,11 @@ sakurajin::unit_system::electric_current sakurajin::unit_system::electric_curren
     auto                                     valBase0 = value * multiplier + offset;
     sakurajin::unit_system::electric_current retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
+}
+
+sakurajin::unit_system::electric_current
+sakurajin::unit_system::electric_current::convert_like(const sakurajin::unit_system::electric_current& other) const {
+    return convert_copy(other.multiplier, other.offset);
 }
 
 // comparison operators
@@ -141,6 +142,11 @@ void sakurajin::unit_system::electric_current::operator=(const sakurajin::unit_s
 
 
 // external functions
+
+sakurajin::unit_system::electric_current sakurajin::unit_system::operator*(long double                                     scalar,
+                                                                           const sakurajin::unit_system::electric_current& value) {
+    return value * scalar;
+}
 
 
 sakurajin::unit_system::electric_current sakurajin::unit_system::unit_cast(const sakurajin::unit_system::electric_current& unit,

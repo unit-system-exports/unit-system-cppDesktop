@@ -75,6 +75,9 @@ namespace sakurajin {
             time_si convert_offset(long double new_offset = 0) const;
             time_si convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            time_si convert_like(const time_si& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const time_si& other) const;
 #else
@@ -137,6 +140,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO time_si operator*(long double scalar, const time_si& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO length {
           public:
             const long double multiplier;
@@ -178,6 +184,9 @@ namespace sakurajin {
             length convert_multiplier(long double new_multiplier = 1) const;
             length convert_offset(long double new_offset = 0) const;
             length convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            length convert_like(const length& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const length& other) const;
@@ -243,6 +252,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO length operator*(long double scalar, const length& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO mass {
           public:
             const long double multiplier;
@@ -284,6 +296,9 @@ namespace sakurajin {
             mass convert_multiplier(long double new_multiplier = 1) const;
             mass convert_offset(long double new_offset = 0) const;
             mass convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            mass convert_like(const mass& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const mass& other) const;
@@ -339,6 +354,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO mass operator*(long double scalar, const mass& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO temperature {
           public:
             const long double multiplier;
@@ -381,6 +399,9 @@ namespace sakurajin {
             temperature convert_offset(long double new_offset = 0) const;
             temperature convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            temperature convert_like(const temperature& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const temperature& other) const;
 #else
@@ -408,6 +429,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO temperature operator"" _C(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO temperature operator*(long double scalar, const temperature& value);
 
 
         class UNIT_SYSTEM_EXPORT_MACRO amount {
@@ -452,6 +476,9 @@ namespace sakurajin {
             amount convert_offset(long double new_offset = 0) const;
             amount convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            amount convert_like(const amount& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const amount& other) const;
 #else
@@ -479,6 +506,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO amount operator"" _things(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO amount operator*(long double scalar, const amount& value);
 
 
         class UNIT_SYSTEM_EXPORT_MACRO electric_current {
@@ -522,6 +552,9 @@ namespace sakurajin {
             electric_current convert_multiplier(long double new_multiplier = 1) const;
             electric_current convert_offset(long double new_offset = 0) const;
             electric_current convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            electric_current convert_like(const electric_current& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const electric_current& other) const;
@@ -586,6 +619,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO electric_current operator*(long double scalar, const electric_current& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO luminous_intensity {
           public:
             const long double multiplier;
@@ -628,6 +664,9 @@ namespace sakurajin {
             luminous_intensity convert_offset(long double new_offset = 0) const;
             luminous_intensity convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            luminous_intensity convert_like(const luminous_intensity& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const luminous_intensity& other) const;
 #else
@@ -656,6 +695,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO luminous_intensity operator"" _cd(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO luminous_intensity operator*(long double scalar, const luminous_intensity& value);
 
 
         class UNIT_SYSTEM_EXPORT_MACRO energy {
@@ -699,6 +741,9 @@ namespace sakurajin {
             energy convert_multiplier(long double new_multiplier = 1) const;
             energy convert_offset(long double new_offset = 0) const;
             energy convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            energy convert_like(const energy& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const energy& other) const;
@@ -830,6 +875,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO energy operator*(long double scalar, const energy& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO power {
           public:
             const long double multiplier;
@@ -871,6 +919,9 @@ namespace sakurajin {
             power convert_multiplier(long double new_multiplier = 1) const;
             power convert_offset(long double new_offset = 0) const;
             power convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            power convert_like(const power& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const power& other) const;
@@ -938,6 +989,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO power operator*(long double scalar, const power& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO speed {
           public:
             const long double multiplier;
@@ -980,6 +1034,9 @@ namespace sakurajin {
             speed convert_offset(long double new_offset = 0) const;
             speed convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            speed convert_like(const speed& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const speed& other) const;
 #else
@@ -1017,6 +1074,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO speed operator"" _kmph(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO speed operator*(long double scalar, const speed& value);
 
 
         class UNIT_SYSTEM_EXPORT_MACRO acceleration {
@@ -1061,6 +1121,9 @@ namespace sakurajin {
             acceleration convert_offset(long double new_offset = 0) const;
             acceleration convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            acceleration convert_like(const acceleration& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const acceleration& other) const;
 #else
@@ -1094,6 +1157,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO acceleration operator"" _G(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO acceleration operator*(long double scalar, const acceleration& value);
 
 
         class UNIT_SYSTEM_EXPORT_MACRO area {
@@ -1137,6 +1203,9 @@ namespace sakurajin {
             area convert_multiplier(long double new_multiplier = 1) const;
             area convert_offset(long double new_offset = 0) const;
             area convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            area convert_like(const area& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const area& other) const;
@@ -1189,6 +1258,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO area operator*(long double scalar, const area& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO force {
           public:
             const long double multiplier;
@@ -1230,6 +1302,9 @@ namespace sakurajin {
             force convert_multiplier(long double new_multiplier = 1) const;
             force convert_offset(long double new_offset = 0) const;
             force convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
+
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            force convert_like(const force& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const force& other) const;
@@ -1299,6 +1374,9 @@ namespace sakurajin {
         } // namespace literals
 
 
+        UNIT_SYSTEM_EXPORT_MACRO force operator*(long double scalar, const force& value);
+
+
         class UNIT_SYSTEM_EXPORT_MACRO momentum {
           public:
             const long double multiplier;
@@ -1341,6 +1419,9 @@ namespace sakurajin {
             momentum convert_offset(long double new_offset = 0) const;
             momentum convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
+            // returns a copy of the unit with the same multiplier and offset as the other unit
+            momentum convert_like(const momentum& other) const;
+
 #if __cplusplus >= 202002L
             int operator<=>(const momentum& other) const;
 #else
@@ -1374,6 +1455,9 @@ namespace sakurajin {
             UNIT_SYSTEM_EXPORT_MACRO momentum operator"" _kgmps(unsigned long long int val);
 
         } // namespace literals
+
+
+        UNIT_SYSTEM_EXPORT_MACRO momentum operator*(long double scalar, const momentum& value);
 
 
     } // namespace unit_system

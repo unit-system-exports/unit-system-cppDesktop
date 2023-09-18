@@ -14,35 +14,32 @@ sakurajin::unit_system::luminous_intensity::luminous_intensity(long double v, lo
 
 // const functions
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_intensity::operator*(long double scalar) const {
-    sakurajin::unit_system::luminous_intensity retval{value * scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::luminous_intensity{value * scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::luminous_intensity operator*(long double scalar, const sakurajin::unit_system::luminous_intensity& val) {
-    return {val.value * scalar, val.multiplier, val.offset};
+    return sakurajin::unit_system::luminous_intensity{val.value * scalar, val.multiplier, val.offset};
 }
 
 long double sakurajin::unit_system::luminous_intensity::operator/(const sakurajin::unit_system::luminous_intensity& other) const {
-    auto otherVal = unit_cast(other, multiplier, offset);
-    return value / otherVal.value;
+    return value / other.convert_like(*this).value;
 }
 
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_intensity::operator/(long double scalar) const {
-    sakurajin::unit_system::luminous_intensity retval{value / scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::luminous_intensity{value / scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::luminous_intensity
 sakurajin::unit_system::luminous_intensity::operator+(const sakurajin::unit_system::luminous_intensity& other) const {
-    auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value += value;
+    auto retval = convert_like(other);
+    retval.value += other.value;
     return retval;
 }
 
 sakurajin::unit_system::luminous_intensity
 sakurajin::unit_system::luminous_intensity::operator-(const sakurajin::unit_system::luminous_intensity& other) const {
-    auto retval  = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value = value - retval.value;
+    auto retval = convert_like(other);
+    retval.value -= other.value;
     return retval;
 }
 
@@ -51,8 +48,7 @@ sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_inte
 }
 
 sakurajin::unit_system::luminous_intensity::operator long double() const {
-    auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
-    return retval.value;
+    return convert_copy(1, 0).value;
 }
 
 sakurajin::unit_system::luminous_intensity
@@ -69,6 +65,11 @@ sakurajin::unit_system::luminous_intensity sakurajin::unit_system::luminous_inte
     auto                                       valBase0 = value * multiplier + offset;
     sakurajin::unit_system::luminous_intensity retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
+}
+
+sakurajin::unit_system::luminous_intensity
+sakurajin::unit_system::luminous_intensity::convert_like(const sakurajin::unit_system::luminous_intensity& other) const {
+    return convert_copy(other.multiplier, other.offset);
 }
 
 // comparison operators
@@ -142,6 +143,11 @@ void sakurajin::unit_system::luminous_intensity::operator=(const sakurajin::unit
 
 
 // external functions
+
+sakurajin::unit_system::luminous_intensity sakurajin::unit_system::operator*(long double                                       scalar,
+                                                                             const sakurajin::unit_system::luminous_intensity& value) {
+    return value * scalar;
+}
 
 
 sakurajin::unit_system::luminous_intensity sakurajin::unit_system::unit_cast(const sakurajin::unit_system::luminous_intensity& unit,

@@ -14,33 +14,30 @@ sakurajin::unit_system::energy::energy(long double v, long double mult, long dou
 
 // const functions
 sakurajin::unit_system::energy sakurajin::unit_system::energy::operator*(long double scalar) const {
-    sakurajin::unit_system::energy retval{value * scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::energy{value * scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::energy operator*(long double scalar, const sakurajin::unit_system::energy& val) {
-    return {val.value * scalar, val.multiplier, val.offset};
+    return sakurajin::unit_system::energy{val.value * scalar, val.multiplier, val.offset};
 }
 
 long double sakurajin::unit_system::energy::operator/(const sakurajin::unit_system::energy& other) const {
-    auto otherVal = unit_cast(other, multiplier, offset);
-    return value / otherVal.value;
+    return value / other.convert_like(*this).value;
 }
 
 sakurajin::unit_system::energy sakurajin::unit_system::energy::operator/(long double scalar) const {
-    sakurajin::unit_system::energy retval{value / scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::energy{value / scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::energy sakurajin::unit_system::energy::operator+(const sakurajin::unit_system::energy& other) const {
-    auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value += value;
+    auto retval = convert_like(other);
+    retval.value += other.value;
     return retval;
 }
 
 sakurajin::unit_system::energy sakurajin::unit_system::energy::operator-(const sakurajin::unit_system::energy& other) const {
-    auto retval  = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value = value - retval.value;
+    auto retval = convert_like(other);
+    retval.value -= other.value;
     return retval;
 }
 
@@ -49,8 +46,7 @@ sakurajin::unit_system::energy sakurajin::unit_system::energy::operator-() const
 }
 
 sakurajin::unit_system::energy::operator long double() const {
-    auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
-    return retval.value;
+    return convert_copy(1, 0).value;
 }
 
 sakurajin::unit_system::energy sakurajin::unit_system::energy::convert_multiplier(long double new_multiplier) const {
@@ -65,6 +61,10 @@ sakurajin::unit_system::energy sakurajin::unit_system::energy::convert_copy(long
     auto                           valBase0 = value * multiplier + offset;
     sakurajin::unit_system::energy retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
+}
+
+sakurajin::unit_system::energy sakurajin::unit_system::energy::convert_like(const sakurajin::unit_system::energy& other) const {
+    return convert_copy(other.multiplier, other.offset);
 }
 
 // comparison operators
@@ -175,6 +175,10 @@ sakurajin::unit_system::momentum sakurajin::unit_system::energy::operator/(const
 
 
 // external functions
+
+sakurajin::unit_system::energy sakurajin::unit_system::operator*(long double scalar, const sakurajin::unit_system::energy& value) {
+    return value * scalar;
+}
 
 
 sakurajin::unit_system::energy

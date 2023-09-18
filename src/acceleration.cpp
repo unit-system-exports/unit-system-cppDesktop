@@ -14,35 +14,32 @@ sakurajin::unit_system::acceleration::acceleration(long double v, long double mu
 
 // const functions
 sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::operator*(long double scalar) const {
-    sakurajin::unit_system::acceleration retval{value * scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::acceleration{value * scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::acceleration operator*(long double scalar, const sakurajin::unit_system::acceleration& val) {
-    return {val.value * scalar, val.multiplier, val.offset};
+    return sakurajin::unit_system::acceleration{val.value * scalar, val.multiplier, val.offset};
 }
 
 long double sakurajin::unit_system::acceleration::operator/(const sakurajin::unit_system::acceleration& other) const {
-    auto otherVal = unit_cast(other, multiplier, offset);
-    return value / otherVal.value;
+    return value / other.convert_like(*this).value;
 }
 
 sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::operator/(long double scalar) const {
-    sakurajin::unit_system::acceleration retval{value / scalar, multiplier, offset};
-    return retval;
+    return sakurajin::unit_system::acceleration{value / scalar, multiplier, offset};
 }
 
 sakurajin::unit_system::acceleration
 sakurajin::unit_system::acceleration::operator+(const sakurajin::unit_system::acceleration& other) const {
-    auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value += value;
+    auto retval = convert_like(other);
+    retval.value += other.value;
     return retval;
 }
 
 sakurajin::unit_system::acceleration
 sakurajin::unit_system::acceleration::operator-(const sakurajin::unit_system::acceleration& other) const {
-    auto retval  = sakurajin::unit_system::unit_cast(other, multiplier, offset);
-    retval.value = value - retval.value;
+    auto retval = convert_like(other);
+    retval.value -= other.value;
     return retval;
 }
 
@@ -51,8 +48,7 @@ sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::opera
 }
 
 sakurajin::unit_system::acceleration::operator long double() const {
-    auto retval = sakurajin::unit_system::unit_cast(*this, 1, 0);
-    return retval.value;
+    return convert_copy(1, 0).value;
 }
 
 sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::convert_multiplier(long double new_multiplier) const {
@@ -68,6 +64,11 @@ sakurajin::unit_system::acceleration sakurajin::unit_system::acceleration::conve
     auto                                 valBase0 = value * multiplier + offset;
     sakurajin::unit_system::acceleration retval{valBase0 / new_multiplier - new_offset, new_multiplier, new_offset};
     return retval;
+}
+
+sakurajin::unit_system::acceleration
+sakurajin::unit_system::acceleration::convert_like(const sakurajin::unit_system::acceleration& other) const {
+    return convert_copy(other.multiplier, other.offset);
 }
 
 // comparison operators
@@ -154,6 +155,11 @@ sakurajin::unit_system::force sakurajin::unit_system::acceleration::operator*(co
 
 
 // external functions
+
+sakurajin::unit_system::acceleration sakurajin::unit_system::operator*(long double                                 scalar,
+                                                                       const sakurajin::unit_system::acceleration& value) {
+    return value * scalar;
+}
 
 
 sakurajin::unit_system::acceleration
