@@ -81,7 +81,7 @@ int sakurajin::unit_system::mass::operator<=>(const sakurajin::unit_system::mass
 
     return 0;
 }
-#else
+#endif
 bool sakurajin::unit_system::mass::operator<(const sakurajin::unit_system::mass& other) const {
     const auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
     return value < retval.value;
@@ -110,7 +110,6 @@ bool sakurajin::unit_system::mass::operator==(const sakurajin::unit_system::mass
 bool sakurajin::unit_system::mass::operator!=(const sakurajin::unit_system::mass& other) const {
     return !(*this == other);
 }
-#endif
 
 // non const member functions
 void sakurajin::unit_system::mass::operator*=(long double scalar) {

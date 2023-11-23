@@ -86,7 +86,9 @@ jobs:
           name: build-artifact-${{ matrix.os }}-${{ matrix.buildType }}-msys-${{ matrix.useMsys }}
           path: build
 
-  release:
+
+
+release:
     name: "Release candidate"
     runs-on: "ubuntu-20.04"
     needs: [meson_cpp17_matrix]
@@ -106,3 +108,4 @@ jobs:
           provides: "unit-system = unit_system_dep"
           push-repository: "https://github.com/noah1510/wrapdb"
           github_token: ${{ secrets.CI_GITHUB_TOKEN }}
+

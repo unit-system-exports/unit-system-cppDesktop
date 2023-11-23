@@ -71,29 +71,40 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             time_si convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             time_si convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             time_si convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             time_si convert_like(const time_si& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const time_si& other) const;
-#else
+#endif
             bool operator<(const time_si& other) const;
             bool operator>(const time_si& other) const;
             bool operator<=(const time_si& other) const;
             bool operator>=(const time_si& other) const;
             bool operator==(const time_si& other) const;
             bool operator!=(const time_si& other) const;
-#endif
 
 
-            length   operator*(const speed& other) const;
-            speed    operator*(const acceleration& other) const;
-            energy   operator*(const power& other) const;
-            momentum operator*(const force& other) const;
+            [[nodiscard]]
+            length
+            operator*(const speed& other) const;
+            [[nodiscard]]
+            speed
+            operator*(const acceleration& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const power& other) const;
+            [[nodiscard]]
+            momentum
+            operator*(const force& other) const;
         };
 
 
@@ -181,32 +192,44 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             length convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             length convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             length convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             length convert_like(const length& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const length& other) const;
-#else
+#endif
             bool operator<(const length& other) const;
             bool operator>(const length& other) const;
             bool operator<=(const length& other) const;
             bool operator>=(const length& other) const;
             bool operator==(const length& other) const;
             bool operator!=(const length& other) const;
-#endif
 
 
-            time_si operator/(const speed& other) const;
-            speed   operator/(const time_si& other) const;
+            [[nodiscard]]
+            time_si
+            operator/(const speed& other) const;
+            [[nodiscard]]
+            speed
+            operator/(const time_si& other) const;
 
 
-            area   operator*(const length& other) const;
-            energy operator*(const force& other) const;
+            [[nodiscard]]
+            area
+            operator*(const length& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const force& other) const;
 
+            [[nodiscard]]
             area square() const;
         };
 
@@ -293,27 +316,34 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             mass convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             mass convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             mass convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             mass convert_like(const mass& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const mass& other) const;
-#else
+#endif
             bool operator<(const mass& other) const;
             bool operator>(const mass& other) const;
             bool operator<=(const mass& other) const;
             bool operator>=(const mass& other) const;
             bool operator==(const mass& other) const;
             bool operator!=(const mass& other) const;
-#endif
 
 
-            force    operator*(const acceleration& other) const;
-            momentum operator*(const speed& other) const;
+            [[nodiscard]]
+            force
+            operator*(const acceleration& other) const;
+            [[nodiscard]]
+            momentum
+            operator*(const speed& other) const;
         };
 
 
@@ -395,23 +425,26 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             temperature convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             temperature convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             temperature convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             temperature convert_like(const temperature& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const temperature& other) const;
-#else
+#endif
             bool operator<(const temperature& other) const;
             bool operator>(const temperature& other) const;
             bool operator<=(const temperature& other) const;
             bool operator>=(const temperature& other) const;
             bool operator==(const temperature& other) const;
             bool operator!=(const temperature& other) const;
-#endif
         };
 
 
@@ -472,23 +505,26 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             amount convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             amount convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             amount convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             amount convert_like(const amount& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const amount& other) const;
-#else
+#endif
             bool operator<(const amount& other) const;
             bool operator>(const amount& other) const;
             bool operator<=(const amount& other) const;
             bool operator>=(const amount& other) const;
             bool operator==(const amount& other) const;
             bool operator!=(const amount& other) const;
-#endif
         };
 
 
@@ -549,23 +585,26 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             electric_current convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             electric_current convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             electric_current convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             electric_current convert_like(const electric_current& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const electric_current& other) const;
-#else
+#endif
             bool operator<(const electric_current& other) const;
             bool operator>(const electric_current& other) const;
             bool operator<=(const electric_current& other) const;
             bool operator>=(const electric_current& other) const;
             bool operator==(const electric_current& other) const;
             bool operator!=(const electric_current& other) const;
-#endif
         };
 
 
@@ -660,23 +699,26 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             luminous_intensity convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             luminous_intensity convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             luminous_intensity convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             luminous_intensity convert_like(const luminous_intensity& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const luminous_intensity& other) const;
-#else
+#endif
             bool operator<(const luminous_intensity& other) const;
             bool operator>(const luminous_intensity& other) const;
             bool operator<=(const luminous_intensity& other) const;
             bool operator>=(const luminous_intensity& other) const;
             bool operator==(const luminous_intensity& other) const;
             bool operator!=(const luminous_intensity& other) const;
-#endif
         };
 
 
@@ -738,31 +780,46 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             energy convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             energy convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             energy convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             energy convert_like(const energy& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const energy& other) const;
-#else
+#endif
             bool operator<(const energy& other) const;
             bool operator>(const energy& other) const;
             bool operator<=(const energy& other) const;
             bool operator>=(const energy& other) const;
             bool operator==(const energy& other) const;
             bool operator!=(const energy& other) const;
-#endif
 
 
-            length   operator/(const force& other) const;
-            force    operator/(const length& other) const;
-            time_si  operator/(const power& other) const;
-            power    operator/(const time_si& other) const;
-            speed    operator/(const momentum& other) const;
-            momentum operator/(const speed& other) const;
+            [[nodiscard]]
+            length
+            operator/(const force& other) const;
+            [[nodiscard]]
+            force
+            operator/(const length& other) const;
+            [[nodiscard]]
+            time_si
+            operator/(const power& other) const;
+            [[nodiscard]]
+            power
+            operator/(const time_si& other) const;
+            [[nodiscard]]
+            speed
+            operator/(const momentum& other) const;
+            [[nodiscard]]
+            momentum
+            operator/(const speed& other) const;
         };
 
 
@@ -916,30 +973,39 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             power convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             power convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             power convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             power convert_like(const power& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const power& other) const;
-#else
+#endif
             bool operator<(const power& other) const;
             bool operator>(const power& other) const;
             bool operator<=(const power& other) const;
             bool operator>=(const power& other) const;
             bool operator==(const power& other) const;
             bool operator!=(const power& other) const;
-#endif
 
 
-            speed operator/(const force& other) const;
-            force operator/(const speed& other) const;
+            [[nodiscard]]
+            speed
+            operator/(const force& other) const;
+            [[nodiscard]]
+            force
+            operator/(const speed& other) const;
 
 
-            energy operator*(const time_si& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const time_si& other) const;
         };
 
 
@@ -1030,33 +1096,48 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             speed convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             speed convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             speed convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             speed convert_like(const speed& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const speed& other) const;
-#else
+#endif
             bool operator<(const speed& other) const;
             bool operator>(const speed& other) const;
             bool operator<=(const speed& other) const;
             bool operator>=(const speed& other) const;
             bool operator==(const speed& other) const;
             bool operator!=(const speed& other) const;
-#endif
 
 
-            time_si      operator/(const acceleration& other) const;
-            acceleration operator/(const time_si& other) const;
+            [[nodiscard]]
+            time_si
+            operator/(const acceleration& other) const;
+            [[nodiscard]]
+            acceleration
+            operator/(const time_si& other) const;
 
 
-            length   operator*(const time_si& other) const;
-            energy   operator*(const momentum& other) const;
-            momentum operator*(const mass& other) const;
-            power    operator*(const force& other) const;
+            [[nodiscard]]
+            length
+            operator*(const time_si& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const momentum& other) const;
+            [[nodiscard]]
+            momentum
+            operator*(const mass& other) const;
+            [[nodiscard]]
+            power
+            operator*(const force& other) const;
         };
 
 
@@ -1117,27 +1198,34 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             acceleration convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             acceleration convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             acceleration convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             acceleration convert_like(const acceleration& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const acceleration& other) const;
-#else
+#endif
             bool operator<(const acceleration& other) const;
             bool operator>(const acceleration& other) const;
             bool operator<=(const acceleration& other) const;
             bool operator>=(const acceleration& other) const;
             bool operator==(const acceleration& other) const;
             bool operator!=(const acceleration& other) const;
-#endif
 
 
-            speed operator*(const time_si& other) const;
-            force operator*(const mass& other) const;
+            [[nodiscard]]
+            speed
+            operator*(const time_si& other) const;
+            [[nodiscard]]
+            force
+            operator*(const mass& other) const;
         };
 
 
@@ -1200,28 +1288,34 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             area convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             area convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             area convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             area convert_like(const area& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const area& other) const;
-#else
+#endif
             bool operator<(const area& other) const;
             bool operator>(const area& other) const;
             bool operator<=(const area& other) const;
             bool operator>=(const area& other) const;
             bool operator==(const area& other) const;
             bool operator!=(const area& other) const;
-#endif
 
 
-            length operator/(const length& other) const;
+            [[nodiscard]]
+            length
+            operator/(const length& other) const;
 
 
+            [[nodiscard]]
             length sqrt() const;
         };
 
@@ -1299,32 +1393,45 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             force convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             force convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             force convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             force convert_like(const force& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const force& other) const;
-#else
+#endif
             bool operator<(const force& other) const;
             bool operator>(const force& other) const;
             bool operator<=(const force& other) const;
             bool operator>=(const force& other) const;
             bool operator==(const force& other) const;
             bool operator!=(const force& other) const;
-#endif
 
 
-            acceleration operator/(const mass& other) const;
-            mass         operator/(const acceleration& other) const;
+            [[nodiscard]]
+            acceleration
+            operator/(const mass& other) const;
+            [[nodiscard]]
+            mass
+            operator/(const acceleration& other) const;
 
 
-            energy   operator*(const length& other) const;
-            momentum operator*(const time_si& other) const;
-            power    operator*(const speed& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const length& other) const;
+            [[nodiscard]]
+            momentum
+            operator*(const time_si& other) const;
+            [[nodiscard]]
+            power
+            operator*(const speed& other) const;
         };
 
 
@@ -1415,32 +1522,45 @@ namespace sakurajin {
 
             explicit operator long double() const;
 
+            [[nodiscard]]
             momentum convert_multiplier(long double new_multiplier = 1) const;
+            [[nodiscard]]
             momentum convert_offset(long double new_offset = 0) const;
+            [[nodiscard]]
             momentum convert_copy(long double new_multiplier = 1, long double new_offset = 0) const;
 
             // returns a copy of the unit with the same multiplier and offset as the other unit
+            [[nodiscard]]
             momentum convert_like(const momentum& other) const;
 
 #if __cplusplus >= 202002L
             int operator<=>(const momentum& other) const;
-#else
+#endif
             bool operator<(const momentum& other) const;
             bool operator>(const momentum& other) const;
             bool operator<=(const momentum& other) const;
             bool operator>=(const momentum& other) const;
             bool operator==(const momentum& other) const;
             bool operator!=(const momentum& other) const;
-#endif
 
 
-            time_si operator/(const force& other) const;
-            force   operator/(const time_si& other) const;
-            speed   operator/(const mass& other) const;
-            mass    operator/(const speed& other) const;
+            [[nodiscard]]
+            time_si
+            operator/(const force& other) const;
+            [[nodiscard]]
+            force
+            operator/(const time_si& other) const;
+            [[nodiscard]]
+            speed
+            operator/(const mass& other) const;
+            [[nodiscard]]
+            mass
+            operator/(const speed& other) const;
 
 
-            energy operator*(const speed& other) const;
+            [[nodiscard]]
+            energy
+            operator*(const speed& other) const;
         };
 
 

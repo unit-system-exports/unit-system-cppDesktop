@@ -42,9 +42,9 @@ TEST( unit_t_tests, compare_tests) {
     EXPECT_TRUE(v1 >= v1);
     
     #if __cplusplus >= 202002L
-    EXPECT_TRUE( (v4 <=> v5) < 0)
-    EXPECT_TRUE( (v5 <=> v4) > 0)
-    EXPECT_TRUE( (v1 <=> v1) == 0)
+    EXPECT_TRUE( (v4 <=> v5) < 0);
+    EXPECT_TRUE( (v5 <=> v4) > 0);
+    EXPECT_TRUE( (v1 <=> v1) == 0);
     #endif
     
 }

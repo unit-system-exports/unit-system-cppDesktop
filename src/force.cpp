@@ -81,7 +81,7 @@ int sakurajin::unit_system::force::operator<=>(const sakurajin::unit_system::for
 
     return 0;
 }
-#else
+#endif
 bool sakurajin::unit_system::force::operator<(const sakurajin::unit_system::force& other) const {
     const auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
     return value < retval.value;
@@ -110,7 +110,6 @@ bool sakurajin::unit_system::force::operator==(const sakurajin::unit_system::for
 bool sakurajin::unit_system::force::operator!=(const sakurajin::unit_system::force& other) const {
     return !(*this == other);
 }
-#endif
 
 // non const member functions
 void sakurajin::unit_system::force::operator*=(long double scalar) {

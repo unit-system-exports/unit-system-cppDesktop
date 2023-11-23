@@ -85,7 +85,7 @@ int sakurajin::unit_system::electric_current::operator<=>(const sakurajin::unit_
 
     return 0;
 }
-#else
+#endif
 bool sakurajin::unit_system::electric_current::operator<(const sakurajin::unit_system::electric_current& other) const {
     const auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
     return value < retval.value;
@@ -114,7 +114,6 @@ bool sakurajin::unit_system::electric_current::operator==(const sakurajin::unit_
 bool sakurajin::unit_system::electric_current::operator!=(const sakurajin::unit_system::electric_current& other) const {
     return !(*this == other);
 }
-#endif
 
 // non const member functions
 void sakurajin::unit_system::electric_current::operator*=(long double scalar) {

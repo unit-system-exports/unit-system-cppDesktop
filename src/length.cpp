@@ -81,7 +81,7 @@ int sakurajin::unit_system::length::operator<=>(const sakurajin::unit_system::le
 
     return 0;
 }
-#else
+#endif
 bool sakurajin::unit_system::length::operator<(const sakurajin::unit_system::length& other) const {
     const auto retval = sakurajin::unit_system::unit_cast(other, multiplier, offset);
     return value < retval.value;
@@ -110,7 +110,6 @@ bool sakurajin::unit_system::length::operator==(const sakurajin::unit_system::le
 bool sakurajin::unit_system::length::operator!=(const sakurajin::unit_system::length& other) const {
     return !(*this == other);
 }
-#endif
 
 // non const member functions
 void sakurajin::unit_system::length::operator*=(long double scalar) {

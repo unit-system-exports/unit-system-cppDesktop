@@ -24,4 +24,4 @@ IndentPPDirectives: BeforeHash
 IndentCaseLabels: true
 AlignArrayOfStructures: Right
 BreakArrays: false
-Standard: c++17
+Standard: c++20
